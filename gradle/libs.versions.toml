@@ -2,9 +2,12 @@
 pendant = "0.5.0"
 kotlin = "1.9.0"
 ksp = "1.9.10-1.0.13"
+kotest = "5.7.2"
 
 [libraries]
 ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+kotest-junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
