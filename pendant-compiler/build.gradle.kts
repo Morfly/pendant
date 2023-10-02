@@ -10,7 +10,7 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
-                implementation(projects.pendantStarlark)
+                implementation(projects.pendant)
 
                 implementation(libs.ksp.api)
                 implementation(libs.autoService.annotations)
