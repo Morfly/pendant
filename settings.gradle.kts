@@ -19,9 +19,9 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
 
-rootProject.name = "pendant"
+rootProject.name = "pendant-starlark"
 include(
-    ":pendant-starlark",
-    ":pendant-starlark-lib-compiler",
-    ":pendant-starlark-lib-bazel",
+    ":pendant",
+    ":pendant-compiler",
+    ":pendant-bazel",
 )
