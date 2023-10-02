@@ -20,4 +20,3 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 # ===== Convention Plugins =====
 pendant-kotlin-multiplatform-library = { id = "pendant.kotlin.multiplatform.library", version.ref = "pendantConventionPlugin" }
 pendant-kotlin-multiplatform-common = { id = "pendant.kotlin.multiplatform.common", version.ref = "pendantConventionPlugin" }
-pendant-metadata = { id = "pendant.metadata", version.ref = "pendantConventionPlugin" }
