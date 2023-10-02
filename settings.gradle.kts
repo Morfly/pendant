@@ -20,4 +20,8 @@ plugins {
 }
 
 rootProject.name = "pendant"
-include(":pendant-starlark")
+include(
+    ":pendant-starlark",
+    ":pendant-starlark-lib-compiler",
+    ":pendant-starlark-lib-bazel",
+)

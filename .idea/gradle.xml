@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/pendant-starlark" />
+            <option value="$PROJECT_DIR$/pendant-starlark-lib-bazel" />
+            <option value="$PROJECT_DIR$/pendant-starlark-lib-compiler" />
           </set>
         </option>
       </GradleProjectSettings>
