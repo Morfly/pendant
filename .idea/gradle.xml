@@ -4,10 +4,24 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/build-tools" name="build-tools">
+                <projects>
+                  <project path="$PROJECT_DIR$/build-tools" />
+                  <project path="$PROJECT_DIR$/build-tools/conventions" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/build-tools" />
+            <option value="$PROJECT_DIR$/build-tools/conventions" />
             <option value="$PROJECT_DIR$/pendant" />
             <option value="$PROJECT_DIR$/pendant-bazel" />
             <option value="$PROJECT_DIR$/pendant-compiler" />

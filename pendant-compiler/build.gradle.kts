@@ -1,11 +1,13 @@
+import io.morfly.pendant.buildtools.libs
+
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.pendant.kotlin.multiplatform.common)
     alias(libs.plugins.ksp)
 }
 
 kotlin {
     jvm {
-        jvmToolchain(11)
+        jvmToolchain(PendantMetadata.JVM_TOOLCHAIN)
     }
     sourceSets {
         val jvmMain by getting {

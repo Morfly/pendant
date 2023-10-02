@@ -3,6 +3,7 @@ pendant = "0.5.0"
 kotlin = "1.9.10"
 ksp = "1.9.10-1.0.13"
 kotest = "5.7.2"
+pendantConventionPlugin = "ignored"
 
 [libraries]
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
@@ -10,7 +11,13 @@ autoService-ksp = "dev.zacsweers.autoservice:auto-service-ksp:1.0.0"
 autoService-annotations = "com.google.auto.service:auto-service-annotations:1.0.1"
 kotest-junit5 = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+# ===== Gradle plugins =====
+gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+# ===== Convention Plugins =====
+pendant-kotlin-multiplatform-library = { id = "pendant.kotlin.multiplatform.library", version.ref = "pendantConventionPlugin" }
+pendant-kotlin-multiplatform-common = { id = "pendant.kotlin.multiplatform.common", version.ref = "pendantConventionPlugin" }
+pendant-metadata = { id = "pendant.metadata", version.ref = "pendantConventionPlugin" }
