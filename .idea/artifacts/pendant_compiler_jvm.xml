@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pendant-compiler-jvm">
+    <output-path>$PROJECT_DIR$/pendant-compiler/build/libs</output-path>
+    <root id="archive" name="pendant-compiler-jvm.jar">
+      <element id="module-output" name="pendant-starlark.pendant-compiler.jvmMain" />
+    </root>
+  </artifact>
+</component>
