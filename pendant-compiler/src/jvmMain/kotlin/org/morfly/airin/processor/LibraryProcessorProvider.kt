@@ -16,6 +16,7 @@
 
 package org.morfly.airin.processor
 
+import com.google.auto.service.AutoService
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.processing.SymbolProcessorProvider
@@ -24,7 +25,7 @@ import org.morfly.airin.FileGeneratorImpl
 import org.morfly.airin.FunctionScopeResolverImpl
 import org.morfly.airin.RoundFunctionGenerator
 
-
+@AutoService(SymbolProcessorProvider::class)
 class LibraryProcessorProvider : SymbolProcessorProvider {
 
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
