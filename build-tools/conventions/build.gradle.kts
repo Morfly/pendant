@@ -16,15 +16,9 @@ gradlePlugin {
             id = "pendant.kotlin.multiplatform.library"
             implementationClass = "PendantMultiplatformLibraryPlugin"
         }
-
         val kotlinMultiplatformCommon by registering {
             id = "pendant.kotlin.multiplatform.common"
             implementationClass = "PendantMultiplatformCommonPlugin"
-        }
-
-        val medatada by registering {
-            id = "pendant.metadata"
-            implementationClass = "PendantMetadataPlugin"
         }
     }
 }
