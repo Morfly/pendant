@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     jvm {
-        jvmToolchain(PendantMetadata.JVM_TOOLCHAIN)
+        jvmToolchain(PendantMetadata.JVM_TOOLCHAIN_VERSION)
     }
     sourceSets {
         val jvmMain by getting {
