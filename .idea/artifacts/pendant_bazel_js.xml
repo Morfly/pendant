@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pendant-bazel-js">
+    <output-path>$PROJECT_DIR$/pendant-bazel/build/libs</output-path>
+    <root id="archive" name="pendant-bazel-js.jar">
+      <element id="module-output" name="pendant-starlark.pendant-bazel.jsMain" />
+    </root>
+  </artifact>
+</component>
