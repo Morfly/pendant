@@ -7,7 +7,7 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
-                implementation(projects.pendant)
+                implementation(projects.pendantStarlark)
             }
         }
         val jvmTest by getting {
@@ -20,6 +20,6 @@ kotlin {
 }
 
 dependencies {
-    add("kspJvm", projects.pendantCompiler)
-    add("kspJvmTest", projects.pendantCompiler)
+    add("kspJvm", projects.pendantLibCompiler)
+    add("kspJvmTest", projects.pendantLibCompiler)
 }
