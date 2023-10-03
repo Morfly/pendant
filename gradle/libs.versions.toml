@@ -1,7 +1,7 @@
 [versions]
 pendant = "0.5.0"
 kotlin = "1.9.10"
-kotlinCompat = "1.7.0"
+kotlinCompat = "1.7.21"
 ksp = "1.9.10-1.0.13"
 kotest = "5.7.2"
 mavenPublish = "0.25.3"
