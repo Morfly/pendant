@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pendant-lib-bazel-jvm-0.5.0">
+    <output-path>$PROJECT_DIR$/pendant-lib-bazel/build/libs</output-path>
+    <root id="archive" name="pendant-lib-bazel-jvm-0.5.0.jar">
+      <element id="module-output" name="pendant.pendant-lib-bazel.jvmMain" />
+    </root>
+  </artifact>
+</component>
