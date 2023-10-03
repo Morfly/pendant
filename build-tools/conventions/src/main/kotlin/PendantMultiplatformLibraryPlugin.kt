@@ -9,15 +9,6 @@ class PendantMultiplatformLibraryPlugin : PendantConventionPlugin({
     }
 
     kotlin {
-        jvm {
-            jvmToolchain(PendantMetadata.JVM_TOOLCHAIN_VERSION)
-            withJava()
-            testRuns.named("test") {
-                executionTask.configure {
-                    useJUnitPlatform()
-                }
-            }
-        }
 //        js {
 //            browser {
 //                commonWebpackConfig {
