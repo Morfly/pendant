@@ -6,6 +6,7 @@ import io.morfly.pendant.buildtools.mavenPublishing
 class PendantMavenPublishPlugin : PendantConventionPlugin({
     with(pluginManager) {
         apply(libs.plugins.vanniktech.maven.publish.get().pluginId)
+        apply(libs.plugins.dokka.get().pluginId)
     }
 
     mavenPublishing {
