@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.pendant.kotlin.multiplatform.library)
+    alias(libs.plugins.pendant.maven.publish)
+    alias(libs.plugins.dokka)
     alias(libs.plugins.ksp)
 }
 

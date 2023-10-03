@@ -1,5 +1,6 @@
 package io.morfly.pendant.buildtools
 
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
@@ -11,3 +12,7 @@ val Project.libs get() = extensions.getByType<LibrariesForLibs>()
 
 fun Project.kotlin(body: KotlinMultiplatformExtension.() -> Unit): Unit =
     extensions.configure("kotlin", body)
+
+fun Project.mavenPublishing(configure: MavenPublishBaseExtension.() -> Unit) {
+    extensions.configure("mavenPublishing", configure)
+}

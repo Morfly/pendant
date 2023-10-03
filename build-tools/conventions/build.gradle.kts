@@ -8,6 +8,7 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
     compileOnly(libs.gradlePlugin.kotlin)
+    compileOnly(libs.gradlePlugin.mavenPublish)
 }
 
 gradlePlugin {
@@ -19,6 +20,10 @@ gradlePlugin {
         val kotlinMultiplatformCommon by registering {
             id = "pendant.kotlin.multiplatform.common"
             implementationClass = "PendantMultiplatformCommonPlugin"
+        }
+        val mavenPublish by registering {
+            id = "pendant.maven.publish"
+            implementationClass = "PendantMavenPublishPlugin"
         }
     }
 }

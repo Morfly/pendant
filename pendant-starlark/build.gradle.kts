@@ -2,6 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.pendant.kotlin.multiplatform.library)
+    alias(libs.plugins.pendant.maven.publish)
+    alias(libs.plugins.dokka)
 }
 
 tasks.withType<KotlinCompile>().configureEach {
