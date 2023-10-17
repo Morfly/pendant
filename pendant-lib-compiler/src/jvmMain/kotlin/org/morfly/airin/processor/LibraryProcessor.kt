@@ -186,6 +186,7 @@ class LibraryGenerator(
                         }
                         true
                     }
+
                     else -> {
                         val message = "Only arguments of list type must be used as vararg."
                         logger.error(message, property)
@@ -229,6 +230,8 @@ class LibraryGenerator(
                 Type -> visitTypeReference(property.type)
                 Dynamic -> DynamicType
             }
+            println("TTAGG visitReturnProperty: $returnType")
+
         }
 
         private fun visitTypeReference(typeRef: KSTypeReference, visitGenericArguments: Boolean = true): SpecifiedType {

@@ -18,9 +18,8 @@
 
 package org.morfly.airin.starlark.lang.feature
 
+import org.morfly.airin.starlark.lang.api.*
 import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.StatementsHolder
-import org.morfly.airin.starlark.lang.api.asSet
 
 
 /**
@@ -33,13 +32,17 @@ import org.morfly.airin.starlark.lang.api.asSet
  * }
  * ```
  */
-internal interface DynamicFunctionsFeature : LanguageFeature, StatementsHolder {
+internal interface DynamicFunctionsFeature : LanguageFeature,
+    StatementsHolder,
+    ModifiersHolder {
 
     /**
      *
      */
     operator fun String.invoke(body: FunctionCallContext.() -> Unit) {
-        val args = FunctionCallContext().apply(body).fargs.asSet()
+        val functionCallContext = FunctionCallContext(modifiers).apply(body)
+        invokeModifiers(functionCallContext)
+        val args = functionCallContext.fargs.asSet()
         registerFunctionCallStatement(name = this, args)
     }
 

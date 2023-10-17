@@ -22,7 +22,7 @@ import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.BooleanType
 import org.morfly.airin.starlark.lang.NumberType
 import org.morfly.airin.starlark.lang.StringType
-import org.morfly.airin.starlark.lang.api.LanguageContext
+import org.morfly.airin.starlark.lang.api.FileContext
 import org.morfly.airin.starlark.lang.api.LanguageContextProvider
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.StatementsHolder
@@ -31,7 +31,7 @@ import org.morfly.airin.starlark.lang.api.StatementsHolder
 /**
  * Feature that enables list comprehensions.
  */
-internal interface ListComprehensionsFeature<C : LanguageContext> : LanguageFeature, LanguageContextProvider<C>,
+internal interface ListComprehensionsFeature<C : FileContext> : LanguageFeature, LanguageContextProvider<C>,
     StatementsHolder {
 
 
@@ -203,7 +203,7 @@ internal interface ListComprehensionsFeature<C : LanguageContext> : LanguageFeat
         buildComprehension(context = newContext(), variable, body, clauses)
 }
 
-private fun <C : LanguageContext, V : Reference, R> StatementsHolder.buildComprehension(
+private fun <C : FileContext, V : Reference, R> StatementsHolder.buildComprehension(
     context: C,
     variable: V,
     body: C.(V) -> R,

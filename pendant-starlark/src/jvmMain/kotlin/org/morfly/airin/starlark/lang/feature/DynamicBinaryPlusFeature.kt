@@ -21,7 +21,9 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.elements.BinaryOperator.PLUS
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 
 
 /**
@@ -55,7 +57,8 @@ import org.morfly.airin.starlark.lang.api.LanguageFeature
  *
  * This feature makes sure the entire concatenation is registered as an argument.
  */
-internal interface DynamicBinaryPlusFeature : LanguageFeature {
+internal interface DynamicBinaryPlusFeature : LanguageFeature,
+    ModifiersHolder {
 
     /**
      * String concatenation operator.
@@ -131,10 +134,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature {
     infix fun <K, V : Value, E : Element> _DictionaryExpressionAccumulator<K, V, E>.`+`(
         body: DictionaryContext.() -> Unit
     ): _DictionaryExpressionAccumulator<K, V, E> {
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
         holder.value = DictionaryBinaryOperation<Key, Value>(
             left = holder.value,
             operator = PLUS,
-            right = DictionaryExpression(DictionaryContext().apply(body).kwargs)
+            right = DictionaryExpression(dictionaryContext.kwargs)
         )
         return this
     }

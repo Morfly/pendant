@@ -20,6 +20,8 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.Argument
 import org.morfly.airin.starlark.lang.api.CommonExpressionsLibrary
+import org.morfly.airin.starlark.lang.api.Context
+import org.morfly.airin.starlark.lang.api.Modifier
 import org.morfly.airin.starlark.lang.api.LanguageScope
 
 
@@ -27,9 +29,16 @@ import org.morfly.airin.starlark.lang.api.LanguageScope
  *
  */
 @LanguageScope
-open class FunctionCallContext : CommonExpressionsLibrary,
-    ArgumentsFeature, DynamicArgumentsFeature, BinaryPlusFeature,
-    DynamicBinaryPlusFeature, CollectionsFeature, BooleanValuesFeature,
+open class FunctionCallContext(
+    override val modifiers: MutableMap<String, MutableList<Modifier<*>>>
+) : Context(),
+    CommonExpressionsLibrary,
+    ArgumentsFeature,
+    DynamicArgumentsFeature,
+    BinaryPlusFeature,
+    DynamicBinaryPlusFeature,
+    CollectionsFeature,
+    BooleanValuesFeature,
     StringExtensionsFeature {
 
     override val fargs = linkedMapOf<String, Argument>()

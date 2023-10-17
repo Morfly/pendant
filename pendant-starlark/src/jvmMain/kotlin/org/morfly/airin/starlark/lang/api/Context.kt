@@ -16,20 +16,12 @@
 
 package org.morfly.airin.starlark.lang.api
 
+abstract class Context : ModifiersHolder {
 
-interface CommonStatementsLibrary : StatementsHolder, ModifiersHolder
-
-interface BuildStatementsLibrary : CommonStatementsLibrary
-
-interface WorkspaceStatementsLibrary : CommonStatementsLibrary
-
-interface StarlarkStatementsLibrary : CommonStatementsLibrary
-
-
-interface CommonExpressionsLibrary : ModifiersHolder
-
-interface BuildExpressionsLibrary : CommonExpressionsLibrary
-
-interface WorkspaceExpressionsLibrary : CommonExpressionsLibrary
-
-interface StarlarkExpressionsLibrary : CommonExpressionsLibrary
+    @Suppress("PropertyName")
+    var _id: String? = null
+        set(value) {
+            if (field == null) field = value
+            else error("${this::class.simpleName} id can't be reassigned!")
+        }
+}

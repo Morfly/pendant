@@ -56,7 +56,7 @@ class CurlyFunctionGenerator(
         file += "\n"
 
         val functionBuilderName = function.builderName
-        file += "${indent4}$functionBuilderName(\"${function.shortName}\", $ctxClassName(), body)"
+        file += "${indent4}$functionBuilderName(\"${function.shortName}\", $ctxClassName(modifiers), body)"
     }
 
     /**
@@ -70,7 +70,9 @@ class CurlyFunctionGenerator(
             it += function.arguments.filter { arg -> arg.shortName.isNotBlank() }
         }
 
-        file += "class $ctxClassName : FunctionCallContext() {\n"
+        file += "class $ctxClassName(\n"
+        file += "${indent4}modifiers: MutableMap<String, MutableList<Modifier<*>>> = mutableMapOf()"
+        file += "\n) : FunctionCallContext(modifiers) {\n"
         for (arg in allArguments) {
             file += indent4
             file += "var ${arg.fullName}: ${arg.type.fullName} by fargs\n"

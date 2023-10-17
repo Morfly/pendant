@@ -22,16 +22,21 @@ import org.morfly.airin.starlark.elements.DictionaryExpression
 import org.morfly.airin.starlark.elements.ListExpression
 import org.morfly.airin.starlark.elements.TupleExpression
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
+import org.morfly.airin.starlark.lang.api.InternalPendantApi
 import org.morfly.airin.starlark.lang.api.LanguageFeature
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 
 
 /**
  * Feature that enables list, dictionary and tuple expressions.
  */
-internal interface CollectionsFeature : LanguageFeature {
+internal interface CollectionsFeature : LanguageFeature,
+    ModifiersHolder {
 
     // ===== Lists =====
 
+    @InternalPendantApi
     object _ListExpressionBuilder
 
     val list get() = _ListExpressionBuilder
@@ -61,7 +66,9 @@ internal interface CollectionsFeature : LanguageFeature {
      * Dictionary expression builder.
      */
     fun dict(body: DictionaryContext.() -> Unit): Map<Key, Value> {
-        val kwargs = DictionaryContext().apply(body).kwargs
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
+        val kwargs = dictionaryContext.kwargs
         return DictionaryExpression(kwargs)
     }
 

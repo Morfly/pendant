@@ -20,14 +20,18 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.StatementsHolder
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 
 
 /**
  * Feature that enables assigning new values to the existing variable.
  */
-internal interface ReassignmentsFeature : LanguageFeature, StatementsHolder {
+internal interface ReassignmentsFeature : LanguageFeature,
+    StatementsHolder,
+    ModifiersHolder {
 
     /**
      * String assignment operator.
@@ -82,7 +86,9 @@ internal interface ReassignmentsFeature : LanguageFeature, StatementsHolder {
     infix fun <K : Key, V : Value> DictionaryReference<K, V>.`=`(
         body: DictionaryContext.() -> Unit
     ): _DictionaryExpressionAccumulator<K, V, Assignment> {
-        val value = DictionaryContext().apply(body).kwargs
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
+        val value = dictionaryContext.kwargs
         val assignment = Assignment(name, value = DictionaryExpression(value))
         statements += assignment
         return _DictionaryExpressionAccumulator(assignment)

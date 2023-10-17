@@ -16,20 +16,15 @@
 
 package org.morfly.airin.starlark.lang.api
 
+import org.morfly.airin.starlark.elements.Expression
 
-interface CommonStatementsLibrary : StatementsHolder, ModifiersHolder
+/**
+ * Container of the key value pairs that are part of the dictionary expression.
+ */
+internal interface MappingHolder {
 
-interface BuildStatementsLibrary : CommonStatementsLibrary
-
-interface WorkspaceStatementsLibrary : CommonStatementsLibrary
-
-interface StarlarkStatementsLibrary : CommonStatementsLibrary
-
-
-interface CommonExpressionsLibrary : ModifiersHolder
-
-interface BuildExpressionsLibrary : CommonExpressionsLibrary
-
-interface WorkspaceExpressionsLibrary : CommonExpressionsLibrary
-
-interface StarlarkExpressionsLibrary : CommonExpressionsLibrary
+    /**
+     *
+     */
+    val kwargs: MutableMap<Expression, Expression>
+}

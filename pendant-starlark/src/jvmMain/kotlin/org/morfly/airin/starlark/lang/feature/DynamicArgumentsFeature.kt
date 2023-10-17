@@ -19,7 +19,9 @@
 package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
+import org.morfly.airin.starlark.elements.Argument
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.*
 import org.morfly.airin.starlark.lang.api.ArgumentsHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.append
@@ -29,7 +31,10 @@ import org.morfly.airin.starlark.lang.api.append
  * Feature of the Starlark template engine that provides operators for passsing arguments that were not initially
  * specified in Airin.
  */
-internal interface DynamicArgumentsFeature : LanguageFeature, ArgumentsHolder {
+internal interface DynamicArgumentsFeature :
+    LanguageFeature,
+    ArgumentsHolder,
+    ModifiersHolder {
 
     /**
      * Operator for passing string argument.
@@ -95,7 +100,9 @@ internal interface DynamicArgumentsFeature : LanguageFeature, ArgumentsHolder {
      * Operator for passing dictionary argument.
      */
     infix fun String.`=`(body: DictionaryContext.() -> Unit): _DictionaryExpressionAccumulator<Key, Value, *> {
-        val value = DictionaryContext().apply(body).kwargs
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
+        val value = dictionaryContext.kwargs
         val argument = append(
             name = this,
             value = DictionaryExpression(value),

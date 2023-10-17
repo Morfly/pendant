@@ -23,6 +23,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.maps.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import org.morfly.airin.starlark.lang.api.Modifier
 
 
 class CollectionsFeatureTests : FeatureSpec({
@@ -146,4 +147,7 @@ class CollectionsFeatureTests : FeatureSpec({
 
 private class CollectionsFeatureUnderTest :
 // Feature under test
-    CollectionsFeature
+    CollectionsFeature {
+
+    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
+}

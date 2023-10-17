@@ -16,10 +16,24 @@
 
 package org.morfly.airin.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.*
-import org.morfly.airin.starlark.lang.api.StatementsHolder
-import org.morfly.airin.starlark.lang.api.asSet
+import org.morfly.airin.starlark.elements.AnyFunctionCall
+import org.morfly.airin.starlark.elements.Argument
+import org.morfly.airin.starlark.elements.BooleanFunctionCall
+import org.morfly.airin.starlark.elements.DictionaryFunctionCall
+import org.morfly.airin.starlark.elements.ExpressionStatement
+import org.morfly.airin.starlark.elements.ListFunctionCall
+import org.morfly.airin.starlark.elements.NumberFunctionCall
+import org.morfly.airin.starlark.elements.StringFunctionCall
+import org.morfly.airin.starlark.elements.TupleFunctionCall
+import org.morfly.airin.starlark.elements.VoidFunctionCall
+import org.morfly.airin.starlark.lang.BooleanBaseType
+import org.morfly.airin.starlark.lang.BooleanType
+import org.morfly.airin.starlark.lang.Key
+import org.morfly.airin.starlark.lang.NumberType
+import org.morfly.airin.starlark.lang.StringType
+import org.morfly.airin.starlark.lang.TupleType
+import org.morfly.airin.starlark.lang.Value
+import org.morfly.airin.starlark.lang.api.*
 import kotlin.reflect.KClass
 import kotlin.reflect.typeOf
 
@@ -29,6 +43,7 @@ import kotlin.reflect.typeOf
 /**
  * Registers function statement in the Starlark file.
  */
+@InternalPendantApi
 fun StatementsHolder.registerFunctionCallStatement(name: String, args: Set<Argument> = emptySet()) {
     statements += ExpressionStatement(VoidFunctionCall(name, args))
 }
@@ -37,10 +52,13 @@ fun StatementsHolder.registerFunctionCallStatement(name: String, args: Set<Argum
 /**
  * Registers function statement in the Starlark file.
  */
-inline fun <C : FunctionCallContext> StatementsHolder.registerFunctionCallStatement(
+@InternalPendantApi
+inline fun <reified C : FunctionCallContext, H> H.registerFunctionCallStatement(
     name: String, context: C, body: C.() -> Unit
-) {
-    val args = context.apply(body).fargs.asSet()
+) where H : StatementsHolder, H : ModifiersHolder {
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     registerFunctionCallStatement(name, args)
 }
 
@@ -49,96 +67,120 @@ inline fun <C : FunctionCallContext> StatementsHolder.registerFunctionCallStatem
 /**
  * Builds a function call expression that returns string type.
  */
+@InternalPendantApi
 fun stringFunctionCall(name: String, args: Set<Argument> = emptySet()): StringType =
     StringFunctionCall(name, args)
 
 /**
  * Builds a function call expression that returns string type.
  */
-inline fun <C : FunctionCallContext> stringFunctionCall(
+@InternalPendantApi
+inline fun <reified C : FunctionCallContext> ModifiersHolder.stringFunctionCall(
     name: String, context: C, body: C.() -> Unit
 ): StringType {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return stringFunctionCall(name, args)
 }
 
 /**
  * Builds a function call expression that returns list type.
  */
+@InternalPendantApi
 fun <T> listFunctionCall(name: String, args: Set<Argument> = emptySet()): List<T> =
     ListFunctionCall(name, args)
 
 /**
  * Builds a function call expression that returns list type.
  */
-inline fun <T, C : FunctionCallContext> listFunctionCall(
+@InternalPendantApi
+inline fun <T, reified C : FunctionCallContext> ModifiersHolder.listFunctionCall(
     name: String, context: C, body: C.() -> Unit
 ): List<T> {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return listFunctionCall(name, args)
 }
 
 /**
  * Builds a function call expression that returns tuple type.
  */
+@InternalPendantApi
 fun tupleFunctionCall(name: String, args: Set<Argument> = emptySet()): TupleType =
     TupleFunctionCall(name, args)
 
 /**
  * Builds a function call expression that returns tuple type.
  */
-inline fun <C : FunctionCallContext> tupleFunctionCall(
+@InternalPendantApi
+inline fun <reified C : FunctionCallContext> ModifiersHolder.tupleFunctionCall(
     name: String, context: C, body: C.() -> Unit
 ): TupleType {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return tupleFunctionCall(name, args)
 }
 
 /**
  * Builds a function call expression that returns dictionary type.
  */
+@InternalPendantApi
 fun dictFunctionCall(name: String, args: Set<Argument> = emptySet()): Map<Key, Value> =
     DictionaryFunctionCall(name, args)
 
 /**
  * Builds a function call expression that returns dictionary type.
  */
-inline fun <C : FunctionCallContext> dictFunctionCall(
+@InternalPendantApi
+inline fun <reified C : FunctionCallContext> ModifiersHolder.dictFunctionCall(
     name: String, context: C, body: C.() -> Unit
 ): Map<Key, Value> {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return dictFunctionCall(name, args)
 }
 
 /**
  * Builds a function call expression that returns integer type.
  */
+@InternalPendantApi
 fun numberFunctionCall(name: String, args: Set<Argument> = emptySet()): NumberType =
     NumberFunctionCall(name, args)
 
 /**
  * Builds a function call expression that returns integer type.
  */
-inline fun <C : FunctionCallContext> numberFunctionCall(
+@InternalPendantApi
+inline fun <reified C : FunctionCallContext> ModifiersHolder.numberFunctionCall(
     name: String, context: C, body: C.() -> Unit
 ): NumberType {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return numberFunctionCall(name, args)
 }
 
 /**
  * Builds a function call expression that returns boolean type.
  */
+@InternalPendantApi
 fun booleanFunctionCall(name: String, args: Set<Argument> = emptySet()): BooleanType =
     BooleanFunctionCall(name, args)
 
 /**
  * Builds a function call expression that returns boolean type.
  */
-inline fun <C : FunctionCallContext> booleanFunctionCall(
+@InternalPendantApi
+inline fun <reified C : FunctionCallContext> ModifiersHolder.booleanFunctionCall(
     name: String, context: C, body: C.() -> Unit
 ): BooleanType {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return booleanFunctionCall(name, args)
 }
 
@@ -147,6 +189,7 @@ inline fun <C : FunctionCallContext> booleanFunctionCall(
  *
  * Note: if the function you're building has a specific determined type DO NOT use this builder.
  */
+@InternalPendantApi
 inline fun <reified T> functionCallExpression(name: String, args: Set<Argument> = emptySet()): T =
     when {
         StringType::class.java.isAssignableFrom(T::class.java) -> StringFunctionCall(name, args)
@@ -161,6 +204,7 @@ inline fun <reified T> functionCallExpression(name: String, args: Set<Argument> 
                 else -> AnyFunctionCall(name, args)
             }
         }
+
         else -> AnyFunctionCall(name, args)
     } as T
 
@@ -169,9 +213,12 @@ inline fun <reified T> functionCallExpression(name: String, args: Set<Argument> 
  *
  * Note: if the function you're building has a specific determined type DO NOT use this builder.
  */
-inline fun <reified T, C : FunctionCallContext> functionCallExpression(
+@InternalPendantApi
+inline fun <reified T, reified C : FunctionCallContext> ModifiersHolder.functionCallExpression(
     name: String, context: C, body: C.() -> Unit
 ): T {
-    val args = context.apply(body).fargs.asSet()
+    context.apply(body)
+    invokeModifiers(context)
+    val args = context.fargs.asSet()
     return functionCallExpression(name, args)
 }

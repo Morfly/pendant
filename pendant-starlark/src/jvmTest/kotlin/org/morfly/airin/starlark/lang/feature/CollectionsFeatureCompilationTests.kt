@@ -20,6 +20,7 @@ import org.morfly.airin.starlark.lang.Key
 import org.morfly.airin.starlark.lang.StringType
 import org.morfly.airin.starlark.lang.TupleType
 import org.morfly.airin.starlark.lang.Value
+import org.morfly.airin.starlark.lang.api.Modifier
 
 
 private fun CollectionsFeatureUnderCompilationTest.CompilationTests() {
@@ -58,4 +59,7 @@ private fun CollectionsFeatureUnderCompilationTest.CompilationTests() {
 
 private class CollectionsFeatureUnderCompilationTest :
 // Feature under test
-    CollectionsFeature
+    CollectionsFeature {
+
+    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
+}

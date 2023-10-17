@@ -18,7 +18,7 @@ package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.lang.api.CommonExpressionsLibrary
 import org.morfly.airin.starlark.lang.api.CommonStatementsLibrary
-import org.morfly.airin.starlark.lang.api.LanguageContext
+import org.morfly.airin.starlark.lang.api.FileContext
 import org.morfly.airin.starlark.lang.api.StatementsHolder
 import org.morfly.airin.starlark.lang.feature.*
 
@@ -27,8 +27,9 @@ import org.morfly.airin.starlark.lang.feature.*
  * Starlark Language context that includes a base set of features that are applicable to all types of Starlark files
  * such as BUILD, WORKSPACE, .bzl and .star files.
  */
-sealed class CommonStarlarkContext<C : LanguageContext> : LanguageContext(), StatementsHolder,
-    CommonStatementsLibrary, CommonExpressionsLibrary,
+sealed class CommonStarlarkContext<C : FileContext> : FileContext(),
+    CommonStatementsLibrary,
+    CommonExpressionsLibrary,
     AssignmentsFeature,
     DynamicAssignmentsFeature,
     BinaryPlusFeature,

@@ -20,15 +20,19 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.StatementsHolder
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 import kotlin.reflect.KProperty
 
 
 /**
  * Feature that enables assignments for variables with names that can vary based on template arguments.
  */
-internal interface DynamicAssignmentsFeature : LanguageFeature, StatementsHolder {
+internal interface DynamicAssignmentsFeature : LanguageFeature,
+    ModifiersHolder,
+    StatementsHolder {
 
     operator fun _StringExpressionAccumulator<Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
@@ -107,7 +111,9 @@ internal interface DynamicAssignmentsFeature : LanguageFeature, StatementsHolder
     infix fun <K : Key, V : Value> String.`=`(
         body: DictionaryContext.() -> Unit
     ): _DictionaryExpressionAccumulator<K, V, Assignment> {
-        val value = DictionaryContext().apply(body).kwargs
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
+        val value = dictionaryContext.kwargs
         val assignment = Assignment(name = this, value = Expression(value, ::DictionaryExpression))
         return _DictionaryExpressionAccumulator(assignment)
     }

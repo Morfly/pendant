@@ -22,7 +22,9 @@ import org.morfly.airin.starlark.elements.Statement
 /**
  * Base language context that others must inherit.
  */
-abstract class LanguageContext internal constructor(): StatementsHolder {
+abstract class FileContext internal constructor() : Context(), StatementsHolder {
+
+    abstract val fileName: String
 
     override val statements = mutableListOf<Statement>()
 }

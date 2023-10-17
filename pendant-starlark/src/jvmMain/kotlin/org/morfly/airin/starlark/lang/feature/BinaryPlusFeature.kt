@@ -21,13 +21,16 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.elements.BinaryOperator.PLUS
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 
 
 /**
  * Feature that enables concatenations.
  */
-internal interface BinaryPlusFeature : LanguageFeature {
+internal interface BinaryPlusFeature : LanguageFeature,
+    ModifiersHolder {
 
     /**
      * Operator for string concatenation.
@@ -82,10 +85,13 @@ internal interface BinaryPlusFeature : LanguageFeature {
     /**
      * Operator for dictionary concatenation.
      */
-    infix fun Map<*, Value>?.`+`(body: DictionaryContext.() -> Unit): Map<Key, Value> =
-        DictionaryBinaryOperation(
+    infix fun Map<*, Value>?.`+`(body: DictionaryContext.() -> Unit): Map<Key, Value> {
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
+        return DictionaryBinaryOperation(
             left = Expression(this, ::DictionaryExpression),
             operator = PLUS,
-            right = DictionaryExpression(DictionaryContext().apply(body).kwargs)
+            right = DictionaryExpression(dictionaryContext.kwargs)
         )
+    }
 }

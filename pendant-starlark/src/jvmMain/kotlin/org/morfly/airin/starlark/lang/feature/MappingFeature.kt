@@ -20,24 +20,17 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
-
-
-/**
- * Container of the key value pairs that are part of the dictionary expression.
- */
-internal interface MappingHolder {
-
-    /**
-     *
-     */
-    val kwargs: MutableMap<Expression, Expression>
-}
+import org.morfly.airin.starlark.lang.api.MappingHolder
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 
 /**
  * Enables mapping to key-value pairs that are part of the dictionary expression.
  */
-internal interface MappingFeature : LanguageFeature, MappingHolder {
+internal interface MappingFeature : LanguageFeature,
+    MappingHolder,
+    ModifiersHolder {
 
     /**
      * Mapping key to string value.
@@ -93,7 +86,9 @@ internal interface MappingFeature : LanguageFeature, MappingHolder {
      * Mapping key to dictionary value.
      */
     infix fun Key.to(body: DictionaryContext.() -> Unit): _DictionaryExpressionAccumulator<Key, Value, Expression> {
-        val value = DictionaryContext().apply(body).kwargs
+        val dictionaryContext = DictionaryContext(modifiers).apply(body)
+        invokeModifiers(dictionaryContext)
+        val value = dictionaryContext.kwargs
         val k = Expression(this)
         val v = DynamicExpression(Expression(value, ::DictionaryExpression))
         kwargs[k] = v

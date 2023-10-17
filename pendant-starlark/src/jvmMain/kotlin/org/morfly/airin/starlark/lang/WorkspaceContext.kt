@@ -19,6 +19,7 @@
 package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.WorkspaceFile
+import org.morfly.airin.starlark.lang.api.Modifier
 import org.morfly.airin.starlark.lang.api.LanguageScope
 import org.morfly.airin.starlark.lang.api.WorkspaceExpressionsLibrary
 import org.morfly.airin.starlark.lang.api.WorkspaceStatementsLibrary
@@ -28,19 +29,29 @@ import org.morfly.airin.starlark.lang.api.WorkspaceStatementsLibrary
  * Starlark language context that is specific to Bazel WORKSPACE files.
  */
 @LanguageScope
-class WorkspaceContext : CommonStarlarkContext<WorkspaceContext>(),
+class WorkspaceContext(
+    val hasExtension: Boolean,
+    override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = mutableMapOf()
+) : CommonStarlarkContext<WorkspaceContext>(),
     WorkspaceStatementsLibrary, WorkspaceExpressionsLibrary {
 
-    override fun newContext() = WorkspaceContext()
+    override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
+
+    override fun newContext() = WorkspaceContext(hasExtension, modifiers)
 }
+
+fun WorkspaceContext.build(): WorkspaceFile =
+    WorkspaceFile(
+        hasExtension = hasExtension,
+        statements = statements.toList()
+    )
 
 /**
  *
  */
-inline fun WORKSPACE(body: WorkspaceContext.() -> Unit): WorkspaceFile =
-    WorkspaceContext()
+inline fun WORKSPACE(body: WorkspaceContext.() -> Unit): WorkspaceContext =
+    WorkspaceContext(hasExtension = false)
         .apply(body)
-        .let { WorkspaceFile(hasExtension = false, statements = it.statements.toList()) }
 
 /**
  *
@@ -50,7 +61,6 @@ object WORKSPACE
 /**
  *
  */
-inline fun WORKSPACE.bazel(body: WorkspaceContext.() -> Unit): WorkspaceFile =
-    WorkspaceContext()
+inline fun WORKSPACE.bazel(body: WorkspaceContext.() -> Unit): WorkspaceContext =
+    WorkspaceContext(hasExtension = true)
         .apply(body)
-        .let { WorkspaceFile(hasExtension = true, statements = it.statements.toList()) }

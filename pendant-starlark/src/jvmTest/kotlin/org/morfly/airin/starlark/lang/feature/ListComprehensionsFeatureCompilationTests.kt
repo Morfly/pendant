@@ -22,7 +22,7 @@ import org.morfly.airin.starlark.elements.ListReference
 import org.morfly.airin.starlark.elements.StringReference
 import org.morfly.airin.starlark.lang.NumberType
 import org.morfly.airin.starlark.lang.StringType
-import org.morfly.airin.starlark.lang.api.LanguageContext
+import org.morfly.airin.starlark.lang.api.FileContext
 
 
 private fun ListComprehensionsFeatureUnderCompilationTest.CompilationTests() {
@@ -237,4 +237,4 @@ private fun ListComprehensionsFeatureUnderCompilationTest.CompilationTests() {
 
 private interface ListComprehensionsFeatureUnderCompilationTest :
 // Feature under test
-    ListComprehensionsFeature<LanguageContext>
+    ListComprehensionsFeature<FileContext>

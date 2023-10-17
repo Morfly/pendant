@@ -22,6 +22,7 @@ import org.morfly.airin.starlark.elements.*
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import org.morfly.airin.starlark.lang.api.Modifier
 
 
 class ReassignmentsFeatureTests : FeatureSpec({
@@ -109,5 +110,8 @@ private class ReassignmentsFeatureUnderTest :
     ReassignmentsFeature,
 // Additional features for compatibility tests
     AssignmentsFeature {
+
     override val statements = mutableListOf<Statement>()
+
+    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
 }

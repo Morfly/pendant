@@ -20,6 +20,8 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.Expression
 import org.morfly.airin.starlark.lang.api.CommonExpressionsLibrary
+import org.morfly.airin.starlark.lang.api.Context
+import org.morfly.airin.starlark.lang.api.Modifier
 import org.morfly.airin.starlark.lang.api.LanguageScope
 
 
@@ -28,8 +30,13 @@ import org.morfly.airin.starlark.lang.api.LanguageScope
  * @see [CollectionsFeature].
  */
 @LanguageScope
-class DictionaryContext : CommonExpressionsLibrary,
-    MappingFeature, DynamicBinaryPlusFeature, CollectionsFeature,
+class DictionaryContext(
+    override val modifiers: MutableMap<String, MutableList<Modifier<*>>>
+) : Context(),
+    CommonExpressionsLibrary,
+    MappingFeature,
+    DynamicBinaryPlusFeature,
+    CollectionsFeature,
     StringExtensionsFeature {
 
     override val kwargs = mutableMapOf<Expression, Expression>()

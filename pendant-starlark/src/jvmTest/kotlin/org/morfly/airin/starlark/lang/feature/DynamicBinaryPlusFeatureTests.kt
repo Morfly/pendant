@@ -23,6 +23,7 @@ import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.Key
 import org.morfly.airin.starlark.lang.StringType
 import org.morfly.airin.starlark.lang.Value
+import org.morfly.airin.starlark.lang.api.Modifier
 
 
 class DynamicBinaryPlusFeatureTests : FeatureSpec({
@@ -326,4 +327,7 @@ private class DynamicBinaryPlusFeatureUnderTest :
 // Feature under test
     DynamicBinaryPlusFeature,
 // Additional features for compatibility tests
-    CollectionsFeature
+    CollectionsFeature {
+
+    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
+}

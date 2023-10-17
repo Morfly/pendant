@@ -21,6 +21,7 @@ import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import org.morfly.airin.starlark.lang.api.Modifier
 
 
 class DynamicFunctionsFeatureTests : FeatureSpec({
@@ -113,4 +114,6 @@ private class DynamicFunctionsFeatureUnderTest :
     CollectionsFeature {
 
     override val statements = mutableListOf<Statement>()
+
+    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
 }

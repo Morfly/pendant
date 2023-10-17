@@ -20,15 +20,22 @@ import org.morfly.airin.starlark.elements.Expression
 import org.morfly.airin.starlark.elements.StringFunctionCall
 import org.morfly.airin.starlark.elements.StringLiteral
 import org.morfly.airin.starlark.lang.StringType
+import org.morfly.airin.starlark.lang.api.ModifiersHolder
+import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.asSet
+import org.morfly.airin.starlark.lang.api.invokeModifiers
 
 
-interface StringExtensionsFeature {
+internal interface StringExtensionsFeature : LanguageFeature,
+    ModifiersHolder {
 
-    fun StringType.format(body: FunctionCallContext.() -> Unit): StringType =
-        StringFunctionCall(
+    fun StringType.format(body: FunctionCallContext.() -> Unit): StringType {
+        val context = FunctionCallContext(modifiers).apply(body)
+        invokeModifiers(context)
+        return StringFunctionCall(
             name = "format",
-            args = FunctionCallContext().apply(body).fargs.asSet(),
+            args = context.fargs.asSet(),
             receiver = Expression(this, ::StringLiteral)
         )
+    }
 }

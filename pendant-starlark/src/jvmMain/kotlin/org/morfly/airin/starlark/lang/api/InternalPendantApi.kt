@@ -16,20 +16,5 @@
 
 package org.morfly.airin.starlark.lang.api
 
-
-interface CommonStatementsLibrary : StatementsHolder, ModifiersHolder
-
-interface BuildStatementsLibrary : CommonStatementsLibrary
-
-interface WorkspaceStatementsLibrary : CommonStatementsLibrary
-
-interface StarlarkStatementsLibrary : CommonStatementsLibrary
-
-
-interface CommonExpressionsLibrary : ModifiersHolder
-
-interface BuildExpressionsLibrary : CommonExpressionsLibrary
-
-interface WorkspaceExpressionsLibrary : CommonExpressionsLibrary
-
-interface StarlarkExpressionsLibrary : CommonExpressionsLibrary
+// TODO add RequiresOptIn
+annotation class InternalPendantApi

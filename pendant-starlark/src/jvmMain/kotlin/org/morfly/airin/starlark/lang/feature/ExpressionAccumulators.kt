@@ -22,11 +22,13 @@ import org.morfly.airin.starlark.elements.Element
 import org.morfly.airin.starlark.elements.ExpressionHolder
 import org.morfly.airin.starlark.lang.Key
 import org.morfly.airin.starlark.lang.Value
+import org.morfly.airin.starlark.lang.api.InternalPendantApi
 
 
 /**
  * Abstract accumulator of expressions for dynamic operations.
  */
+@InternalPendantApi
 interface _ExpressionAccumulator<H : Element> {
 
     val holder: ExpressionHolder<H>
@@ -35,6 +37,7 @@ interface _ExpressionAccumulator<H : Element> {
 /**
  * Accumulator of string expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _StringExpressionAccumulator<H : Element>(
     override val holder: ExpressionHolder<H>
@@ -43,6 +46,7 @@ value class _StringExpressionAccumulator<H : Element>(
 /**
  * Accumulator of number expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _NumberExpressionAccumulator<H : Element>(
     override val holder: ExpressionHolder<H>
@@ -51,6 +55,7 @@ value class _NumberExpressionAccumulator<H : Element>(
 /**
  * Accumulator of boolean expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _BooleanExpressionAccumulator<H : Element>(
     override val holder: ExpressionHolder<H>
@@ -59,6 +64,7 @@ value class _BooleanExpressionAccumulator<H : Element>(
 /**
  * Accumulator of list expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _ListExpressionAccumulator<T, H : Element>(
     override val holder: ExpressionHolder<H>
@@ -67,6 +73,7 @@ value class _ListExpressionAccumulator<T, H : Element>(
 /**
  * Accumulator of tuple expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _TupleExpressionAccumulator<H : Element>(
     override val holder: ExpressionHolder<H>
@@ -75,6 +82,7 @@ value class _TupleExpressionAccumulator<H : Element>(
 /**
  * Accumulator of dictionary expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _DictionaryExpressionAccumulator<K : Key, V : Value, H : Element>(
     override val holder: ExpressionHolder<H>
@@ -83,6 +91,7 @@ value class _DictionaryExpressionAccumulator<K : Key, V : Value, H : Element>(
 /**
  * Accumulator of any other expressions for dynamic operations.
  */
+@InternalPendantApi
 @JvmInline
 value class _AnyExpressionAccumulator<H : Element>(
     override val holder: ExpressionHolder<H>

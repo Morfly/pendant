@@ -20,12 +20,13 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.StringType
-import org.morfly.airin.starlark.lang.api.LanguageContext
+import org.morfly.airin.starlark.lang.api.FileContext
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import io.kotest.matchers.types.shouldBeTypeOf
+import org.morfly.airin.starlark.lang.api.Modifier
 
 
 class ListComprehensionsFeatureTests : FeatureSpec({
@@ -459,11 +460,15 @@ class ListComprehensionsFeatureTests : FeatureSpec({
 })
 
 
-private class ListComprehensionsFeatureUnderTest : LanguageContext(),
+private class ListComprehensionsFeatureUnderTest : FileContext(),
 // Feature under test
     ListComprehensionsFeature<ListComprehensionsFeatureUnderTest>,
 // Additional features for compatibility tests
     DynamicFunctionsFeature {
+
+    override val fileName = "test"
+
+    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
 
     override fun newContext() = ListComprehensionsFeatureUnderTest()
 }
