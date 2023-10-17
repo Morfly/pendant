@@ -22,7 +22,7 @@ import org.morfly.airin.starlark.elements.Statement
 /**
  * Base language context that others must inherit.
  */
-abstract class FileContext internal constructor() : Context(), StatementsHolder {
+abstract class FileContext : Context(), StatementsHolder {
 
     abstract val fileName: String
 

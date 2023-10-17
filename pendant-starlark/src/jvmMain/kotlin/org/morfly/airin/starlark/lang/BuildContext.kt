@@ -21,6 +21,22 @@ package org.morfly.airin.starlark.lang
 import org.morfly.airin.starlark.elements.BuildFile
 import org.morfly.airin.starlark.lang.api.*
 import org.morfly.airin.starlark.lang.api.LanguageScope
+import org.morfly.airin.starlark.lang.feature.*
+import org.morfly.airin.starlark.lang.feature.AssignmentsFeature
+import org.morfly.airin.starlark.lang.feature.BinaryPercentsFeature
+import org.morfly.airin.starlark.lang.feature.BinaryPlusFeature
+import org.morfly.airin.starlark.lang.feature.BooleanValuesFeature
+import org.morfly.airin.starlark.lang.feature.CollectionsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicAssignmentsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicBinaryPlusFeature
+import org.morfly.airin.starlark.lang.feature.DynamicFunctionExpressionsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicFunctionsFeature
+import org.morfly.airin.starlark.lang.feature.EmptyLinesFeature
+import org.morfly.airin.starlark.lang.feature.ListComprehensionsFeature
+import org.morfly.airin.starlark.lang.feature.LoadStatementsFeature
+import org.morfly.airin.starlark.lang.feature.RawTextFeature
+import org.morfly.airin.starlark.lang.feature.SlicesFeature
+import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
 
 
 /**
@@ -31,8 +47,24 @@ class BuildContext(
     val hasExtension: Boolean,
     val relativePath: String, // TODO remove
     override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = mutableMapOf()
-) : CommonStarlarkContext<BuildContext>(),
-    BuildStatementsLibrary, BuildExpressionsLibrary {
+) : FileContext(),
+    BuildStatementsLibrary,
+    BuildExpressionsLibrary,
+    AssignmentsFeature,
+    DynamicAssignmentsFeature,
+    BinaryPlusFeature,
+    DynamicBinaryPlusFeature,
+    CollectionsFeature,
+    DynamicFunctionsFeature,
+    DynamicFunctionExpressionsFeature,
+    EmptyLinesFeature,
+    RawTextFeature,
+    LoadStatementsFeature,
+    ListComprehensionsFeature<BuildContext>,
+    SlicesFeature,
+    BinaryPercentsFeature,
+    BooleanValuesFeature,
+    StringExtensionsFeature {
 
     override val fileName = if (hasExtension) "BUILD.bazel" else "BUILD"
 

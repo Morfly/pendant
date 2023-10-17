@@ -19,10 +19,8 @@
 package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.WorkspaceFile
-import org.morfly.airin.starlark.lang.api.Modifier
-import org.morfly.airin.starlark.lang.api.LanguageScope
-import org.morfly.airin.starlark.lang.api.WorkspaceExpressionsLibrary
-import org.morfly.airin.starlark.lang.api.WorkspaceStatementsLibrary
+import org.morfly.airin.starlark.lang.api.*
+import org.morfly.airin.starlark.lang.feature.*
 
 
 /**
@@ -32,8 +30,24 @@ import org.morfly.airin.starlark.lang.api.WorkspaceStatementsLibrary
 class WorkspaceContext(
     val hasExtension: Boolean,
     override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = mutableMapOf()
-) : CommonStarlarkContext<WorkspaceContext>(),
-    WorkspaceStatementsLibrary, WorkspaceExpressionsLibrary {
+) : FileContext(),
+    WorkspaceStatementsLibrary,
+    WorkspaceExpressionsLibrary,
+    AssignmentsFeature,
+    DynamicAssignmentsFeature,
+    BinaryPlusFeature,
+    DynamicBinaryPlusFeature,
+    CollectionsFeature,
+    DynamicFunctionsFeature,
+    DynamicFunctionExpressionsFeature,
+    EmptyLinesFeature,
+    RawTextFeature,
+    LoadStatementsFeature,
+    ListComprehensionsFeature<WorkspaceContext>,
+    SlicesFeature,
+    BinaryPercentsFeature,
+    BooleanValuesFeature,
+    StringExtensionsFeature {
 
     override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
 
