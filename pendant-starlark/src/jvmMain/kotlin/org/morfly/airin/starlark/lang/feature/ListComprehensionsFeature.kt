@@ -19,9 +19,9 @@
 package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.BooleanType
-import org.morfly.airin.starlark.lang.NumberType
-import org.morfly.airin.starlark.lang.StringType
+import org.morfly.airin.starlark.types.BooleanType
+import org.morfly.airin.starlark.types.NumberType
+import org.morfly.airin.starlark.types.StringType
 import org.morfly.airin.starlark.lang.api.FileContext
 import org.morfly.airin.starlark.lang.api.LanguageContextProvider
 import org.morfly.airin.starlark.lang.api.LanguageFeature

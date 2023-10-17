@@ -17,7 +17,7 @@
 package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.StringType
+import org.morfly.airin.starlark.types.StringType
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf

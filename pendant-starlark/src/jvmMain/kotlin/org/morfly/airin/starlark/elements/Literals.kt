@@ -18,7 +18,9 @@
 
 package org.morfly.airin.starlark.elements
 
-import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.types.BooleanType
+import org.morfly.airin.starlark.types.NumberType
+import org.morfly.airin.starlark.types.StringType
 
 
 /**

@@ -16,7 +16,7 @@
 
 package org.morfly.airin.processor
 
-import org.morfly.airin.starlark.lang.*
+import org.morfly.airin.starlark.types.*
 
 
 private typealias QualifiedName = String

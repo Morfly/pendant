@@ -18,10 +18,10 @@
 
 package org.morfly.airin.starlark.library
 
-import org.morfly.airin.starlark.lang.BooleanType
-import org.morfly.airin.starlark.lang.Label
-import org.morfly.airin.starlark.lang.Name
-import org.morfly.airin.starlark.lang.StringType
+import org.morfly.airin.starlark.types.BooleanType
+import org.morfly.airin.starlark.types.Label
+import org.morfly.airin.starlark.types.Name
+import org.morfly.airin.starlark.types.StringType
 import org.morfly.airin.starlark.lang.api.Argument
 import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
 import org.morfly.airin.starlark.lang.api.FunctionScope.Build

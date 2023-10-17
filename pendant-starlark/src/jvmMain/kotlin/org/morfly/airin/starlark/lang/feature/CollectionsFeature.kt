@@ -21,11 +21,13 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.DictionaryExpression
 import org.morfly.airin.starlark.elements.ListExpression
 import org.morfly.airin.starlark.elements.TupleExpression
-import org.morfly.airin.starlark.lang.*
 import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.InternalPendantApi
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.invokeModifiers
+import org.morfly.airin.starlark.types.*
+import org.morfly.airin.starlark.types.emptyTuple
+import org.morfly.airin.starlark.types.tupleOf
 
 
 /**

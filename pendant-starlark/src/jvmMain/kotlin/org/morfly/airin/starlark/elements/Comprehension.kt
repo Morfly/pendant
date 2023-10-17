@@ -16,9 +16,9 @@
 
 package org.morfly.airin.starlark.elements
 
-import org.morfly.airin.starlark.lang.DictionaryTypeDelegate
-import org.morfly.airin.starlark.lang.ListTypeDelegate
-import org.morfly.airin.starlark.lang.Value
+import org.morfly.airin.starlark.types.DictionaryTypeDelegate
+import org.morfly.airin.starlark.types.ListTypeDelegate
+import org.morfly.airin.starlark.types.Value
 
 
 /**

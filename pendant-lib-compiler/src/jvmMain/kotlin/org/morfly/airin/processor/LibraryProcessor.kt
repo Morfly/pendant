@@ -23,7 +23,7 @@ import com.google.devtools.ksp.symbol.*
 import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
 import com.google.devtools.ksp.validate
 import org.morfly.airin.*
-import org.morfly.airin.starlark.lang.ListType
+import org.morfly.airin.starlark.types.ListType
 import org.morfly.airin.starlark.lang.api.Argument
 import org.morfly.airin.starlark.lang.api.BracketsKind.Curly
 import org.morfly.airin.starlark.lang.api.BracketsKind.Round

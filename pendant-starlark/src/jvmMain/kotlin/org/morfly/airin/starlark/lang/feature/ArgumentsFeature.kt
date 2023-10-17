@@ -17,10 +17,10 @@
 package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.BooleanType
-import org.morfly.airin.starlark.lang.NumberType
-import org.morfly.airin.starlark.lang.StringType
-import org.morfly.airin.starlark.lang.TupleType
+import org.morfly.airin.starlark.types.BooleanType
+import org.morfly.airin.starlark.types.NumberType
+import org.morfly.airin.starlark.types.StringType
+import org.morfly.airin.starlark.types.TupleType
 import org.morfly.airin.starlark.lang.api.ArgumentsHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.append

@@ -20,8 +20,8 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.Element
 import org.morfly.airin.starlark.elements.ExpressionHolder
-import org.morfly.airin.starlark.lang.Key
-import org.morfly.airin.starlark.lang.Value
+import org.morfly.airin.starlark.types.Key
+import org.morfly.airin.starlark.types.Value
 import org.morfly.airin.starlark.lang.api.InternalPendantApi
 
 
