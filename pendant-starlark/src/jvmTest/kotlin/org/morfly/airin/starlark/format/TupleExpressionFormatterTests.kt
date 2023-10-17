@@ -21,10 +21,10 @@ package org.morfly.airin.starlark.format
 import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.elements.PositionMode.CONTINUE_LINE
 import org.morfly.airin.starlark.elements.PositionMode.NEW_LINE
-import org.morfly.airin.starlark.types.StringType
+import org.morfly.airin.starlark.lang.types.StringType
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import org.morfly.airin.starlark.types.emptyTuple
+import org.morfly.airin.starlark.lang.types.emptyTuple
 
 
 class TupleExpressionFormatterTests : ShouldSpec({

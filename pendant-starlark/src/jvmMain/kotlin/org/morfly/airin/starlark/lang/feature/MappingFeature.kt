@@ -23,7 +23,7 @@ import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.MappingHolder
 import org.morfly.airin.starlark.lang.api.invokeModifiers
-import org.morfly.airin.starlark.types.*
+import org.morfly.airin.starlark.lang.types.*
 
 /**
  * Enables mapping to key-value pairs that are part of the dictionary expression.

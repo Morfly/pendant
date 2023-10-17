@@ -16,12 +16,12 @@
 
 package org.morfly.airin.starlark.elements
 
-import org.morfly.airin.starlark.types.*
-import org.morfly.airin.starlark.types.BooleanTypeDelegate
-import org.morfly.airin.starlark.types.DictionaryTypeDelegate
-import org.morfly.airin.starlark.types.ListTypeDelegate
-import org.morfly.airin.starlark.types.StringTypeDelegate
-import org.morfly.airin.starlark.types.TupleTypeDelegate
+import org.morfly.airin.starlark.lang.types.*
+import org.morfly.airin.starlark.lang.types.BooleanTypeDelegate
+import org.morfly.airin.starlark.lang.types.DictionaryTypeDelegate
+import org.morfly.airin.starlark.lang.types.ListTypeDelegate
+import org.morfly.airin.starlark.lang.types.StringTypeDelegate
+import org.morfly.airin.starlark.lang.types.TupleTypeDelegate
 
 
 /**

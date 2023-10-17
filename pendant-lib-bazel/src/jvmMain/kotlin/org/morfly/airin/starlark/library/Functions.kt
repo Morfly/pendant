@@ -25,7 +25,7 @@ import org.morfly.airin.starlark.lang.api.FunctionScope.*
 import org.morfly.airin.starlark.lang.api.LibraryFunction
 import org.morfly.airin.starlark.lang.api.ReturnKind.Dynamic
 import org.morfly.airin.starlark.lang.api.Returns
-import org.morfly.airin.starlark.types.*
+import org.morfly.airin.starlark.lang.types.*
 
 
 @LibraryFunction(

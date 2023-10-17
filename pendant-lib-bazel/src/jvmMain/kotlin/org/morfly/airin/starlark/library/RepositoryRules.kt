@@ -23,7 +23,7 @@ import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
 import org.morfly.airin.starlark.lang.api.FunctionScope.Build
 import org.morfly.airin.starlark.lang.api.FunctionScope.Workspace
 import org.morfly.airin.starlark.lang.api.LibraryFunction
-import org.morfly.airin.starlark.types.*
+import org.morfly.airin.starlark.lang.types.*
 
 
 @LibraryFunction(

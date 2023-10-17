@@ -18,15 +18,15 @@
 
 package org.morfly.airin.starlark.library
 
-import org.morfly.airin.starlark.types.BooleanType
-import org.morfly.airin.starlark.types.DictionaryType
-import org.morfly.airin.starlark.types.Key
-import org.morfly.airin.starlark.types.Label
-import org.morfly.airin.starlark.types.ListType
-import org.morfly.airin.starlark.types.Name
-import org.morfly.airin.starlark.types.NumberType
-import org.morfly.airin.starlark.types.StringType
-import org.morfly.airin.starlark.types.Value
+import org.morfly.airin.starlark.lang.types.BooleanType
+import org.morfly.airin.starlark.lang.types.DictionaryType
+import org.morfly.airin.starlark.lang.types.Key
+import org.morfly.airin.starlark.lang.types.Label
+import org.morfly.airin.starlark.lang.types.ListType
+import org.morfly.airin.starlark.lang.types.Name
+import org.morfly.airin.starlark.lang.types.NumberType
+import org.morfly.airin.starlark.lang.types.StringType
+import org.morfly.airin.starlark.lang.types.Value
 import org.morfly.airin.starlark.lang.api.Argument
 import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
 import org.morfly.airin.starlark.lang.api.FunctionScope.Build

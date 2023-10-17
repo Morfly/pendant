@@ -21,9 +21,9 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.DictionaryReference
 import org.morfly.airin.starlark.elements.ListReference
 import org.morfly.airin.starlark.elements.StringReference
-import org.morfly.airin.starlark.types.Key
-import org.morfly.airin.starlark.types.StringType
-import org.morfly.airin.starlark.types.Value
+import org.morfly.airin.starlark.lang.types.Key
+import org.morfly.airin.starlark.lang.types.StringType
+import org.morfly.airin.starlark.lang.types.Value
 
 
 private fun DynamicArgumentsFeatureUnderCompilationTest.CompilationTests() {

@@ -20,9 +20,9 @@ import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.types.Key
-import org.morfly.airin.starlark.types.StringType
-import org.morfly.airin.starlark.types.Value
+import org.morfly.airin.starlark.lang.types.Key
+import org.morfly.airin.starlark.lang.types.StringType
+import org.morfly.airin.starlark.lang.types.Value
 import org.morfly.airin.starlark.lang.api.Modifier
 
 

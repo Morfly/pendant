@@ -25,9 +25,9 @@ import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.InternalPendantApi
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.invokeModifiers
-import org.morfly.airin.starlark.types.*
-import org.morfly.airin.starlark.types.emptyTuple
-import org.morfly.airin.starlark.types.tupleOf
+import org.morfly.airin.starlark.lang.types.*
+import org.morfly.airin.starlark.lang.types.emptyTuple
+import org.morfly.airin.starlark.lang.types.tupleOf
 
 
 /**

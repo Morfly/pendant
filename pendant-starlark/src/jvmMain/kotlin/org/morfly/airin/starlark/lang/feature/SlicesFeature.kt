@@ -17,7 +17,7 @@
 package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.types.StringType
+import org.morfly.airin.starlark.lang.types.StringType
 import org.morfly.airin.starlark.lang.api.LanguageFeature
 
 

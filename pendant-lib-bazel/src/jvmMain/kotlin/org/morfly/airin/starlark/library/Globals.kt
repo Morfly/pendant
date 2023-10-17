@@ -18,10 +18,10 @@
 
 package org.morfly.airin.starlark.library
 
-import org.morfly.airin.starlark.types.Key
-import org.morfly.airin.starlark.types.Label
-import org.morfly.airin.starlark.types.Name
-import org.morfly.airin.starlark.types.Value
+import org.morfly.airin.starlark.lang.types.Key
+import org.morfly.airin.starlark.lang.types.Label
+import org.morfly.airin.starlark.lang.types.Name
+import org.morfly.airin.starlark.lang.types.Value
 import org.morfly.airin.starlark.lang.api.Argument
 import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
 import org.morfly.airin.starlark.lang.api.FunctionScope.Workspace

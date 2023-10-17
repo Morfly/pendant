@@ -24,9 +24,9 @@ import org.morfly.airin.starlark.elements.ListReference
 import org.morfly.airin.starlark.elements.PositionMode.CONTINUE_LINE
 import org.morfly.airin.starlark.elements.PositionMode.NEW_LINE
 import org.morfly.airin.starlark.elements.StringReference
-import org.morfly.airin.starlark.types.Key
-import org.morfly.airin.starlark.types.StringType
-import org.morfly.airin.starlark.types.Value
+import org.morfly.airin.starlark.lang.types.Key
+import org.morfly.airin.starlark.lang.types.StringType
+import org.morfly.airin.starlark.lang.types.Value
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 
