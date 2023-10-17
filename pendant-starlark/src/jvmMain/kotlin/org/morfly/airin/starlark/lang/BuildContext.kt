@@ -20,23 +20,7 @@ package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.BuildFile
 import org.morfly.airin.starlark.lang.api.*
-import org.morfly.airin.starlark.lang.api.LanguageScope
 import org.morfly.airin.starlark.lang.feature.*
-import org.morfly.airin.starlark.lang.feature.AssignmentsFeature
-import org.morfly.airin.starlark.lang.feature.BinaryPercentsFeature
-import org.morfly.airin.starlark.lang.feature.BinaryPlusFeature
-import org.morfly.airin.starlark.lang.feature.BooleanValuesFeature
-import org.morfly.airin.starlark.lang.feature.CollectionsFeature
-import org.morfly.airin.starlark.lang.feature.DynamicAssignmentsFeature
-import org.morfly.airin.starlark.lang.feature.DynamicBinaryPlusFeature
-import org.morfly.airin.starlark.lang.feature.DynamicFunctionExpressionsFeature
-import org.morfly.airin.starlark.lang.feature.DynamicFunctionsFeature
-import org.morfly.airin.starlark.lang.feature.EmptyLinesFeature
-import org.morfly.airin.starlark.lang.feature.ListComprehensionsFeature
-import org.morfly.airin.starlark.lang.feature.LoadStatementsFeature
-import org.morfly.airin.starlark.lang.feature.RawTextFeature
-import org.morfly.airin.starlark.lang.feature.SlicesFeature
-import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
 
 
 /**
@@ -46,7 +30,8 @@ import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
 class BuildContext(
     val hasExtension: Boolean,
     val relativePath: String, // TODO remove
-    override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = mutableMapOf()
+    private var body: (BuildContext.() -> Unit)?,
+    override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = linkedMapOf()
 ) : FileContext(),
     BuildStatementsLibrary,
     BuildExpressionsLibrary,
@@ -68,24 +53,28 @@ class BuildContext(
 
     override val fileName = if (hasExtension) "BUILD.bazel" else "BUILD"
 
-    override fun newContext() = BuildContext(hasExtension, relativePath, mutableMapOf())
-}
+    override fun newContext() = BuildContext(hasExtension, relativePath, body = null, modifiers)
 
-fun BuildContext.build(): BuildFile =
-    BuildFile(
-        hasExtension = hasExtension,
-        relativePath = relativePath,
-        statements = statements.toList()
-    )
+    fun build(): BuildFile {
+        body?.invoke(this)
+        body = null
+        return BuildFile(
+            hasExtension = hasExtension,
+            relativePath = relativePath,
+            statements = statements.toList()
+        )
+    }
+}
 
 /**
  * Builder function that allows entering Starlark template engine context and use Kotlin DSL
  */
-inline fun BUILD(relativePath: String = "", body: BuildContext.() -> Unit): BuildContext =
+fun BUILD(relativePath: String = "", body: BuildContext.() -> Unit): BuildContext =
     BuildContext(
         hasExtension = false,
-        relativePath = relativePath
-    ).apply(body)
+        relativePath = relativePath,
+        body = body
+    )
 
 /**
  *
@@ -95,8 +84,9 @@ object BUILD
 /**
  *
  */
-inline fun BUILD.bazel(relativePath: String = "", body: BuildContext.() -> Unit): BuildContext =
+fun BUILD.bazel(relativePath: String = "", body: BuildContext.() -> Unit): BuildContext =
     BuildContext(
         hasExtension = true,
-        relativePath = relativePath
-    ).apply(body)
+        relativePath = relativePath,
+        body = body
+    )

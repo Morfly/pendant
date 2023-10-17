@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-@file:Suppress("FunctionName", "unused")
+@file:Suppress("FunctionName")
 
 package org.morfly.airin.starlark.lang
 
-import org.morfly.airin.starlark.elements.WorkspaceFile
+import org.morfly.airin.starlark.elements.BzlFile
 import org.morfly.airin.starlark.lang.api.*
 import org.morfly.airin.starlark.lang.feature.*
 
 
 /**
- * Starlark language context that is specific to Bazel WORKSPACE files.
+ *
  */
 @LanguageScope
-class WorkspaceContext(
-    val hasExtension: Boolean,
-    private var body: (WorkspaceContext.() -> Unit)?,
+class BzlContext(
+    override val fileName: String,
+    private var body: (BzlContext.() -> Unit)?,
     override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = linkedMapOf()
 ) : FileContext(),
-    WorkspaceStatementsLibrary,
-    WorkspaceExpressionsLibrary,
+    BuildStatementsLibrary,
+    BuildExpressionsLibrary,
     AssignmentsFeature,
     DynamicAssignmentsFeature,
     BinaryPlusFeature,
@@ -44,45 +44,30 @@ class WorkspaceContext(
     EmptyLinesFeature,
     RawTextFeature,
     LoadStatementsFeature,
-    ListComprehensionsFeature<WorkspaceContext>,
+    ListComprehensionsFeature<BzlContext>,
     SlicesFeature,
     BinaryPercentsFeature,
     BooleanValuesFeature,
     StringExtensionsFeature {
 
-    override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
+    override fun newContext() = BzlContext(fileName, body = null, modifiers)
 
-    override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
-
-    fun build(): WorkspaceFile {
+    fun build(): BzlFile {
         body?.invoke(this)
         body = null
-        return WorkspaceFile(
-            hasExtension = hasExtension,
+        return BzlFile(
+            name = fileName,
+            relativePath = "",
             statements = statements.toList()
         )
     }
 }
 
 /**
- *
+ * Builder function that allows entering Starlark template engine context and use Kotlin DSL
  */
-fun WORKSPACE(body: WorkspaceContext.() -> Unit): WorkspaceContext =
-    WorkspaceContext(
-        hasExtension = false,
-        body = body
-    )
-
-/**
- *
- */
-object WORKSPACE
-
-/**
- *
- */
-fun WORKSPACE.bazel(body: WorkspaceContext.() -> Unit): WorkspaceContext =
-    WorkspaceContext(
-        hasExtension = true,
+fun String.bzl(body: BzlContext.() -> Unit): BzlContext =
+    BzlContext(
+        fileName = this,
         body = body
     )
