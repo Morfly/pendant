@@ -16,7 +16,7 @@
 
 @file:Suppress("ClassName", "unused")
 
-package org.morfly.airin.starlark.lang.feature
+package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.Element
 import org.morfly.airin.starlark.elements.ExpressionHolder

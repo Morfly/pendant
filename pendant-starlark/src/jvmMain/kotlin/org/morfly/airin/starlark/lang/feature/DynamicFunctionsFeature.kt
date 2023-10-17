@@ -21,6 +21,7 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.lang.FunctionCallContext
 import org.morfly.airin.starlark.lang.api.*
 import org.morfly.airin.starlark.lang.api.LanguageFeature
+import org.morfly.airin.starlark.lang.registerFunctionCallStatement
 
 
 /**
