@@ -50,11 +50,17 @@ class BzlContext(
     BooleanValuesFeature,
     StringExtensionsFeature {
 
+    var invoked = false
+        private set
+
     override fun newContext() = BzlContext(fileName, body = null, modifiers)
 
     fun build(): BzlFile {
-        body?.invoke(this)
-        body = null
+        if (!invoked) {
+            invoked = true
+            body?.invoke(this)
+            invokeModifiers(this)
+        }
         return BzlFile(
             name = fileName,
             relativePath = "",

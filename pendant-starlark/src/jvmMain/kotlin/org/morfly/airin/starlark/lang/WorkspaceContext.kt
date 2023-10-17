@@ -50,13 +50,19 @@ class WorkspaceContext(
     BooleanValuesFeature,
     StringExtensionsFeature {
 
+    var invoked = false
+        private set
+
     override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
 
     override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
 
     fun build(): WorkspaceFile {
-        body?.invoke(this)
-        body = null
+        if (!invoked) {
+            invoked = true
+            body?.invoke(this)
+            invokeModifiers(this)
+        }
         return WorkspaceFile(
             hasExtension = hasExtension,
             statements = statements.toList()

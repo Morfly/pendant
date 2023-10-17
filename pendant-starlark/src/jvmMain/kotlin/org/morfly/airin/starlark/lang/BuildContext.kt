@@ -19,8 +19,10 @@
 package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.BuildFile
+import org.morfly.airin.starlark.format.StarlarkFileFormatter
 import org.morfly.airin.starlark.lang.api.*
 import org.morfly.airin.starlark.lang.feature.*
+import org.morfly.airin.starlark.writer.FileWriter
 
 
 /**
@@ -51,13 +53,19 @@ class BuildContext(
     BooleanValuesFeature,
     StringExtensionsFeature {
 
+    var invoked = false
+        private set
+
     override val fileName = if (hasExtension) "BUILD.bazel" else "BUILD"
 
     override fun newContext() = BuildContext(hasExtension, relativePath, body = null, modifiers)
 
     fun build(): BuildFile {
-        body?.invoke(this)
-        body = null
+        if (!invoked) {
+            invoked = true
+            body?.invoke(this)
+            invokeModifiers(this)
+        }
         return BuildFile(
             hasExtension = hasExtension,
             relativePath = relativePath,

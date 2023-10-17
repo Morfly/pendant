@@ -37,6 +37,6 @@ inline fun <reified C : Context> ModifiersHolder.invokeModifiers(context: C) {
     }
 }
 
-inline fun <reified C : Context> ModifiersHolder.onContext(id: String, noinline interceptor: C.() -> Unit) {
-    modifiers.getOrPut(id, ::mutableListOf) += Modifier(C::class, interceptor)
+inline fun <reified C : Context> ModifiersHolder.onContext(id: String, noinline modifier: C.() -> Unit) {
+    modifiers.getOrPut(id, ::mutableListOf) += Modifier(C::class, modifier)
 }
