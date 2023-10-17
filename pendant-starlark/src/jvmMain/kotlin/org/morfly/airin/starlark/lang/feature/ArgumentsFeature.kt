@@ -27,7 +27,8 @@ import org.morfly.airin.starlark.lang.api.append
 import kotlin.reflect.KProperty
 
 
-internal interface ArgumentsFeature : LanguageFeature, ArgumentsHolder {
+internal interface ArgumentsFeature : LanguageFeature,
+    ArgumentsHolder {
 
     operator fun <V> Map<String, Argument>.getValue(thisRef: Any?, property: KProperty<*>): V {
         error("Unable to return value from a function argument.")

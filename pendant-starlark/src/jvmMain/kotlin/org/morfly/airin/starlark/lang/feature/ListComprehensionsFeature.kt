@@ -31,7 +31,8 @@ import org.morfly.airin.starlark.lang.api.StatementsHolder
 /**
  * Feature that enables list comprehensions.
  */
-internal interface ListComprehensionsFeature<C : FileContext> : LanguageFeature, LanguageContextProvider<C>,
+internal interface ListComprehensionsFeature<C : FileContext> : LanguageFeature,
+    LanguageContextProvider<C>,
     StatementsHolder {
 
 

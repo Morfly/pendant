@@ -23,7 +23,8 @@ import org.morfly.airin.starlark.lang.api.LanguageFeature
 import org.morfly.airin.starlark.lang.api.StatementsHolder
 
 
-internal interface CommentsFeature : LanguageFeature, StatementsHolder {
+internal interface CommentsFeature : LanguageFeature,
+    StatementsHolder {
 
     val String.comment: Unit
         get() {

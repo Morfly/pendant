@@ -29,7 +29,8 @@ import kotlin.reflect.typeOf
 /**
  * Enables load statements for Starlark file.
  */
-internal interface LoadStatementsFeature : LanguageFeature, StatementsHolder {
+internal interface LoadStatementsFeature : LanguageFeature,
+    StatementsHolder {
 
     /**
      * Starlark Load statement.
@@ -101,6 +102,7 @@ inline fun <reified S> _newReference(name: String): S =
                 else -> AnyReference(name)
             }
         }
+
         else -> AnyReference(name)
     } as S
 

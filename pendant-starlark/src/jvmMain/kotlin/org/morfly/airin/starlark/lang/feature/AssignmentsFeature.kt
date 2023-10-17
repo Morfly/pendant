@@ -26,7 +26,8 @@ import kotlin.reflect.KProperty
 /**
  * Feature that enables Starlark variable assignment statements.
  */
-internal interface AssignmentsFeature : LanguageFeature, StatementsHolder {
+internal interface AssignmentsFeature : LanguageFeature,
+    StatementsHolder {
 
     operator fun StringType.provideDelegate(thisRef: AssignmentsFeature?, property: KProperty<*>): StringReference {
         statements += Assignment(name = property.name, value = Expression(this, ::StringLiteral))

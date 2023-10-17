@@ -24,7 +24,8 @@ import org.morfly.airin.starlark.lang.api.StatementsHolder
 /**
  * Feature that allows custom adding of empty lines to the Starlark file.
  */
-internal interface EmptyLinesFeature : LanguageFeature, StatementsHolder {
+internal interface EmptyLinesFeature : LanguageFeature,
+    StatementsHolder {
 
     /**
      * Append empty line to the Starlark file.
