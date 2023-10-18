@@ -78,7 +78,6 @@ class BzlContext(
         invokeModifiers(this)
         return BzlFile(
             name = fileName,
-            relativePath = "",
             statements = statements.toList()
         ).also {
             statements.clear()

@@ -40,22 +40,12 @@ class BazelFilesTests : ShouldSpec({
 
             workspace.name shouldBe "WORKSPACE.bazel"
         }
-
-        should("have correct 'relativePath'") {
-            val workspace = WorkspaceFile(
-                hasExtension = true,
-                statements = emptyList()
-            )
-
-            workspace.relativePath shouldBe ""
-        }
     }
 
     context("BUILD file") {
         should("'hasExtension = false' create name without extension") {
             val workspace = BuildFile(
                 hasExtension = false,
-                relativePath = "",
                 statements = emptyList()
             )
 
@@ -65,21 +55,10 @@ class BazelFilesTests : ShouldSpec({
         should("'hasExtension = true' create name with extension") {
             val workspace = BuildFile(
                 hasExtension = true,
-                relativePath = "",
                 statements = emptyList()
             )
 
             workspace.name shouldBe "BUILD.bazel"
-        }
-
-        should("have correct 'relativePath'") {
-            val workspace = BuildFile(
-                hasExtension = true,
-                relativePath = "relative/path",
-                statements = emptyList()
-            )
-
-            workspace.relativePath shouldBe "relative/path"
         }
     }
 

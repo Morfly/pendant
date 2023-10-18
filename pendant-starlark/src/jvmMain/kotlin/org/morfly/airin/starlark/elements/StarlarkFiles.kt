@@ -21,12 +21,10 @@ package org.morfly.airin.starlark.elements
  * Abstract element that represents the root of a syntax tree for a Starlark file, such as BUILD, WORKSPACE or .bzl.
  *
  * @param name the file name.
- * @param relativePath the path of the file in relation to the project root directory.
  * @param statements the list of children elements in the tree.
  */
 sealed class StarlarkFile(
     val name: String,
-    val relativePath: String,
     val statements: List<Statement>
 ) : Element {
 
@@ -45,7 +43,6 @@ class WorkspaceFile(
     statements: List<Statement>
 ) : StarlarkFile(
     name = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE",
-    relativePath = "",
     statements
 )
 
@@ -56,11 +53,9 @@ class WorkspaceFile(
  */
 class BuildFile(
     hasExtension: Boolean,
-    relativePath: String,
     statements: List<Statement>
 ) : StarlarkFile(
     name = if (hasExtension) "BUILD.bazel" else "BUILD",
-    relativePath,
     statements
 )
 
@@ -69,11 +64,9 @@ class BuildFile(
  */
 class BzlFile(
     name: String,
-    relativePath: String,
     statements: List<Statement>
 ) : StarlarkFile(
     name = if (name.endsWith(".bzl", ignoreCase = true)) name else "$name.bzl",
-    relativePath,
     statements
 )
 
@@ -82,10 +75,8 @@ class BzlFile(
  */
 class StarFile(
     name: String,
-    relativePath: String,
     statements: List<Statement>
 ) : StarlarkFile(
     name = if (name.endsWith(".star", ignoreCase = true)) name else "$name.star",
-    relativePath,
     statements
 )

@@ -29,11 +29,11 @@ import java.io.File
 open class StarlarkFileWriter private constructor(
     private val formatter: StarlarkFileFormatter = StarlarkFileFormatter,
     private val writer: FileWriter = FileWriter
-) : Writer<File, StarlarkFile, Unit> {
+) : Writer<String, StarlarkFile, Unit> {
 
-    override fun write(projectRootDir: File, content: StarlarkFile) = with(content) {
-        val relPath = if (relativePath.isNotEmpty()) "/$relativePath" else ""
-        val fullPath = File("${projectRootDir.path}$relPath/$name")
+    override fun write(dirPath: String, content: StarlarkFile) = with(content) {
+
+        val fullPath = File("$dirPath/$name")
         writer.write(fullPath, formatter.format(content))
     }
 
