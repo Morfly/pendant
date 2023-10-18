@@ -21,6 +21,8 @@ import org.morfly.airin.starlark.lang.types.StringType
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import org.morfly.airin.starlark.lang.api.Checkpoint
+import org.morfly.airin.starlark.lang.api.Id
 import org.morfly.airin.starlark.lang.api.Modifier
 
 
@@ -285,5 +287,5 @@ private class BinaryPlusFeatureUnderTest :
 // Additional features for compatibility tests
     CollectionsFeature {
 
-    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
+    override val modifiers = linkedMapOf<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 }

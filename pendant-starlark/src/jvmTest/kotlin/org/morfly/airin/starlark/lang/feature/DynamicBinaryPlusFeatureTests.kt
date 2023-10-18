@@ -23,6 +23,8 @@ import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang._DictionaryExpressionAccumulator
 import org.morfly.airin.starlark.lang._ListExpressionAccumulator
 import org.morfly.airin.starlark.lang._StringExpressionAccumulator
+import org.morfly.airin.starlark.lang.api.Checkpoint
+import org.morfly.airin.starlark.lang.api.Id
 import org.morfly.airin.starlark.lang.types.Key
 import org.morfly.airin.starlark.lang.types.StringType
 import org.morfly.airin.starlark.lang.types.Value
@@ -332,5 +334,5 @@ private class DynamicBinaryPlusFeatureUnderTest :
 // Additional features for compatibility tests
     CollectionsFeature {
 
-    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
+    override val modifiers = linkedMapOf<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 }

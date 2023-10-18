@@ -22,6 +22,8 @@ import org.morfly.airin.starlark.elements.*
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import org.morfly.airin.starlark.lang.api.Checkpoint
+import org.morfly.airin.starlark.lang.api.Id
 import org.morfly.airin.starlark.lang.api.Modifier
 
 
@@ -113,5 +115,5 @@ private class ReassignmentsFeatureUnderTest :
 
     override val statements = mutableListOf<Statement>()
 
-    override val modifiers = mutableMapOf<String, MutableList<Modifier<*>>>()
+    override val modifiers = linkedMapOf<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 }
