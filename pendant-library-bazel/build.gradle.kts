@@ -21,6 +21,6 @@ kotlin {
 }
 
 dependencies {
-    add("kspJvm", projects.pendantLibCompiler)
-    add("kspJvmTest", projects.pendantLibCompiler)
+    add("kspJvm", projects.pendantLibraryCompiler)
+    add("kspJvmTest", projects.pendantLibraryCompiler)
 }

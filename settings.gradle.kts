@@ -23,6 +23,6 @@ plugins {
 rootProject.name = "pendant"
 include(
     ":pendant-starlark",
-    ":pendant-lib-compiler",
-    ":pendant-lib-bazel",
+    ":pendant-library-compiler",
+    ":pendant-library-bazel",
 )

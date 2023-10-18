@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pendant-library-compiler-jvm-0.5.0">
+    <output-path>$PROJECT_DIR$/pendant-library-compiler/build/libs</output-path>
+    <root id="archive" name="pendant-library-compiler-jvm-0.5.0.jar" />
+  </artifact>
+</component>
