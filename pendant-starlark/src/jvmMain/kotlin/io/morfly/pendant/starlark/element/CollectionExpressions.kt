@@ -76,4 +76,4 @@ class TupleExpression(val value: List<Expression>) : Expression,
  * Factory function for creating tuple expression object from the items of any type.
  */
 fun TupleExpression(tuple: Tuple): TupleExpression =
-    TupleExpression(tuple.items.map(::Expression))
+    TupleExpression(tuple.elements.map(::Expression))

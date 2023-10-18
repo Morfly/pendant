@@ -19,32 +19,18 @@
 package io.morfly.pendant.starlark.lang.type
 
 
-/**
- *
- */
 interface Tuple {
 
-    /**
-     *
-     */
-    val items: List<Any?>
+    val elements: ListType<Any?>
 }
 
-/**
- *
- */
-fun Tuple.toList(): List<Any?> = items
+data class TupleImpl(override val elements: ListType<Any?>) : Tuple
 
-/**
- *
- */
-fun List<Any?>.toTuple(): Tuple = TupleImpl(this)
+fun Tuple.toList(): ListType<Any?> = elements
 
+fun ListType<Any?>.toTuple(): Tuple = TupleImpl(this)
 
-@JvmInline
-internal value class TupleImpl(override val items: List<Any?>) : Tuple
+fun tupleOf(vararg elements: Any?): Tuple =
+    TupleImpl(elements.toList())
 
-internal fun tupleOf(vararg items: Any?): Tuple =
-    TupleImpl(items.toList())
-
-internal fun emptyTuple(): Tuple = TupleImpl(emptyList())
+fun emptyTuple(): Tuple = TupleImpl(emptyList())
