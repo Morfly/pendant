@@ -19,10 +19,12 @@
 package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.Expression
+import org.morfly.airin.starlark.lang.api.Checkpoint
 import org.morfly.airin.starlark.lang.api.CommonExpressionsLibrary
 import org.morfly.airin.starlark.lang.api.Context
-import org.morfly.airin.starlark.lang.api.Modifier
+import org.morfly.airin.starlark.lang.api.Id
 import org.morfly.airin.starlark.lang.api.LanguageScope
+import org.morfly.airin.starlark.lang.api.Modifier
 import org.morfly.airin.starlark.lang.feature.CollectionsFeature
 import org.morfly.airin.starlark.lang.feature.DynamicBinaryPlusFeature
 import org.morfly.airin.starlark.lang.feature.MappingFeature
@@ -35,7 +37,7 @@ import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
  */
 @LanguageScope
 class DictionaryContext(
-    override val modifiers: MutableMap<String, MutableList<Modifier<*>>>
+    override val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : Context(),
     CommonExpressionsLibrary,
     MappingFeature,

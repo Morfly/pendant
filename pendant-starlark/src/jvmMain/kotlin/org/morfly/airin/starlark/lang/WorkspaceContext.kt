@@ -19,8 +19,29 @@
 package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.elements.WorkspaceFile
-import org.morfly.airin.starlark.lang.api.*
-import org.morfly.airin.starlark.lang.feature.*
+import org.morfly.airin.starlark.lang.api.Checkpoint
+import org.morfly.airin.starlark.lang.api.FileContext
+import org.morfly.airin.starlark.lang.api.Id
+import org.morfly.airin.starlark.lang.api.LanguageScope
+import org.morfly.airin.starlark.lang.api.Modifier
+import org.morfly.airin.starlark.lang.api.WorkspaceExpressionsLibrary
+import org.morfly.airin.starlark.lang.api.WorkspaceStatementsLibrary
+import org.morfly.airin.starlark.lang.api.invokeModifiers
+import org.morfly.airin.starlark.lang.feature.AssignmentsFeature
+import org.morfly.airin.starlark.lang.feature.BinaryPercentsFeature
+import org.morfly.airin.starlark.lang.feature.BinaryPlusFeature
+import org.morfly.airin.starlark.lang.feature.BooleanValuesFeature
+import org.morfly.airin.starlark.lang.feature.CollectionsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicAssignmentsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicBinaryPlusFeature
+import org.morfly.airin.starlark.lang.feature.DynamicFunctionExpressionsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicFunctionsFeature
+import org.morfly.airin.starlark.lang.feature.EmptyLinesFeature
+import org.morfly.airin.starlark.lang.feature.ListComprehensionsFeature
+import org.morfly.airin.starlark.lang.feature.LoadStatementsFeature
+import org.morfly.airin.starlark.lang.feature.RawTextFeature
+import org.morfly.airin.starlark.lang.feature.SlicesFeature
+import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
 
 
 /**
@@ -30,7 +51,7 @@ import org.morfly.airin.starlark.lang.feature.*
 class WorkspaceContext(
     val hasExtension: Boolean,
     private var body: (WorkspaceContext.() -> Unit)?,
-    override val modifiers: MutableMap<String, MutableList<Modifier<*>>> = linkedMapOf()
+    override val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : FileContext(),
     WorkspaceStatementsLibrary,
     WorkspaceExpressionsLibrary,
@@ -50,23 +71,19 @@ class WorkspaceContext(
     BooleanValuesFeature,
     StringExtensionsFeature {
 
-    var invoked = false
-        private set
-
     override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
 
     override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
 
     fun build(): WorkspaceFile {
-        if (!invoked) {
-            invoked = true
-            body?.invoke(this)
-            invokeModifiers(this)
-        }
+        body?.invoke(this)
+        invokeModifiers(this)
         return WorkspaceFile(
             hasExtension = hasExtension,
             statements = statements.toList()
-        )
+        ).also {
+            statements.clear()
+        }
     }
 }
 

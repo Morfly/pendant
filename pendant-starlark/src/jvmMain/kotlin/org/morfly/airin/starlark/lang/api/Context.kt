@@ -14,14 +14,28 @@
  * limitations under the License.
  */
 
+@file:Suppress("FunctionName", "PropertyName")
+
 package org.morfly.airin.starlark.lang.api
 
 abstract class Context : ModifiersHolder {
 
-    @Suppress("PropertyName")
+    private val checkpoints = mutableSetOf<String>()
+
     var _id: String? = null
         set(value) {
-            if (field == null) field = value
-            else error("${this::class.simpleName} id can't be reassigned!")
+            if (field == null) {
+                require(!value.isNullOrBlank())
+                field = value
+            } else error("${this::class.simpleName} id can't be reassigned!")
         }
+
+    fun _checkpoint(checkpoint: String) {
+        require(checkpoint.isNotBlank())
+        if (checkpoint in checkpoints) {
+            error("Duplicate checkpoint $checkpoint in ${this::class.simpleName}!")
+        }
+        checkpoints += checkpoint
+        invokeModifiers(context = this, checkpoint = checkpoint)
+    }
 }

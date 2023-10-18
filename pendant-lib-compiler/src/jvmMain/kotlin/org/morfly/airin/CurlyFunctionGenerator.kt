@@ -71,7 +71,7 @@ class CurlyFunctionGenerator(
         }
 
         file += "class $ctxClassName(\n"
-        file += "${indent4}modifiers: MutableMap<String, MutableList<Modifier<*>>> = mutableMapOf()"
+        file += "${indent4}modifiers: MutableMap<String, MutableMap<String?, MutableList<Modifier<*>>>> = linkedMapOf()"
         file += "\n) : FunctionCallContext(modifiers) {\n"
         for (arg in allArguments) {
             file += indent4

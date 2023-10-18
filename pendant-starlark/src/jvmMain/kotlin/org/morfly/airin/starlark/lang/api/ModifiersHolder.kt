@@ -16,7 +16,14 @@
 
 package org.morfly.airin.starlark.lang.api
 
+import org.morfly.airin.starlark.format.StarlarkFileFormatter
+import org.morfly.airin.starlark.lang.BUILD
+import org.morfly.airin.starlark.lang.BuildContext
+import org.morfly.airin.starlark.lang.bazel
 import kotlin.reflect.KClass
+
+internal typealias Id = String
+internal typealias Checkpoint = String?
 
 data class Modifier<C : Context>(
     val type: KClass<out C>,
@@ -25,16 +32,28 @@ data class Modifier<C : Context>(
 
 interface ModifiersHolder {
 
-    val modifiers: MutableMap<String, MutableList<Modifier<*>>>
+    val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>
 }
 
 @InternalPendantApi
-inline fun <reified C : Context> ModifiersHolder.invokeModifiers(context: C) {
-    if (context._id != null) {
-        modifiers[context._id]?.asSequence()
-            ?.filter { (type, _) -> type == C::class }
-            ?.forEach { (_, modifier) -> modifier.invoke(context) }
+fun <C : Context> ModifiersHolder.invokeModifiers(context: C, checkpoint: String? = null) {
+    context._id?.let { id ->
+        modifiers[id]
+            ?.get(checkpoint)
+            ?.asSequence()
+            ?.filter { it.type == context::class }
+            ?.forEach { it.body(context) }
     }
+}
+
+inline fun <reified C : Context> ModifiersHolder.onContext(
+    id: String,
+    checkpoint: String? = null,
+    noinline modifier: C.() -> Unit
+) {
+    modifiers
+        .getOrPut(id, ::linkedMapOf)
+        .getOrPut(checkpoint, ::mutableListOf) += Modifier(C::class, modifier)
 }
 
 inline fun <reified C : Context> ModifiersHolder.onContext(id: String, noinline modifier: C.() -> Unit) {
