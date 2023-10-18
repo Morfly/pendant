@@ -28,13 +28,13 @@ abstract class Context : ModifiersHolder {
     var _id: String? = null
         set(value) {
             if (field == null) {
-                require(!value.isNullOrBlank())
+                require(!value.isNullOrBlank()) { "${this::class.simpleName} id can't be null or blank!" }
                 field = value
             } else error("${this::class.simpleName} id can't be reassigned!")
         }
 
     fun _checkpoint(checkpoint: String) {
-        require(checkpoint.isNotBlank())
+        require(checkpoint.isNotBlank()) { "${this::class.simpleName} id can't be blank!" }
         if (checkpoint in checkpoints) {
             error("Duplicate checkpoint $checkpoint in ${this::class.simpleName}!")
         }
