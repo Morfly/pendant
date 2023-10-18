@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
-
-import org.morfly.airin.starlark.elements.Statement
+package org.morfly.airin.starlark.lang
 
 
-/**
- * Language statement holder
- */
-interface StatementsHolder {
+interface CommonStatementsLibrary : StatementsHolder, ModifiersHolder
 
-    /**
-     * Language statements.
-     */
-    val statements: MutableList<Statement>
-}
+interface BuildStatementsLibrary : CommonStatementsLibrary
+
+interface WorkspaceStatementsLibrary : CommonStatementsLibrary
+
+interface StarlarkStatementsLibrary : CommonStatementsLibrary
+
+
+interface CommonExpressionsLibrary : ModifiersHolder
+
+interface BuildExpressionsLibrary : CommonExpressionsLibrary
+
+interface WorkspaceExpressionsLibrary : CommonExpressionsLibrary
+
+interface StarlarkExpressionsLibrary : CommonExpressionsLibrary

@@ -18,10 +18,10 @@
 
 package org.morfly.airin.starlark.library
 
-import org.morfly.airin.starlark.lang.api.Argument
-import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.api.FunctionScope.Build
-import org.morfly.airin.starlark.lang.api.LibraryFunction
+import org.morfly.airin.starlark.lang.Argument
+import org.morfly.airin.starlark.lang.FunctionKind.Statement
+import org.morfly.airin.starlark.lang.FunctionScope.Build
+import org.morfly.airin.starlark.lang.LibraryFunction
 import org.morfly.airin.starlark.lang.types.*
 
 

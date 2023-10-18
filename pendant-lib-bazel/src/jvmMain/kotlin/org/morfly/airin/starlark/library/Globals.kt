@@ -22,10 +22,10 @@ import org.morfly.airin.starlark.lang.types.Key
 import org.morfly.airin.starlark.lang.types.Label
 import org.morfly.airin.starlark.lang.types.Name
 import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.api.Argument
-import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.api.FunctionScope.Workspace
-import org.morfly.airin.starlark.lang.api.LibraryFunction
+import org.morfly.airin.starlark.lang.Argument
+import org.morfly.airin.starlark.lang.FunctionKind.Statement
+import org.morfly.airin.starlark.lang.FunctionScope.Workspace
+import org.morfly.airin.starlark.lang.LibraryFunction
 
 
 @LibraryFunction(

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
 
-import org.morfly.airin.starlark.lang.api.BracketsKind.Curly
-import org.morfly.airin.starlark.lang.api.BracketsKind.Round
-import org.morfly.airin.starlark.lang.api.ReturnKind.Type
+import org.morfly.airin.starlark.lang.BracketsKind.Curly
+import org.morfly.airin.starlark.lang.BracketsKind.Round
+import org.morfly.airin.starlark.lang.ReturnKind.Type
 import kotlin.annotation.AnnotationRetention.RUNTIME
 import kotlin.annotation.AnnotationTarget.CLASS
 import kotlin.annotation.AnnotationTarget.PROPERTY

@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
 
 import org.morfly.airin.starlark.format.StarlarkFileFormatter
 import org.morfly.airin.starlark.lang.context.BUILD
 import org.morfly.airin.starlark.lang.context.BuildContext
+import org.morfly.airin.starlark.lang.context.Context
 import org.morfly.airin.starlark.lang.context.bazel
 import kotlin.reflect.KClass
 
@@ -56,6 +57,41 @@ inline fun <reified C : Context> ModifiersHolder.onContext(
         .getOrPut(checkpoint, ::mutableListOf) += Modifier(C::class, modifier)
 }
 
-inline fun <reified C : Context> ModifiersHolder.onContext(id: String, noinline modifier: C.() -> Unit) {
-    modifiers.getOrPut(id, ::mutableListOf) += Modifier(C::class, modifier)
-}
+fun main() {
+    val build = BUILD.bazel {
+        _id = "build"
+
+        val TEST by 1
+
+        _checkpoint("test")
+
+        val LIST by listOf(1)
+
+        _checkpoint("test1")
+
+
+        "myFun" {
+            _id = "fun"
+        }
+    }
+    build.onContext<BuildContext>("build") {
+        "noCheckpointFun" {
+            "arg" `=` 5
+        }
+    }
+
+    build.onContext<BuildContext>(id = "build", checkpoint = "test") {
+        "checkpointTestFun" {
+            "arg" `=` "check"
+        }
+    }
+
+    build.onContext<BuildContext>(id = "build", checkpoint = "test1") {
+        val CHECKPOINT1 by "check"
+    }
+
+    val file = build.build()
+
+    val text = StarlarkFileFormatter.format(file)
+    println(text)
+ }

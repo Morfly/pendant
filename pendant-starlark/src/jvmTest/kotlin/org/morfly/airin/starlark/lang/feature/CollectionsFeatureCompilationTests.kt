@@ -16,13 +16,13 @@
 
 package org.morfly.airin.starlark.lang.feature
 
-import org.morfly.airin.starlark.lang.api.Checkpoint
-import org.morfly.airin.starlark.lang.api.Id
+import org.morfly.airin.starlark.lang.Checkpoint
+import org.morfly.airin.starlark.lang.Id
 import org.morfly.airin.starlark.lang.types.Key
 import org.morfly.airin.starlark.lang.types.StringType
 import org.morfly.airin.starlark.lang.types.TupleType
 import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.api.Modifier
+import org.morfly.airin.starlark.lang.Modifier
 
 
 private fun CollectionsFeatureUnderCompilationTest.CompilationTests() {

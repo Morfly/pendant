@@ -20,11 +20,10 @@ package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.lang.context.DictionaryContext
 import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.*
-import org.morfly.airin.starlark.lang.api.ModifiersHolder
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.StatementsHolder
-import org.morfly.airin.starlark.lang.api.invokeModifiers
+import org.morfly.airin.starlark.lang.ModifiersHolder
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.StatementsHolder
+import org.morfly.airin.starlark.lang.invokeModifiers
 import org.morfly.airin.starlark.lang.types.*
 
 

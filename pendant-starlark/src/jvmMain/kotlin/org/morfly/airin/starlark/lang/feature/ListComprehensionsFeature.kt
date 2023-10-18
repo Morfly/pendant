@@ -22,17 +22,17 @@ import org.morfly.airin.starlark.elements.*
 import org.morfly.airin.starlark.lang.types.BooleanType
 import org.morfly.airin.starlark.lang.types.NumberType
 import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.api.FileContext
-import org.morfly.airin.starlark.lang.api.LanguageContextProvider
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.StatementsHolder
+import org.morfly.airin.starlark.lang.context.FileContext
+import org.morfly.airin.starlark.lang.ContextProvider
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.StatementsHolder
 
 
 /**
  * Feature that enables list comprehensions.
  */
 internal interface ListComprehensionsFeature<C : FileContext> : LanguageFeature,
-    LanguageContextProvider<C>,
+    ContextProvider<C>,
     StatementsHolder {
 
 

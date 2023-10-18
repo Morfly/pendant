@@ -18,13 +18,13 @@
 
 package org.morfly.airin.starlark.library
 
-import org.morfly.airin.starlark.lang.api.Argument
-import org.morfly.airin.starlark.lang.api.BracketsKind.Round
-import org.morfly.airin.starlark.lang.api.FunctionKind.Expression
-import org.morfly.airin.starlark.lang.api.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.api.FunctionScope.*
-import org.morfly.airin.starlark.lang.api.LibraryFunction
-import org.morfly.airin.starlark.lang.api.Returns
+import org.morfly.airin.starlark.lang.Argument
+import org.morfly.airin.starlark.lang.BracketsKind.Round
+import org.morfly.airin.starlark.lang.FunctionKind.Expression
+import org.morfly.airin.starlark.lang.FunctionKind.Statement
+import org.morfly.airin.starlark.lang.FunctionScope.*
+import org.morfly.airin.starlark.lang.LibraryFunction
+import org.morfly.airin.starlark.lang.Returns
 import org.morfly.airin.starlark.lang.types.*
 
 

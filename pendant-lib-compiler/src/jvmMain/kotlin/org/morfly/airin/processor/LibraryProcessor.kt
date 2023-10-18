@@ -24,15 +24,15 @@ import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
 import com.google.devtools.ksp.validate
 import org.morfly.airin.*
 import org.morfly.airin.starlark.lang.types.ListType
-import org.morfly.airin.starlark.lang.api.Argument
-import org.morfly.airin.starlark.lang.api.BracketsKind.Curly
-import org.morfly.airin.starlark.lang.api.BracketsKind.Round
-import org.morfly.airin.starlark.lang.api.FunctionKind
-import org.morfly.airin.starlark.lang.api.FunctionKind.Expression
-import org.morfly.airin.starlark.lang.api.LibraryFunction
-import org.morfly.airin.starlark.lang.api.ReturnKind.Dynamic
-import org.morfly.airin.starlark.lang.api.ReturnKind.Type
-import org.morfly.airin.starlark.lang.api.Returns
+import org.morfly.airin.starlark.lang.Argument
+import org.morfly.airin.starlark.lang.BracketsKind.Curly
+import org.morfly.airin.starlark.lang.BracketsKind.Round
+import org.morfly.airin.starlark.lang.FunctionKind
+import org.morfly.airin.starlark.lang.FunctionKind.Expression
+import org.morfly.airin.starlark.lang.LibraryFunction
+import org.morfly.airin.starlark.lang.ReturnKind.Dynamic
+import org.morfly.airin.starlark.lang.ReturnKind.Type
+import org.morfly.airin.starlark.lang.Returns
 
 
 private typealias FilePath = String

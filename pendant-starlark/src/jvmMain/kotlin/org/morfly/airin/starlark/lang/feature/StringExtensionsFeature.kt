@@ -21,10 +21,10 @@ import org.morfly.airin.starlark.elements.StringFunctionCall
 import org.morfly.airin.starlark.elements.StringLiteral
 import org.morfly.airin.starlark.lang.context.FunctionCallContext
 import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.api.ModifiersHolder
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.asSet
-import org.morfly.airin.starlark.lang.api.invokeModifiers
+import org.morfly.airin.starlark.lang.ModifiersHolder
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.asSet
+import org.morfly.airin.starlark.lang.invokeModifiers
 
 
 internal interface StringExtensionsFeature : LanguageFeature,

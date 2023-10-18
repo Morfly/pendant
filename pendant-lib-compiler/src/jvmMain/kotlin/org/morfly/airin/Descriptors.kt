@@ -17,9 +17,9 @@
 package org.morfly.airin
 
 import com.google.devtools.ksp.symbol.KSFile
-import org.morfly.airin.starlark.lang.api.BracketsKind
-import org.morfly.airin.starlark.lang.api.FunctionKind
-import org.morfly.airin.starlark.lang.api.FunctionScope
+import org.morfly.airin.starlark.lang.BracketsKind
+import org.morfly.airin.starlark.lang.FunctionKind
+import org.morfly.airin.starlark.lang.FunctionScope
 
 
 interface NameHolder {

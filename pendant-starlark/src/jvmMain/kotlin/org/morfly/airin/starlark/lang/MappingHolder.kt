@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
 
+import org.morfly.airin.starlark.elements.Expression
 
 /**
- * Starlark DSL language feature.
+ * Container of the key value pairs that are part of the dictionary expression.
  */
-internal interface LanguageFeature
+internal interface MappingHolder {
+
+    /**
+     *
+     */
+    val kwargs: MutableMap<Expression, Expression>
+}

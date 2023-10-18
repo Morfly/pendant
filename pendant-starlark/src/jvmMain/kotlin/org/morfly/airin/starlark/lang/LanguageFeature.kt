@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
 
 
 /**
- * Marks the DSL scope of a specific language feature context.
+ * Starlark DSL language feature.
  */
-//@Target(AnnotationTarget.TYPE, AnnotationTarget.CLASS)
-@DslMarker
-internal annotation class LanguageScope
+internal interface LanguageFeature

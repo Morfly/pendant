@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
 
 // TODO add RequiresOptIn
 annotation class InternalPendantApi

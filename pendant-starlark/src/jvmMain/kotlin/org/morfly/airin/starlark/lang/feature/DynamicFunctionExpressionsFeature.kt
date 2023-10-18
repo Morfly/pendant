@@ -17,10 +17,9 @@
 package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.lang.context.FunctionCallContext
-import org.morfly.airin.starlark.lang.api.ModifiersHolder
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.invokeModifiers
-import org.morfly.airin.starlark.lang.functionCallExpression
+import org.morfly.airin.starlark.lang.ModifiersHolder
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.invokeModifiers
 
 internal interface DynamicFunctionExpressionsFeature : LanguageFeature
 

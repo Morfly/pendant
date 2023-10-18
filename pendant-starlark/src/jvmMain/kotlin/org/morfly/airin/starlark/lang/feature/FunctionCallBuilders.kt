@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang
+package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.lang.context.FunctionCallContext
 import org.morfly.airin.starlark.elements.AnyFunctionCall
@@ -27,6 +27,9 @@ import org.morfly.airin.starlark.elements.NumberFunctionCall
 import org.morfly.airin.starlark.elements.StringFunctionCall
 import org.morfly.airin.starlark.elements.TupleFunctionCall
 import org.morfly.airin.starlark.elements.VoidFunctionCall
+import org.morfly.airin.starlark.lang.InternalPendantApi
+import org.morfly.airin.starlark.lang.ModifiersHolder
+import org.morfly.airin.starlark.lang.StatementsHolder
 import org.morfly.airin.starlark.lang.types.BooleanBaseType
 import org.morfly.airin.starlark.lang.types.BooleanType
 import org.morfly.airin.starlark.lang.types.Key
@@ -34,7 +37,8 @@ import org.morfly.airin.starlark.lang.types.NumberType
 import org.morfly.airin.starlark.lang.types.StringType
 import org.morfly.airin.starlark.lang.types.TupleType
 import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.api.*
+import org.morfly.airin.starlark.lang.asSet
+import org.morfly.airin.starlark.lang.invokeModifiers
 import kotlin.reflect.KClass
 import kotlin.reflect.typeOf
 

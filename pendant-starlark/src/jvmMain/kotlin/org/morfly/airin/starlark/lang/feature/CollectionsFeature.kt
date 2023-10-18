@@ -22,10 +22,10 @@ import org.morfly.airin.starlark.elements.DictionaryExpression
 import org.morfly.airin.starlark.elements.ListExpression
 import org.morfly.airin.starlark.elements.TupleExpression
 import org.morfly.airin.starlark.lang.context.DictionaryContext
-import org.morfly.airin.starlark.lang.api.ModifiersHolder
-import org.morfly.airin.starlark.lang.api.InternalPendantApi
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.invokeModifiers
+import org.morfly.airin.starlark.lang.ModifiersHolder
+import org.morfly.airin.starlark.lang.InternalPendantApi
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.invokeModifiers
 import org.morfly.airin.starlark.lang.types.*
 import org.morfly.airin.starlark.lang.types.emptyTuple
 import org.morfly.airin.starlark.lang.types.tupleOf

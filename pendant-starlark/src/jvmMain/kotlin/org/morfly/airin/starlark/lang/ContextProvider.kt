@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
+
+import org.morfly.airin.starlark.lang.context.FileContext
 
 
-interface CommonStatementsLibrary : StatementsHolder, ModifiersHolder
+/**
+ * Defines that a class implementing this interface must be able to provide new instances of a specified language context.
+ */
+internal interface ContextProvider<out C : FileContext> {
 
-interface BuildStatementsLibrary : CommonStatementsLibrary
-
-interface WorkspaceStatementsLibrary : CommonStatementsLibrary
-
-interface StarlarkStatementsLibrary : CommonStatementsLibrary
-
-
-interface CommonExpressionsLibrary : ModifiersHolder
-
-interface BuildExpressionsLibrary : CommonExpressionsLibrary
-
-interface WorkspaceExpressionsLibrary : CommonExpressionsLibrary
-
-interface StarlarkExpressionsLibrary : CommonExpressionsLibrary
+    /**
+     * Provides new instance of a language context.
+     */
+    fun newContext(): C
+}

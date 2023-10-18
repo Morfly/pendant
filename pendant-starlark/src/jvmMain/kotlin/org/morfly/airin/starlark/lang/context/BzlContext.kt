@@ -19,14 +19,13 @@
 package org.morfly.airin.starlark.lang.context
 
 import org.morfly.airin.starlark.elements.BzlFile
-import org.morfly.airin.starlark.lang.api.BuildExpressionsLibrary
-import org.morfly.airin.starlark.lang.api.BuildStatementsLibrary
-import org.morfly.airin.starlark.lang.api.Checkpoint
-import org.morfly.airin.starlark.lang.api.FileContext
-import org.morfly.airin.starlark.lang.api.Id
-import org.morfly.airin.starlark.lang.api.LanguageScope
-import org.morfly.airin.starlark.lang.api.Modifier
-import org.morfly.airin.starlark.lang.api.invokeModifiers
+import org.morfly.airin.starlark.lang.BuildExpressionsLibrary
+import org.morfly.airin.starlark.lang.BuildStatementsLibrary
+import org.morfly.airin.starlark.lang.Checkpoint
+import org.morfly.airin.starlark.lang.Id
+import org.morfly.airin.starlark.lang.LanguageScope
+import org.morfly.airin.starlark.lang.Modifier
+import org.morfly.airin.starlark.lang.invokeModifiers
 import org.morfly.airin.starlark.lang.feature.AssignmentsFeature
 import org.morfly.airin.starlark.lang.feature.BinaryPercentsFeature
 import org.morfly.airin.starlark.lang.feature.BinaryPlusFeature

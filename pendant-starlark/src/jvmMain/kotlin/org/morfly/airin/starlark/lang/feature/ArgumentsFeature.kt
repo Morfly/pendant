@@ -21,9 +21,9 @@ import org.morfly.airin.starlark.lang.types.BooleanType
 import org.morfly.airin.starlark.lang.types.NumberType
 import org.morfly.airin.starlark.lang.types.StringType
 import org.morfly.airin.starlark.lang.types.TupleType
-import org.morfly.airin.starlark.lang.api.ArgumentsHolder
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.append
+import org.morfly.airin.starlark.lang.ArgumentsHolder
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.append
 import kotlin.reflect.KProperty
 
 

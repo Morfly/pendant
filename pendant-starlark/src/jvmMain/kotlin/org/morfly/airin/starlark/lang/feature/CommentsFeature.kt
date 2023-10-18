@@ -19,8 +19,8 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.Expression
 import org.morfly.airin.starlark.elements.RawStatement
 import org.morfly.airin.starlark.elements.StringLiteral
-import org.morfly.airin.starlark.lang.api.LanguageFeature
-import org.morfly.airin.starlark.lang.api.StatementsHolder
+import org.morfly.airin.starlark.lang.LanguageFeature
+import org.morfly.airin.starlark.lang.StatementsHolder
 
 
 internal interface CommentsFeature : LanguageFeature,

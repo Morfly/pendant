@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang
 
 
 /**
- * Defines that a class implementing this interface must be able to provide new instances of a specified language context.
+ * Marks the DSL scope of a specific language feature context.
  */
-internal interface LanguageContextProvider<out C : FileContext> {
-
-    /**
-     * Provides new instance of a language context.
-     */
-    fun newContext(): C
-}
+//@Target(AnnotationTarget.TYPE, AnnotationTarget.CLASS)
+@DslMarker
+internal annotation class LanguageScope

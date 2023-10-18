@@ -16,13 +16,13 @@
 
 @file:Suppress("ClassName", "unused")
 
-package org.morfly.airin.starlark.lang
+package org.morfly.airin.starlark.lang.feature
 
 import org.morfly.airin.starlark.elements.Element
 import org.morfly.airin.starlark.elements.ExpressionHolder
 import org.morfly.airin.starlark.lang.types.Key
 import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.api.InternalPendantApi
+import org.morfly.airin.starlark.lang.InternalPendantApi
 
 
 /**

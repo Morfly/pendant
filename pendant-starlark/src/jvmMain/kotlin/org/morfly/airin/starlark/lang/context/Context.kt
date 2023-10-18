@@ -16,7 +16,10 @@
 
 @file:Suppress("FunctionName", "PropertyName")
 
-package org.morfly.airin.starlark.lang.api
+package org.morfly.airin.starlark.lang.context
+
+import org.morfly.airin.starlark.lang.ModifiersHolder
+import org.morfly.airin.starlark.lang.invokeModifiers
 
 abstract class Context : ModifiersHolder {
 
