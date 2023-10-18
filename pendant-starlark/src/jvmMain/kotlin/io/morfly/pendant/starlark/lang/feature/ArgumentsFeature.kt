@@ -17,10 +17,10 @@
 package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.element.*
-import io.morfly.pendant.starlark.lang.types.BooleanType
-import io.morfly.pendant.starlark.lang.types.NumberType
-import io.morfly.pendant.starlark.lang.types.StringType
-import io.morfly.pendant.starlark.lang.types.TupleType
+import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
 import io.morfly.pendant.starlark.lang.ArgumentsHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.append

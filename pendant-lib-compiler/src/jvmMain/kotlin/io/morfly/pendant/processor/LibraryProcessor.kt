@@ -23,7 +23,7 @@ import com.google.devtools.ksp.symbol.*
 import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
 import com.google.devtools.ksp.validate
 import io.morfly.pendant.*
-import io.morfly.pendant.starlark.lang.types.ListType
+import io.morfly.pendant.starlark.lang.type.ListType
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Curly
 import io.morfly.pendant.starlark.lang.BracketsKind.Round

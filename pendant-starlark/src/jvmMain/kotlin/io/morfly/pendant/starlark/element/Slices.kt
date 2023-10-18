@@ -16,9 +16,9 @@
 
 package io.morfly.pendant.starlark.element
 
-import io.morfly.pendant.starlark.lang.types.ListTypeDelegate
-import io.morfly.pendant.starlark.lang.types.StringType
-import io.morfly.pendant.starlark.lang.types.StringTypeDelegate
+import io.morfly.pendant.starlark.lang.type.ListTypeDelegate
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.StringTypeDelegate
 
 
 /**

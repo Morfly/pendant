@@ -18,15 +18,15 @@
 
 package io.morfly.pendant.starlark.library
 
-import io.morfly.pendant.starlark.lang.types.BooleanType
-import io.morfly.pendant.starlark.lang.types.DictionaryType
-import io.morfly.pendant.starlark.lang.types.Key
-import io.morfly.pendant.starlark.lang.types.Label
-import io.morfly.pendant.starlark.lang.types.ListType
-import io.morfly.pendant.starlark.lang.types.Name
-import io.morfly.pendant.starlark.lang.types.NumberType
-import io.morfly.pendant.starlark.lang.types.StringType
-import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.DictionaryType
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.Label
+import io.morfly.pendant.starlark.lang.type.ListType
+import io.morfly.pendant.starlark.lang.type.Name
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
 import io.morfly.pendant.starlark.lang.FunctionScope.Build

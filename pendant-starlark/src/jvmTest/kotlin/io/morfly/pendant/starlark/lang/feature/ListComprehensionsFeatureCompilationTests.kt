@@ -20,8 +20,8 @@ package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.element.ListReference
 import io.morfly.pendant.starlark.element.StringReference
-import io.morfly.pendant.starlark.lang.types.NumberType
-import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.context.FileContext
 
 

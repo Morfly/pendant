@@ -22,9 +22,9 @@ import io.kotest.matchers.types.shouldBeTypeOf
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.Id
-import io.morfly.pendant.starlark.lang.types.Key
-import io.morfly.pendant.starlark.lang.types.StringType
-import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.Modifier
 
 

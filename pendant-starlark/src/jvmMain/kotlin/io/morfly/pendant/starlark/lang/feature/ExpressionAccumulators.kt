@@ -20,8 +20,8 @@ package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.element.Element
 import io.morfly.pendant.starlark.element.ExpressionHolder
-import io.morfly.pendant.starlark.lang.types.Key
-import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 
 

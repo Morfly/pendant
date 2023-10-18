@@ -20,7 +20,7 @@ import io.morfly.pendant.starlark.element.Expression
 import io.morfly.pendant.starlark.element.StringFunctionCall
 import io.morfly.pendant.starlark.element.StringLiteral
 import io.morfly.pendant.starlark.lang.context.FunctionCallContext
-import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.asSet

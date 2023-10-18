@@ -19,7 +19,7 @@ package io.morfly.pendant.starlark.lang.feature
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
-import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.type.*
 import kotlin.reflect.KProperty
 
 

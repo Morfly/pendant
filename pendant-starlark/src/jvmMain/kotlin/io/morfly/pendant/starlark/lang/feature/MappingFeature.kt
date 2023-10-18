@@ -24,7 +24,7 @@ import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.MappingHolder
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.type.*
 
 /**
  * Enables mapping to key-value pairs that are part of the dictionary expression.

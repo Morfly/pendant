@@ -23,7 +23,7 @@ import io.morfly.pendant.starlark.lang.FunctionKind.Statement
 import io.morfly.pendant.starlark.lang.FunctionScope.Build
 import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
 import io.morfly.pendant.starlark.lang.LibraryFunction
-import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.type.*
 
 
 @LibraryFunction(

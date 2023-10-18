@@ -1,6 +1,6 @@
 package io.morfly.pendant.starlark.library
 
-import io.morfly.pendant.starlark.lang.types.Name
+import io.morfly.pendant.starlark.lang.type.Name
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
 import io.morfly.pendant.starlark.lang.FunctionScope.Build

@@ -18,10 +18,10 @@
 
 package io.morfly.pendant.starlark.library
 
-import io.morfly.pendant.starlark.lang.types.Key
-import io.morfly.pendant.starlark.lang.types.Label
-import io.morfly.pendant.starlark.lang.types.Name
-import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.Label
+import io.morfly.pendant.starlark.lang.type.Name
+import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
 import io.morfly.pendant.starlark.lang.FunctionScope.Workspace

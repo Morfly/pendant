@@ -16,7 +16,7 @@
 
 package io.morfly.pendant.processor
 
-import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.type.*
 
 
 private typealias QualifiedName = String

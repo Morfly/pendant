@@ -18,7 +18,7 @@
 
 package io.morfly.pendant.starlark.element
 
-import io.morfly.pendant.starlark.lang.types.Tuple
+import io.morfly.pendant.starlark.lang.type.Tuple
 
 
 /**

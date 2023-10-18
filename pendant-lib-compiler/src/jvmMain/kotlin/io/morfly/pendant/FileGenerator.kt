@@ -112,7 +112,7 @@ class FileGeneratorImpl(
             "io.morfly.pendant.starlark.element.Argument",
             "io.morfly.pendant.starlark.element.Expression",
             "io.morfly.pendant.starlark.element.*",
-            "io.morfly.pendant.starlark.lang.types.*",
+            "io.morfly.pendant.starlark.lang.type.*",
             "io.morfly.pendant.starlark.lang.context.*"
         )
     }

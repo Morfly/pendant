@@ -16,7 +16,7 @@
 
 @file:Suppress("FunctionName")
 
-package io.morfly.pendant.starlark.lang.types
+package io.morfly.pendant.starlark.lang.type
 
 
 abstract class NumberTypeDelegate internal constructor(

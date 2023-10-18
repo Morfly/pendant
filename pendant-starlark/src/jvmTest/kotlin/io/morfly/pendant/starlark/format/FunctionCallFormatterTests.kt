@@ -21,7 +21,7 @@ package io.morfly.pendant.starlark.format
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
 import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
-import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.type.StringType
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 

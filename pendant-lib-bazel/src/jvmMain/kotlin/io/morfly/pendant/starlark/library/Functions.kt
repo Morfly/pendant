@@ -25,7 +25,7 @@ import io.morfly.pendant.starlark.lang.FunctionScope.*
 import io.morfly.pendant.starlark.lang.LibraryFunction
 import io.morfly.pendant.starlark.lang.ReturnKind.Dynamic
 import io.morfly.pendant.starlark.lang.Returns
-import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.type.*
 
 
 @LibraryFunction(

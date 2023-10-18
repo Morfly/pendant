@@ -16,7 +16,7 @@
 
 @file:Suppress("unused")
 
-package io.morfly.pendant.starlark.lang.types
+package io.morfly.pendant.starlark.lang.type
 
 
 /**

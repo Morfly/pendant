@@ -16,12 +16,12 @@
 
 package io.morfly.pendant.starlark.element
 
-import io.morfly.pendant.starlark.lang.types.*
-import io.morfly.pendant.starlark.lang.types.BooleanTypeDelegate
-import io.morfly.pendant.starlark.lang.types.DictionaryTypeDelegate
-import io.morfly.pendant.starlark.lang.types.ListTypeDelegate
-import io.morfly.pendant.starlark.lang.types.StringTypeDelegate
-import io.morfly.pendant.starlark.lang.types.TupleTypeDelegate
+import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.BooleanTypeDelegate
+import io.morfly.pendant.starlark.lang.type.DictionaryTypeDelegate
+import io.morfly.pendant.starlark.lang.type.ListTypeDelegate
+import io.morfly.pendant.starlark.lang.type.StringTypeDelegate
+import io.morfly.pendant.starlark.lang.type.TupleTypeDelegate
 
 
 /**

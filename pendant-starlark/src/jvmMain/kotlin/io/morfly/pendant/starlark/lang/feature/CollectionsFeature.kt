@@ -26,9 +26,9 @@ import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.types.*
-import io.morfly.pendant.starlark.lang.types.emptyTuple
-import io.morfly.pendant.starlark.lang.types.tupleOf
+import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.emptyTuple
+import io.morfly.pendant.starlark.lang.type.tupleOf
 
 
 /**

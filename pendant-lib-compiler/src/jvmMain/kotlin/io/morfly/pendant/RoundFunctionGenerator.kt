@@ -19,7 +19,7 @@ package io.morfly.pendant
 import com.google.devtools.ksp.processing.KSPLogger
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.BracketsKind
-import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.type.*
 import java.io.OutputStream
 import kotlin.reflect.KClass
 

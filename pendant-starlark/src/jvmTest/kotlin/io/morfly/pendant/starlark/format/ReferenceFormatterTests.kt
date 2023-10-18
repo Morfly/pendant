@@ -24,9 +24,9 @@ import io.morfly.pendant.starlark.element.ListReference
 import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
 import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
 import io.morfly.pendant.starlark.element.StringReference
-import io.morfly.pendant.starlark.lang.types.Key
-import io.morfly.pendant.starlark.lang.types.StringType
-import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Value
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 
