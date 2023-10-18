@@ -16,54 +16,39 @@
 
 @file:Suppress("PropertyName", "unused")
 
-package io.morfly.pendant.starlark.library
+package io.morfly.pendant.starlark
 
-import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.Key
 import io.morfly.pendant.starlark.lang.type.Label
 import io.morfly.pendant.starlark.lang.type.Name
-import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
-import io.morfly.pendant.starlark.lang.FunctionScope.Build
+import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
 import io.morfly.pendant.starlark.lang.LibraryFunction
 
 
 @LibraryFunction(
-    name = "alias",
-    scope = [Build],
+    name = "register_toolchains",
+    scope = [Workspace],
     kind = Statement
 )
-private interface Alias {
+private interface RegisterToolchains {
 
-    @Argument(required = true)
-    val name: Name
-
-    @Argument(required = true)
-    val actual: Label
+    // TODO introduce Starlark analog of vararg
+    @Argument(underlyingName = "", required = true)
+    val toolchain: Label
 }
 
 
 @LibraryFunction(
-    name = "genrule",
-    scope = [Build],
+    name = "workspace",
+    scope = [Workspace],
     kind = Statement
 )
-private interface Genrule {
+interface WorkspaceFunction {
 
     @Argument(required = true)
     val name: Name
-    val srcs: List<Label?>?
-    val outs: List<StringType?>?
-    val cmd: StringType?
-    val cmd_bash: StringType?
-    val cmd_bat: StringType?
-    val cmd_ps: StringType?
-    val exec_tools: List<Label?>?
-    val executable: BooleanType?
-    val local: BooleanType?
-    val message: StringType?
-    val output_licenses: List<StringType?>?
-    val output_to_bindir: BooleanType?
-    val tools: List<Label?>?
-    val visibility: List<Label?>?
+    val managed_directories: Map<Key, Value>?
 }

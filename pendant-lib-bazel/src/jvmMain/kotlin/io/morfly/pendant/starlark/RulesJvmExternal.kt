@@ -16,7 +16,7 @@
 
 @file:Suppress("PropertyName", "unused")
 
-package io.morfly.pendant.starlark.library
+package io.morfly.pendant.starlark
 
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Round

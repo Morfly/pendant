@@ -16,52 +16,54 @@
 
 @file:Suppress("PropertyName", "unused")
 
-package io.morfly.pendant.starlark.library
+package io.morfly.pendant.starlark
 
+import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.Label
+import io.morfly.pendant.starlark.lang.type.Name
+import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
-import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
+import io.morfly.pendant.starlark.lang.FunctionScope.Build
 import io.morfly.pendant.starlark.lang.LibraryFunction
-import io.morfly.pendant.starlark.lang.type.*
 
 
 @LibraryFunction(
-    name = "bind",
-    scope = [Workspace],
+    name = "alias",
+    scope = [Build],
     kind = Statement
 )
-private interface Bind {
+private interface Alias {
 
     @Argument(required = true)
     val name: Name
-    val actual: Label?
+
+    @Argument(required = true)
+    val actual: Label
+}
+
+
+@LibraryFunction(
+    name = "genrule",
+    scope = [Build],
+    kind = Statement
+)
+private interface Genrule {
+
+    @Argument(required = true)
+    val name: Name
+    val srcs: List<Label?>?
+    val outs: List<StringType?>?
+    val cmd: StringType?
+    val cmd_bash: StringType?
+    val cmd_bat: StringType?
+    val cmd_ps: StringType?
+    val exec_tools: List<Label?>?
+    val executable: BooleanType?
+    val local: BooleanType?
+    val message: StringType?
+    val output_licenses: List<StringType?>?
+    val output_to_bindir: BooleanType?
+    val tools: List<Label?>?
     val visibility: List<Label?>?
-}
-
-
-@LibraryFunction(
-    name = "local_repository",
-    scope = [Workspace],
-    kind = Statement
-)
-private interface LocalRepository {
-
-    @Argument(required = true)
-    val name: Name
-    val path: StringType
-    val repo_mapping: Map<Key, Value>?
-}
-
-
-@LibraryFunction(
-    name = "new_local_repository",
-    scope = [Workspace],
-    kind = Statement
-)
-private interface NewLocalRepository {
-
-    @Argument(required = true)
-    val name: Name
-    val path: StringType
-    val repo_mapping: Map<Key, Value>?
 }

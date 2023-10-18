@@ -1,4 +1,4 @@
-package io.morfly.pendant.starlark.library
+package io.morfly.pendant.starlark
 
 import io.morfly.pendant.starlark.lang.type.Name
 import io.morfly.pendant.starlark.lang.Argument

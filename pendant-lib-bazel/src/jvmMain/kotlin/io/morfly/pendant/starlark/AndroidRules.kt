@@ -16,7 +16,7 @@
 
 @file:Suppress("PropertyName", "SpellCheckingInspection", "unused")
 
-package io.morfly.pendant.starlark.library
+package io.morfly.pendant.starlark
 
 import io.morfly.pendant.starlark.lang.type.BooleanType
 import io.morfly.pendant.starlark.lang.type.DictionaryType

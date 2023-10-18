@@ -16,39 +16,52 @@
 
 @file:Suppress("PropertyName", "unused")
 
-package io.morfly.pendant.starlark.library
+package io.morfly.pendant.starlark
 
-import io.morfly.pendant.starlark.lang.type.Key
-import io.morfly.pendant.starlark.lang.type.Label
-import io.morfly.pendant.starlark.lang.type.Name
-import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
 import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
 import io.morfly.pendant.starlark.lang.LibraryFunction
+import io.morfly.pendant.starlark.lang.type.*
 
 
 @LibraryFunction(
-    name = "register_toolchains",
+    name = "bind",
     scope = [Workspace],
     kind = Statement
 )
-private interface RegisterToolchains {
+private interface Bind {
 
-    // TODO introduce Starlark analog of vararg
-    @Argument(underlyingName = "", required = true)
-    val toolchain: Label
+    @Argument(required = true)
+    val name: Name
+    val actual: Label?
+    val visibility: List<Label?>?
 }
 
 
 @LibraryFunction(
-    name = "workspace",
+    name = "local_repository",
     scope = [Workspace],
     kind = Statement
 )
-interface WorkspaceFunction {
+private interface LocalRepository {
 
     @Argument(required = true)
     val name: Name
-    val managed_directories: Map<Key, Value>?
+    val path: StringType
+    val repo_mapping: Map<Key, Value>?
+}
+
+
+@LibraryFunction(
+    name = "new_local_repository",
+    scope = [Workspace],
+    kind = Statement
+)
+private interface NewLocalRepository {
+
+    @Argument(required = true)
+    val name: Name
+    val path: StringType
+    val repo_mapping: Map<Key, Value>?
 }
