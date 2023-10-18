@@ -21,7 +21,7 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.DictionaryExpression
 import org.morfly.airin.starlark.elements.ListExpression
 import org.morfly.airin.starlark.elements.TupleExpression
-import org.morfly.airin.starlark.lang.DictionaryContext
+import org.morfly.airin.starlark.lang.context.DictionaryContext
 import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.InternalPendantApi
 import org.morfly.airin.starlark.lang.api.LanguageFeature

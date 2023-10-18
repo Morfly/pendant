@@ -19,7 +19,7 @@ package org.morfly.airin.starlark.lang.feature
 import org.morfly.airin.starlark.elements.Expression
 import org.morfly.airin.starlark.elements.StringFunctionCall
 import org.morfly.airin.starlark.elements.StringLiteral
-import org.morfly.airin.starlark.lang.FunctionCallContext
+import org.morfly.airin.starlark.lang.context.FunctionCallContext
 import org.morfly.airin.starlark.lang.types.StringType
 import org.morfly.airin.starlark.lang.api.ModifiersHolder
 import org.morfly.airin.starlark.lang.api.LanguageFeature

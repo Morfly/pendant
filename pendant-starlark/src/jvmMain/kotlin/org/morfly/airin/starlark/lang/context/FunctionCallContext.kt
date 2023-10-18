@@ -14,36 +14,41 @@
  * limitations under the License.
  */
 
-@file:Suppress("LocalVariableName")
+@file:Suppress("FunctionName")
 
-package org.morfly.airin.starlark.lang
+package org.morfly.airin.starlark.lang.context
 
-import org.morfly.airin.starlark.elements.Expression
+import org.morfly.airin.starlark.elements.Argument
 import org.morfly.airin.starlark.lang.api.Checkpoint
 import org.morfly.airin.starlark.lang.api.CommonExpressionsLibrary
 import org.morfly.airin.starlark.lang.api.Context
 import org.morfly.airin.starlark.lang.api.Id
-import org.morfly.airin.starlark.lang.api.LanguageScope
 import org.morfly.airin.starlark.lang.api.Modifier
+import org.morfly.airin.starlark.lang.api.LanguageScope
+import org.morfly.airin.starlark.lang.feature.ArgumentsFeature
+import org.morfly.airin.starlark.lang.feature.BinaryPlusFeature
+import org.morfly.airin.starlark.lang.feature.BooleanValuesFeature
 import org.morfly.airin.starlark.lang.feature.CollectionsFeature
+import org.morfly.airin.starlark.lang.feature.DynamicArgumentsFeature
 import org.morfly.airin.starlark.lang.feature.DynamicBinaryPlusFeature
-import org.morfly.airin.starlark.lang.feature.MappingFeature
 import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
 
 
 /**
- * Starlark context that enables features specific to dictionary expression builder.
- * @see [CollectionsFeature].
+ *
  */
 @LanguageScope
-class DictionaryContext(
+open class FunctionCallContext(
     override val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : Context(),
     CommonExpressionsLibrary,
-    MappingFeature,
+    ArgumentsFeature,
+    DynamicArgumentsFeature,
+    BinaryPlusFeature,
     DynamicBinaryPlusFeature,
     CollectionsFeature,
+    BooleanValuesFeature,
     StringExtensionsFeature {
 
-    override val kwargs = mutableMapOf<Expression, Expression>()
+    override val fargs = linkedMapOf<String, Argument>()
 }

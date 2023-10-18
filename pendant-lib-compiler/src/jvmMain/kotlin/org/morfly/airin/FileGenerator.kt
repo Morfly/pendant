@@ -113,7 +113,8 @@ class FileGeneratorImpl(
             "org.morfly.airin.starlark.elements.Argument",
             "org.morfly.airin.starlark.elements.Expression",
             "org.morfly.airin.starlark.elements.*",
-            "org.morfly.airin.starlark.lang.types.*"
+            "org.morfly.airin.starlark.lang.types.*",
+            "org.morfly.airin.starlark.lang.context.*"
         )
     }
 }

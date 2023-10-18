@@ -16,7 +16,7 @@
 
 @file:Suppress("FunctionName")
 
-package org.morfly.airin.starlark.lang
+package org.morfly.airin.starlark.lang.context
 
 import org.morfly.airin.starlark.elements.BzlFile
 import org.morfly.airin.starlark.lang.api.BuildExpressionsLibrary

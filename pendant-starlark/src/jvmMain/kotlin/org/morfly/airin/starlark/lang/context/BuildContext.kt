@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-@file:Suppress("FunctionName", "unused")
+@file:Suppress("FunctionName")
 
-package org.morfly.airin.starlark.lang
+package org.morfly.airin.starlark.lang.context
 
-import org.morfly.airin.starlark.elements.WorkspaceFile
+import org.morfly.airin.starlark.elements.BuildFile
+import org.morfly.airin.starlark.lang.api.BuildExpressionsLibrary
+import org.morfly.airin.starlark.lang.api.BuildStatementsLibrary
 import org.morfly.airin.starlark.lang.api.Checkpoint
 import org.morfly.airin.starlark.lang.api.FileContext
 import org.morfly.airin.starlark.lang.api.Id
 import org.morfly.airin.starlark.lang.api.LanguageScope
 import org.morfly.airin.starlark.lang.api.Modifier
-import org.morfly.airin.starlark.lang.api.WorkspaceExpressionsLibrary
-import org.morfly.airin.starlark.lang.api.WorkspaceStatementsLibrary
 import org.morfly.airin.starlark.lang.api.invokeModifiers
 import org.morfly.airin.starlark.lang.feature.AssignmentsFeature
 import org.morfly.airin.starlark.lang.feature.BinaryPercentsFeature
@@ -45,16 +45,16 @@ import org.morfly.airin.starlark.lang.feature.StringExtensionsFeature
 
 
 /**
- * Starlark language context that is specific to Bazel WORKSPACE files.
+ * Starlark language context that is specific to Bazel BUILD files.
  */
 @LanguageScope
-class WorkspaceContext(
+class BuildContext(
     val hasExtension: Boolean,
-    private var body: (WorkspaceContext.() -> Unit)?,
+    private var body: (BuildContext.() -> Unit)?,
     override val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : FileContext(),
-    WorkspaceStatementsLibrary,
-    WorkspaceExpressionsLibrary,
+    BuildStatementsLibrary,
+    BuildExpressionsLibrary,
     AssignmentsFeature,
     DynamicAssignmentsFeature,
     BinaryPlusFeature,
@@ -65,20 +65,20 @@ class WorkspaceContext(
     EmptyLinesFeature,
     RawTextFeature,
     LoadStatementsFeature,
-    ListComprehensionsFeature<WorkspaceContext>,
+    ListComprehensionsFeature<BuildContext>,
     SlicesFeature,
     BinaryPercentsFeature,
     BooleanValuesFeature,
     StringExtensionsFeature {
 
-    override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
+    override val fileName = if (hasExtension) "BUILD.bazel" else "BUILD"
 
-    override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
+    override fun newContext() = BuildContext(hasExtension, body = null, modifiers)
 
-    fun build(): WorkspaceFile {
+    fun build(): BuildFile {
         body?.invoke(this)
         invokeModifiers(this)
-        return WorkspaceFile(
+        return BuildFile(
             hasExtension = hasExtension,
             statements = statements.toList()
         ).also {
@@ -88,10 +88,10 @@ class WorkspaceContext(
 }
 
 /**
- *
+ * Builder function that allows entering Starlark template engine context and use Kotlin DSL
  */
-fun WORKSPACE(body: WorkspaceContext.() -> Unit): WorkspaceContext =
-    WorkspaceContext(
+fun BUILD(body: BuildContext.() -> Unit): BuildContext =
+    BuildContext(
         hasExtension = false,
         body = body
     )
@@ -99,13 +99,13 @@ fun WORKSPACE(body: WorkspaceContext.() -> Unit): WorkspaceContext =
 /**
  *
  */
-object WORKSPACE
+object BUILD
 
 /**
  *
  */
-fun WORKSPACE.bazel(body: WorkspaceContext.() -> Unit): WorkspaceContext =
-    WorkspaceContext(
+fun BUILD.bazel(body: BuildContext.() -> Unit): BuildContext =
+    BuildContext(
         hasExtension = true,
         body = body
     )

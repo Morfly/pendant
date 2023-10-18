@@ -17,9 +17,9 @@
 package org.morfly.airin.starlark.lang.api
 
 import org.morfly.airin.starlark.format.StarlarkFileFormatter
-import org.morfly.airin.starlark.lang.BUILD
-import org.morfly.airin.starlark.lang.BuildContext
-import org.morfly.airin.starlark.lang.bazel
+import org.morfly.airin.starlark.lang.context.BUILD
+import org.morfly.airin.starlark.lang.context.BuildContext
+import org.morfly.airin.starlark.lang.context.bazel
 import kotlin.reflect.KClass
 
 internal typealias Id = String
