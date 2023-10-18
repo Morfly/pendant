@@ -16,8 +16,8 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.elements.*
-import io.morfly.pendant.starlark.elements.BinaryOperator.PERCENT
+import io.morfly.pendant.starlark.element.*
+import io.morfly.pendant.starlark.element.BinaryOperator.PERCENT
 import io.morfly.pendant.starlark.lang.types.NumberType
 import io.morfly.pendant.starlark.lang.types.StringType
 import io.morfly.pendant.starlark.lang.LanguageFeature

@@ -16,7 +16,7 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.elements.RawStatement
+import io.morfly.pendant.starlark.element.RawStatement
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
 

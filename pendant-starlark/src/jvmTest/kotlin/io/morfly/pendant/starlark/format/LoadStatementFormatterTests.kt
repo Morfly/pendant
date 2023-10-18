@@ -18,10 +18,10 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.elements.LoadStatement
-import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
-import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
-import io.morfly.pendant.starlark.elements.StringLiteral
+import io.morfly.pendant.starlark.element.LoadStatement
+import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.element.StringLiteral
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 

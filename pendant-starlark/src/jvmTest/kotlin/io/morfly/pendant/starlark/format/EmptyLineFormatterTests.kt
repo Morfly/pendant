@@ -16,8 +16,8 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.elements.EmptyLineStatement
-import io.morfly.pendant.starlark.elements.PositionMode.*
+import io.morfly.pendant.starlark.element.EmptyLineStatement
+import io.morfly.pendant.starlark.element.PositionMode.*
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 

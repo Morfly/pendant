@@ -19,7 +19,7 @@
 package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.MappingHolder

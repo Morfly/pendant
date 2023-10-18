@@ -18,7 +18,7 @@
 
 package io.morfly.pendant.starlark.lang.context
 
-import io.morfly.pendant.starlark.elements.BuildFile
+import io.morfly.pendant.starlark.element.BuildFile
 import io.morfly.pendant.starlark.lang.BuildExpressionsLibrary
 import io.morfly.pendant.starlark.lang.BuildStatementsLibrary
 import io.morfly.pendant.starlark.lang.Checkpoint

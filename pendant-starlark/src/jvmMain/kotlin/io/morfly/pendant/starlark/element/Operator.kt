@@ -14,13 +14,26 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 
-@JvmInline
-value class Comment(val value: String) : Statement {
+/**
+ * A language operator.
+ */
+sealed interface Operator {
 
-    override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {
-        visitor.visit(this, position, mode, accumulator)
-    }
+    /**
+     * The display value of the operator.
+     */
+    val value: String
+}
+
+/**
+ * A language binary operator.
+ */
+enum class BinaryOperator(override val value: String) : Operator {
+    PLUS("+"),
+    PERCENT("%");
+
+    override fun toString() = value
 }

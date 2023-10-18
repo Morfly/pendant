@@ -18,9 +18,9 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.elements.DictionaryExpression
-import io.morfly.pendant.starlark.elements.ListExpression
-import io.morfly.pendant.starlark.elements.TupleExpression
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.TupleExpression
 import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.InternalPendantApi

@@ -18,7 +18,7 @@
 
 package io.morfly.pendant.starlark.writer
 
-import io.morfly.pendant.starlark.elements.StarlarkFile
+import io.morfly.pendant.starlark.element.StarlarkFile
 import io.morfly.pendant.starlark.format.StarlarkFileFormatter
 import java.io.File
 

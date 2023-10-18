@@ -19,8 +19,8 @@
 package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.elements.*
-import io.morfly.pendant.starlark.elements.Argument
+import io.morfly.pendant.starlark.element.*
+import io.morfly.pendant.starlark.element.Argument
 import io.morfly.pendant.starlark.lang.ArgumentsHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.ModifiersHolder

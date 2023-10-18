@@ -18,12 +18,12 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.elements.BooleanLiteral
-import io.morfly.pendant.starlark.elements.FloatLiteral
-import io.morfly.pendant.starlark.elements.IntegerLiteral
-import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
-import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
-import io.morfly.pendant.starlark.elements.StringLiteral
+import io.morfly.pendant.starlark.element.BooleanLiteral
+import io.morfly.pendant.starlark.element.FloatLiteral
+import io.morfly.pendant.starlark.element.IntegerLiteral
+import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.element.StringLiteral
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 

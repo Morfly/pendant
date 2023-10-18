@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 
 /**
- * Syntax element for an expression that is used like a statement.
+ * Syntax node for a blank line in the file.
  */
-@JvmInline
-value class ExpressionStatement(val expression: Expression) : Statement {
+object EmptyLineStatement : Statement {
 
     override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {
         visitor.visit(this, position, mode, accumulator)

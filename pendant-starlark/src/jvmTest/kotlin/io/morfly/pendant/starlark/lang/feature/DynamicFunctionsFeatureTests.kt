@@ -16,7 +16,7 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.element.*
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe

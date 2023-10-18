@@ -18,7 +18,7 @@
 
 package io.morfly.pendant.starlark.lang.context
 
-import io.morfly.pendant.starlark.elements.Expression
+import io.morfly.pendant.starlark.element.Expression
 import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.CommonExpressionsLibrary
 import io.morfly.pendant.starlark.lang.Id

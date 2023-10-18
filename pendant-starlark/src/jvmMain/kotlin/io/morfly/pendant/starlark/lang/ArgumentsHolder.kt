@@ -16,10 +16,10 @@
 
 package io.morfly.pendant.starlark.lang
 
-import io.morfly.pendant.starlark.elements.Argument
-import io.morfly.pendant.starlark.elements.BinaryOperation
-import io.morfly.pendant.starlark.elements.BinaryOperator
-import io.morfly.pendant.starlark.elements.Expression
+import io.morfly.pendant.starlark.element.Argument
+import io.morfly.pendant.starlark.element.BinaryOperation
+import io.morfly.pendant.starlark.element.BinaryOperator
+import io.morfly.pendant.starlark.element.Expression
 
 /**
  * Defines an entity that collects argument elements.

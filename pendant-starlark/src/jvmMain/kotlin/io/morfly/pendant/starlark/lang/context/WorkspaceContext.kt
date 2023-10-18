@@ -18,7 +18,7 @@
 
 package io.morfly.pendant.starlark.lang.context
 
-import io.morfly.pendant.starlark.elements.WorkspaceFile
+import io.morfly.pendant.starlark.element.WorkspaceFile
 import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.Id
 import io.morfly.pendant.starlark.lang.LanguageScope

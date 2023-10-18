@@ -16,7 +16,7 @@
 
 package io.morfly.pendant.starlark.lang
 
-import io.morfly.pendant.starlark.elements.Expression
+import io.morfly.pendant.starlark.element.Expression
 
 /**
  * Container of the key value pairs that are part of the dictionary expression.

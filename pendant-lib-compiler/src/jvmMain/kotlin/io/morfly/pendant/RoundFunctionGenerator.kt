@@ -17,7 +17,7 @@
 package io.morfly.pendant
 
 import com.google.devtools.ksp.processing.KSPLogger
-import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.BracketsKind
 import io.morfly.pendant.starlark.lang.types.*
 import java.io.OutputStream

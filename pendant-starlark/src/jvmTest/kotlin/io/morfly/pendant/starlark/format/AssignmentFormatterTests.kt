@@ -18,9 +18,9 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.elements.*
-import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
-import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.element.*
+import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe

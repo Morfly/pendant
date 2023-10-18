@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 
 /**
- * Syntax node for a blank line in the file.
+ *
  */
-object EmptyLineStatement : Statement {
+object NoneValue : Expression {
 
     override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {
         visitor.visit(this, position, mode, accumulator)

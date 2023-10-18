@@ -16,8 +16,8 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.elements.EmptyLineStatement
-import io.morfly.pendant.starlark.elements.Statement
+import io.morfly.pendant.starlark.element.EmptyLineStatement
+import io.morfly.pendant.starlark.element.Statement
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 

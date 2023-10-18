@@ -18,13 +18,13 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.elements.BinaryOperator.PLUS
-import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
-import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.element.BinaryOperator.PLUS
+import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
 import io.morfly.pendant.starlark.lang.types.StringType
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.element.*
 
 
 class BinaryOperationFormatterTests : ShouldSpec({

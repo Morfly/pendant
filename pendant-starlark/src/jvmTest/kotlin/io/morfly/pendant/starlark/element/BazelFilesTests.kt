@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe

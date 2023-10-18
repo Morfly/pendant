@@ -16,7 +16,7 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.types.StringType
 import io.morfly.pendant.starlark.lang.LanguageFeature
 

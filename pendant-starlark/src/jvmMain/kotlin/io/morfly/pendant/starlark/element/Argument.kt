@@ -14,22 +14,42 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+@file:Suppress("FunctionName")
+
+package io.morfly.pendant.starlark.element
 
 
 /**
- * Syntax element for a value that can be modified by the next elements during the syntax tree composition via DSL.
- *
- * @param value the expression that van be modified by the next elements in a syntax tree.
+ * Syntax element for an argument of the function.
  */
-class DynamicExpression(
+class Argument(
+    val id: String,
     override var value: Expression
-) : Expression, ExpressionHolder<Expression> {
+) : Element, ExpressionHolder<Argument> {
 
-    override val host: Expression
+    override val host: Argument
         get() = this
+
+    // comparison by id only
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as Argument
+        if (id != other.id) return false
+        return true
+    }
+
+    // comparison by id only
+    override fun hashCode() = id.hashCode()
+
 
     override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {
         visitor.visit(this, position, mode, accumulator)
     }
 }
+
+/**
+ * Factory function that constructs a set of argument based on the provided map.
+ */
+fun Arguments(args: Map<String, *>): LinkedHashSet<Argument> =
+    args.mapTo(linkedSetOf()) { (id, value) -> Argument(id, Expression(value)) }

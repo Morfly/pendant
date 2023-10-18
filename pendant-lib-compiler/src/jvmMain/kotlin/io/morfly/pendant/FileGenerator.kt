@@ -109,9 +109,9 @@ class FileGeneratorImpl(
         private val DEFAULT_IMPORTS = setOf(
             "io.morfly.pendant.starlark.lang.*",
             "io.morfly.pendant.starlark.lang.feature.*",
-            "io.morfly.pendant.starlark.elements.Argument",
-            "io.morfly.pendant.starlark.elements.Expression",
-            "io.morfly.pendant.starlark.elements.*",
+            "io.morfly.pendant.starlark.element.Argument",
+            "io.morfly.pendant.starlark.element.Expression",
+            "io.morfly.pendant.starlark.element.*",
             "io.morfly.pendant.starlark.lang.types.*",
             "io.morfly.pendant.starlark.lang.context.*"
         )

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 import io.morfly.pendant.starlark.lang.types.DictionaryTypeDelegate
 import io.morfly.pendant.starlark.lang.types.ListTypeDelegate

@@ -16,7 +16,7 @@
 
 @file:Suppress("FunctionName")
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 import io.morfly.pendant.starlark.lang.types.BooleanType
 import io.morfly.pendant.starlark.lang.types.NumberType

@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.elements
+package io.morfly.pendant.starlark.element
 
 
 /**
- *
+ * Abstract syntax element that represents an element that holds an expression as a mutable property.
  */
-object NoneValue : Expression {
+sealed interface ExpressionHolder<H : Element> : Element {
 
-    override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {
-        visitor.visit(this, position, mode, accumulator)
-    }
+    val host: H
+
+    var value: Expression
 }
