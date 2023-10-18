@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.lang.Checkpoint
-import org.morfly.airin.starlark.lang.Id
-import org.morfly.airin.starlark.lang.types.Key
-import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.types.TupleType
-import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.Modifier
+import io.morfly.pendant.starlark.lang.Checkpoint
+import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.types.Key
+import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.types.TupleType
+import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.Modifier
 
 
 private fun CollectionsFeatureUnderCompilationTest.CompilationTests() {

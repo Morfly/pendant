@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.StatementsHolder
-import org.morfly.airin.starlark.lang.types.*
+import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.StatementsHolder
+import io.morfly.pendant.starlark.lang.types.*
 import kotlin.reflect.KProperty
 
 

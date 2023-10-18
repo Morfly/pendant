@@ -16,9 +16,9 @@
 
 @file:Suppress("PropertyName")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.LanguageFeature
 
 
 internal interface BooleanValuesFeature : LanguageFeature {

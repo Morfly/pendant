@@ -16,17 +16,17 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.format
+package io.morfly.pendant.starlark.format
 
-import org.morfly.airin.starlark.elements.AnyReference
-import org.morfly.airin.starlark.elements.DictionaryReference
-import org.morfly.airin.starlark.elements.ListReference
-import org.morfly.airin.starlark.elements.PositionMode.CONTINUE_LINE
-import org.morfly.airin.starlark.elements.PositionMode.NEW_LINE
-import org.morfly.airin.starlark.elements.StringReference
-import org.morfly.airin.starlark.lang.types.Key
-import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.types.Value
+import io.morfly.pendant.starlark.elements.AnyReference
+import io.morfly.pendant.starlark.elements.DictionaryReference
+import io.morfly.pendant.starlark.elements.ListReference
+import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.elements.StringReference
+import io.morfly.pendant.starlark.lang.types.Key
+import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.types.Value
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 

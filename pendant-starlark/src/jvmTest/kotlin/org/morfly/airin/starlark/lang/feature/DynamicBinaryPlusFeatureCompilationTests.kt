@@ -16,12 +16,12 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.types.Key
-import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.types.Value
+import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.lang.types.Key
+import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.types.Value
 
 
 private fun DynamicBinaryPlusFeatureUnderCompilationTest.CompilationTests() {

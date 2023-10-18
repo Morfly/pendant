@@ -16,10 +16,10 @@
 
 @file:Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 
-package org.morfly.airin.starlark.writer
+package io.morfly.pendant.starlark.writer
 
-import org.morfly.airin.starlark.elements.StarlarkFile
-import org.morfly.airin.starlark.format.StarlarkFileFormatter
+import io.morfly.pendant.starlark.elements.StarlarkFile
+import io.morfly.pendant.starlark.format.StarlarkFileFormatter
 import java.io.File
 
 

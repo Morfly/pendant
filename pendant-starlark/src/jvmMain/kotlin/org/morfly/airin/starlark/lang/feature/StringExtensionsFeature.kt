@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.Expression
-import org.morfly.airin.starlark.elements.StringFunctionCall
-import org.morfly.airin.starlark.elements.StringLiteral
-import org.morfly.airin.starlark.lang.context.FunctionCallContext
-import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.ModifiersHolder
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.asSet
-import org.morfly.airin.starlark.lang.invokeModifiers
+import io.morfly.pendant.starlark.elements.Expression
+import io.morfly.pendant.starlark.elements.StringFunctionCall
+import io.morfly.pendant.starlark.elements.StringLiteral
+import io.morfly.pendant.starlark.lang.context.FunctionCallContext
+import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.asSet
+import io.morfly.pendant.starlark.lang.invokeModifiers
 
 
 internal interface StringExtensionsFeature : LanguageFeature,

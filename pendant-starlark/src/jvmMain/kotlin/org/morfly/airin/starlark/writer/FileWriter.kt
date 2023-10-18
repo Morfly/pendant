@@ -16,7 +16,7 @@
 
 @file:Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 
-package org.morfly.airin.starlark.writer
+package io.morfly.pendant.starlark.writer
 
 import java.io.File
 

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.format
+package io.morfly.pendant.starlark.format
 
-import org.morfly.airin.starlark.elements.EmptyLineStatement
-import org.morfly.airin.starlark.elements.PositionMode.*
+import io.morfly.pendant.starlark.elements.EmptyLineStatement
+import io.morfly.pendant.starlark.elements.PositionMode.*
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.processor
+package io.morfly.pendant.processor
 
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
@@ -22,17 +22,17 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.*
 import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
 import com.google.devtools.ksp.validate
-import org.morfly.airin.*
-import org.morfly.airin.starlark.lang.types.ListType
-import org.morfly.airin.starlark.lang.Argument
-import org.morfly.airin.starlark.lang.BracketsKind.Curly
-import org.morfly.airin.starlark.lang.BracketsKind.Round
-import org.morfly.airin.starlark.lang.FunctionKind
-import org.morfly.airin.starlark.lang.FunctionKind.Expression
-import org.morfly.airin.starlark.lang.LibraryFunction
-import org.morfly.airin.starlark.lang.ReturnKind.Dynamic
-import org.morfly.airin.starlark.lang.ReturnKind.Type
-import org.morfly.airin.starlark.lang.Returns
+import io.morfly.pendant.*
+import io.morfly.pendant.starlark.lang.types.ListType
+import io.morfly.pendant.starlark.lang.Argument
+import io.morfly.pendant.starlark.lang.BracketsKind.Curly
+import io.morfly.pendant.starlark.lang.BracketsKind.Round
+import io.morfly.pendant.starlark.lang.FunctionKind
+import io.morfly.pendant.starlark.lang.FunctionKind.Expression
+import io.morfly.pendant.starlark.lang.LibraryFunction
+import io.morfly.pendant.starlark.lang.ReturnKind.Dynamic
+import io.morfly.pendant.starlark.lang.ReturnKind.Type
+import io.morfly.pendant.starlark.lang.Returns
 
 
 private typealias FilePath = String

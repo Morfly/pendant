@@ -16,14 +16,14 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.format
+package io.morfly.pendant.starlark.format
 
-import org.morfly.airin.starlark.elements.Expression
-import org.morfly.airin.starlark.elements.PositionMode.CONTINUE_LINE
-import org.morfly.airin.starlark.elements.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.elements.Expression
+import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import org.morfly.airin.starlark.elements.NoneValue
+import io.morfly.pendant.starlark.elements.NoneValue
 
 
 class ExpressionFormatterTests : ShouldSpec({

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package org.morfly.airin
+package io.morfly.pendant
 
-import org.morfly.airin.starlark.lang.BuildExpressionsLibrary
-import org.morfly.airin.starlark.lang.BuildStatementsLibrary
-import org.morfly.airin.starlark.lang.CommonExpressionsLibrary
-import org.morfly.airin.starlark.lang.CommonStatementsLibrary
-import org.morfly.airin.starlark.lang.FunctionKind
-import org.morfly.airin.starlark.lang.StarlarkExpressionsLibrary
-import org.morfly.airin.starlark.lang.StarlarkStatementsLibrary
-import org.morfly.airin.starlark.lang.WorkspaceExpressionsLibrary
-import org.morfly.airin.starlark.lang.WorkspaceStatementsLibrary
-import org.morfly.airin.starlark.lang.FunctionKind.Expression
-import org.morfly.airin.starlark.lang.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.FunctionScope
-import org.morfly.airin.starlark.lang.FunctionScope.*
+import io.morfly.pendant.starlark.lang.BuildExpressionsLibrary
+import io.morfly.pendant.starlark.lang.BuildStatementsLibrary
+import io.morfly.pendant.starlark.lang.CommonExpressionsLibrary
+import io.morfly.pendant.starlark.lang.CommonStatementsLibrary
+import io.morfly.pendant.starlark.lang.FunctionKind
+import io.morfly.pendant.starlark.lang.StarlarkExpressionsLibrary
+import io.morfly.pendant.starlark.lang.StarlarkStatementsLibrary
+import io.morfly.pendant.starlark.lang.WorkspaceExpressionsLibrary
+import io.morfly.pendant.starlark.lang.WorkspaceStatementsLibrary
+import io.morfly.pendant.starlark.lang.FunctionKind.Expression
+import io.morfly.pendant.starlark.lang.FunctionKind.Statement
+import io.morfly.pendant.starlark.lang.FunctionScope
+import io.morfly.pendant.starlark.lang.FunctionScope.*
 import kotlin.reflect.KClass
 
 

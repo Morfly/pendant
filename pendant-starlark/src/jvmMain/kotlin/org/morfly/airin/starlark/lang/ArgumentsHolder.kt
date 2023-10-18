@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang
+package io.morfly.pendant.starlark.lang
 
-import org.morfly.airin.starlark.elements.Argument
-import org.morfly.airin.starlark.elements.BinaryOperation
-import org.morfly.airin.starlark.elements.BinaryOperator
-import org.morfly.airin.starlark.elements.Expression
+import io.morfly.pendant.starlark.elements.Argument
+import io.morfly.pendant.starlark.elements.BinaryOperation
+import io.morfly.pendant.starlark.elements.BinaryOperator
+import io.morfly.pendant.starlark.elements.Expression
 
 /**
  * Defines an entity that collects argument elements.

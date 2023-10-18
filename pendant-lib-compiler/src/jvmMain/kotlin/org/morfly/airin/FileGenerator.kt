@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.morfly.airin
+package io.morfly.pendant
 
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
@@ -107,13 +107,13 @@ class FileGeneratorImpl(
 
         // FIXME avoid '*' imports in future
         private val DEFAULT_IMPORTS = setOf(
-            "org.morfly.airin.starlark.lang.*",
-            "org.morfly.airin.starlark.lang.feature.*",
-            "org.morfly.airin.starlark.elements.Argument",
-            "org.morfly.airin.starlark.elements.Expression",
-            "org.morfly.airin.starlark.elements.*",
-            "org.morfly.airin.starlark.lang.types.*",
-            "org.morfly.airin.starlark.lang.context.*"
+            "io.morfly.pendant.starlark.lang.*",
+            "io.morfly.pendant.starlark.lang.feature.*",
+            "io.morfly.pendant.starlark.elements.Argument",
+            "io.morfly.pendant.starlark.elements.Expression",
+            "io.morfly.pendant.starlark.elements.*",
+            "io.morfly.pendant.starlark.lang.types.*",
+            "io.morfly.pendant.starlark.lang.context.*"
         )
     }
 }

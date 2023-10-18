@@ -16,22 +16,22 @@
 
 @file:Suppress("PropertyName", "SpellCheckingInspection", "unused")
 
-package org.morfly.airin.starlark.library
+package io.morfly.pendant.starlark.library
 
-import org.morfly.airin.starlark.lang.types.BooleanType
-import org.morfly.airin.starlark.lang.types.DictionaryType
-import org.morfly.airin.starlark.lang.types.Key
-import org.morfly.airin.starlark.lang.types.Label
-import org.morfly.airin.starlark.lang.types.ListType
-import org.morfly.airin.starlark.lang.types.Name
-import org.morfly.airin.starlark.lang.types.NumberType
-import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.Argument
-import org.morfly.airin.starlark.lang.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.FunctionScope.Build
-import org.morfly.airin.starlark.lang.FunctionScope.Workspace
-import org.morfly.airin.starlark.lang.LibraryFunction
+import io.morfly.pendant.starlark.lang.types.BooleanType
+import io.morfly.pendant.starlark.lang.types.DictionaryType
+import io.morfly.pendant.starlark.lang.types.Key
+import io.morfly.pendant.starlark.lang.types.Label
+import io.morfly.pendant.starlark.lang.types.ListType
+import io.morfly.pendant.starlark.lang.types.Name
+import io.morfly.pendant.starlark.lang.types.NumberType
+import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.Argument
+import io.morfly.pendant.starlark.lang.FunctionKind.Statement
+import io.morfly.pendant.starlark.lang.FunctionScope.Build
+import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
+import io.morfly.pendant.starlark.lang.LibraryFunction
 
 @LibraryFunction(
     name = "android_library",

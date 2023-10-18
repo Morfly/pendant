@@ -16,17 +16,17 @@
 
 @file:Suppress("SpellCheckingInspection", "FunctionName", "unused")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.lang.context.DictionaryContext
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.elements.Argument
-import org.morfly.airin.starlark.lang.ArgumentsHolder
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.ModifiersHolder
-import org.morfly.airin.starlark.lang.append
-import org.morfly.airin.starlark.lang.invokeModifiers
-import org.morfly.airin.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
+import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.elements.Argument
+import io.morfly.pendant.starlark.lang.ArgumentsHolder
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.append
+import io.morfly.pendant.starlark.lang.invokeModifiers
+import io.morfly.pendant.starlark.lang.types.*
 
 
 /**

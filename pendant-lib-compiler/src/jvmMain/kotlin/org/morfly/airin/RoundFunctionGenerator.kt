@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.morfly.airin
+package io.morfly.pendant
 
 import com.google.devtools.ksp.processing.KSPLogger
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.BracketsKind
-import org.morfly.airin.starlark.lang.types.*
+import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.lang.BracketsKind
+import io.morfly.pendant.starlark.lang.types.*
 import java.io.OutputStream
 import kotlin.reflect.KClass
 

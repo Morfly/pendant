@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark
+package io.morfly.pendant.starlark
 
 
 //class BuildContextCompilationTest {

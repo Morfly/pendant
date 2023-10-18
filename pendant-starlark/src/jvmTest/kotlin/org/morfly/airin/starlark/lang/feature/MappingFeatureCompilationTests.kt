@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
 
 private fun MappingFeatureUnderCompilationTest.CompilationTests() {

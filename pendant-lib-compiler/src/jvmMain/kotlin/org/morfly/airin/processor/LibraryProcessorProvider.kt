@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.processor
+package io.morfly.pendant.processor
 
 import com.google.auto.service.AutoService
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.processing.SymbolProcessorProvider
-import org.morfly.airin.CurlyFunctionGenerator
-import org.morfly.airin.FileGeneratorImpl
-import org.morfly.airin.FunctionScopeResolverImpl
-import org.morfly.airin.RoundFunctionGenerator
+import io.morfly.pendant.CurlyFunctionGenerator
+import io.morfly.pendant.FileGeneratorImpl
+import io.morfly.pendant.FunctionScopeResolverImpl
+import io.morfly.pendant.RoundFunctionGenerator
 
 @AutoService(SymbolProcessorProvider::class)
 class LibraryProcessorProvider : SymbolProcessorProvider {

@@ -16,11 +16,11 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.format
+package io.morfly.pendant.starlark.format
 
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.elements.PositionMode.CONTINUE_LINE
-import org.morfly.airin.starlark.elements.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe

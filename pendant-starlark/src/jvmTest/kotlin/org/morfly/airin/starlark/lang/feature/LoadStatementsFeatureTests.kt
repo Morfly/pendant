@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.LoadStatement
-import org.morfly.airin.starlark.elements.Statement
-import org.morfly.airin.starlark.elements.StringLiteral
+import io.morfly.pendant.starlark.elements.LoadStatement
+import io.morfly.pendant.starlark.elements.Statement
+import io.morfly.pendant.starlark.elements.StringLiteral
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe

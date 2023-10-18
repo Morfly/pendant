@@ -16,15 +16,15 @@
 
 @file:Suppress("SpellCheckingInspection")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.lang.context.DictionaryContext
-import org.morfly.airin.starlark.elements.*
-import org.morfly.airin.starlark.lang.ModifiersHolder
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.MappingHolder
-import org.morfly.airin.starlark.lang.invokeModifiers
-import org.morfly.airin.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
+import io.morfly.pendant.starlark.elements.*
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.MappingHolder
+import io.morfly.pendant.starlark.lang.invokeModifiers
+import io.morfly.pendant.starlark.lang.types.*
 
 /**
  * Enables mapping to key-value pairs that are part of the dictionary expression.

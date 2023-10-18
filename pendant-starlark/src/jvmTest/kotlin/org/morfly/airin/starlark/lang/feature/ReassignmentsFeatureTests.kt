@@ -16,15 +16,15 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.*
+import io.morfly.pendant.starlark.elements.*
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
-import org.morfly.airin.starlark.lang.Checkpoint
-import org.morfly.airin.starlark.lang.Id
-import org.morfly.airin.starlark.lang.Modifier
+import io.morfly.pendant.starlark.lang.Checkpoint
+import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.Modifier
 
 
 class ReassignmentsFeatureTests : FeatureSpec({

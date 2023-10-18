@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.processor
+package io.morfly.pendant.processor
 
-import org.morfly.airin.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.types.*
 
 
 private typealias QualifiedName = String

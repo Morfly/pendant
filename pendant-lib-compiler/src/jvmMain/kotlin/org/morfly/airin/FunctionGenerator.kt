@@ -16,11 +16,11 @@
 
 @file:Suppress("ObjectPropertyName")
 
-package org.morfly.airin
+package io.morfly.pendant
 
-import org.morfly.airin.starlark.lang.FunctionKind.Expression
-import org.morfly.airin.starlark.lang.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.FunctionKind.Expression
+import io.morfly.pendant.starlark.lang.FunctionKind.Statement
+import io.morfly.pendant.starlark.lang.types.*
 import java.io.OutputStream
 
 

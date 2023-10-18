@@ -16,15 +16,15 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.format
+package io.morfly.pendant.starlark.format
 
-import org.morfly.airin.starlark.elements.BinaryOperator.PLUS
-import org.morfly.airin.starlark.elements.PositionMode.CONTINUE_LINE
-import org.morfly.airin.starlark.elements.PositionMode.NEW_LINE
-import org.morfly.airin.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.elements.BinaryOperator.PLUS
+import io.morfly.pendant.starlark.elements.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.elements.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.lang.types.StringType
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import org.morfly.airin.starlark.elements.*
+import io.morfly.pendant.starlark.elements.*
 
 
 class BinaryOperationFormatterTests : ShouldSpec({

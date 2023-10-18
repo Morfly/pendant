@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.morfly.airin
+package io.morfly.pendant
 
 import com.google.devtools.ksp.symbol.KSFile
-import org.morfly.airin.starlark.lang.BracketsKind
-import org.morfly.airin.starlark.lang.FunctionKind
-import org.morfly.airin.starlark.lang.FunctionScope
+import io.morfly.pendant.starlark.lang.BracketsKind
+import io.morfly.pendant.starlark.lang.FunctionKind
+import io.morfly.pendant.starlark.lang.FunctionScope
 
 
 interface NameHolder {

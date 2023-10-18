@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang
+package io.morfly.pendant.starlark.lang
 
-import org.morfly.airin.starlark.format.StarlarkFileFormatter
-import org.morfly.airin.starlark.lang.context.BUILD
-import org.morfly.airin.starlark.lang.context.BuildContext
-import org.morfly.airin.starlark.lang.context.Context
-import org.morfly.airin.starlark.lang.context.bazel
+import io.morfly.pendant.starlark.format.StarlarkFileFormatter
+import io.morfly.pendant.starlark.lang.context.BUILD
+import io.morfly.pendant.starlark.lang.context.BuildContext
+import io.morfly.pendant.starlark.lang.context.Context
+import io.morfly.pendant.starlark.lang.context.bazel
 import kotlin.reflect.KClass
 
 internal typealias Id = String

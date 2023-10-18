@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.EmptyLineStatement
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.StatementsHolder
+import io.morfly.pendant.starlark.elements.EmptyLineStatement
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.StatementsHolder
 
 
 /**

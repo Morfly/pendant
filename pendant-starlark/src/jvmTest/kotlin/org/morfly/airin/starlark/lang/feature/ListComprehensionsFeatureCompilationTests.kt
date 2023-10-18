@@ -16,13 +16,13 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.ListReference
-import org.morfly.airin.starlark.elements.StringReference
-import org.morfly.airin.starlark.lang.types.NumberType
-import org.morfly.airin.starlark.lang.types.StringType
-import org.morfly.airin.starlark.lang.context.FileContext
+import io.morfly.pendant.starlark.elements.ListReference
+import io.morfly.pendant.starlark.elements.StringReference
+import io.morfly.pendant.starlark.lang.types.NumberType
+import io.morfly.pendant.starlark.lang.types.StringType
+import io.morfly.pendant.starlark.lang.context.FileContext
 
 
 private fun ListComprehensionsFeatureUnderCompilationTest.CompilationTests() {

@@ -16,16 +16,16 @@
 
 @file:Suppress("PropertyName", "unused")
 
-package org.morfly.airin.starlark.library
+package io.morfly.pendant.starlark.library
 
-import org.morfly.airin.starlark.lang.types.Key
-import org.morfly.airin.starlark.lang.types.Label
-import org.morfly.airin.starlark.lang.types.Name
-import org.morfly.airin.starlark.lang.types.Value
-import org.morfly.airin.starlark.lang.Argument
-import org.morfly.airin.starlark.lang.FunctionKind.Statement
-import org.morfly.airin.starlark.lang.FunctionScope.Workspace
-import org.morfly.airin.starlark.lang.LibraryFunction
+import io.morfly.pendant.starlark.lang.types.Key
+import io.morfly.pendant.starlark.lang.types.Label
+import io.morfly.pendant.starlark.lang.types.Name
+import io.morfly.pendant.starlark.lang.types.Value
+import io.morfly.pendant.starlark.lang.Argument
+import io.morfly.pendant.starlark.lang.FunctionKind.Statement
+import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
+import io.morfly.pendant.starlark.lang.LibraryFunction
 
 
 @LibraryFunction(

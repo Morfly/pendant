@@ -16,7 +16,7 @@
 
 @file:Suppress("LocalVariableName")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
 
 private fun AssignmentsFeatureUnderCompilationTest.CompilationTests() {

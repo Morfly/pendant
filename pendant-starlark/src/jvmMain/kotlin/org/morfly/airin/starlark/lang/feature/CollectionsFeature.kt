@@ -16,19 +16,19 @@
 
 @file:Suppress("ClassName", "SpellCheckingInspection")
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.DictionaryExpression
-import org.morfly.airin.starlark.elements.ListExpression
-import org.morfly.airin.starlark.elements.TupleExpression
-import org.morfly.airin.starlark.lang.context.DictionaryContext
-import org.morfly.airin.starlark.lang.ModifiersHolder
-import org.morfly.airin.starlark.lang.InternalPendantApi
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.invokeModifiers
-import org.morfly.airin.starlark.lang.types.*
-import org.morfly.airin.starlark.lang.types.emptyTuple
-import org.morfly.airin.starlark.lang.types.tupleOf
+import io.morfly.pendant.starlark.elements.DictionaryExpression
+import io.morfly.pendant.starlark.elements.ListExpression
+import io.morfly.pendant.starlark.elements.TupleExpression
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.InternalPendantApi
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.invokeModifiers
+import io.morfly.pendant.starlark.lang.types.*
+import io.morfly.pendant.starlark.lang.types.emptyTuple
+import io.morfly.pendant.starlark.lang.types.tupleOf
 
 
 /**

@@ -16,9 +16,9 @@
 
 @file:Suppress("FunctionName")
 
-package org.morfly.airin.starlark.elements
+package io.morfly.pendant.starlark.elements
 
-import org.morfly.airin.starlark.lang.types.Tuple
+import io.morfly.pendant.starlark.lang.types.Tuple
 
 
 /**

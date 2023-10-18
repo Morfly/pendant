@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.morfly.airin.starlark.lang.feature
+package io.morfly.pendant.starlark.lang.feature
 
-import org.morfly.airin.starlark.elements.Expression
-import org.morfly.airin.starlark.elements.RawStatement
-import org.morfly.airin.starlark.elements.StringLiteral
-import org.morfly.airin.starlark.lang.LanguageFeature
-import org.morfly.airin.starlark.lang.StatementsHolder
+import io.morfly.pendant.starlark.elements.Expression
+import io.morfly.pendant.starlark.elements.RawStatement
+import io.morfly.pendant.starlark.elements.StringLiteral
+import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.StatementsHolder
 
 
 internal interface CommentsFeature : LanguageFeature,
