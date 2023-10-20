@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant.starlark.lang
-
-import io.morfly.pendant.starlark.lang.context.FileContext
+package io.morfly.pendant.starlark.lang.context
 
 
 /**

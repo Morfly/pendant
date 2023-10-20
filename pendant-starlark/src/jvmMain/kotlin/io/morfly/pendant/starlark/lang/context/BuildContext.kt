@@ -39,6 +39,7 @@ import io.morfly.pendant.starlark.lang.feature.EmptyLinesFeature
 import io.morfly.pendant.starlark.lang.feature.ListComprehensionsFeature
 import io.morfly.pendant.starlark.lang.feature.LoadStatementsFeature
 import io.morfly.pendant.starlark.lang.feature.RawTextFeature
+import io.morfly.pendant.starlark.lang.feature.ReassignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 
@@ -68,7 +69,8 @@ class BuildContext(
     SlicesFeature,
     BinaryPercentsFeature,
     BooleanValuesFeature,
-    StringExtensionsFeature {
+    StringExtensionsFeature,
+    ReassignmentsFeature {
 
     override val fileName = if (hasExtension) "BUILD.bazel" else "BUILD"
 

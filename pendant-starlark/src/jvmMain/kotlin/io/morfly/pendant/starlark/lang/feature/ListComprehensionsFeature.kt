@@ -23,7 +23,7 @@ import io.morfly.pendant.starlark.lang.type.BooleanType
 import io.morfly.pendant.starlark.lang.type.NumberType
 import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.context.FileContext
-import io.morfly.pendant.starlark.lang.ContextProvider
+import io.morfly.pendant.starlark.lang.context.ContextProvider
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
 
