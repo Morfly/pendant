@@ -21,7 +21,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.type.Key
 import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.type.Value
@@ -331,5 +331,5 @@ private class DynamicBinaryPlusFeatureUnderTest :
 // Additional features for compatibility tests
     CollectionsFeature {
 
-    override val modifiers = linkedMapOf<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
+    override val modifiers = linkedMapOf<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 }

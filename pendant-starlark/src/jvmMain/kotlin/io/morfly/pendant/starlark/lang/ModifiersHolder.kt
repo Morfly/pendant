@@ -16,15 +16,11 @@
 
 package io.morfly.pendant.starlark.lang
 
-import io.morfly.pendant.starlark.format.StarlarkFileFormatter
-import io.morfly.pendant.starlark.lang.context.BUILD
-import io.morfly.pendant.starlark.lang.context.BuildContext
 import io.morfly.pendant.starlark.lang.context.Context
-import io.morfly.pendant.starlark.lang.context.bazel
 import kotlin.reflect.KClass
 
-internal typealias Id = String
-internal typealias Checkpoint = String?
+typealias ContextId = String
+typealias Checkpoint = String?
 
 data class Modifier<C : Context>(
     val type: KClass<out C>,
@@ -33,7 +29,7 @@ data class Modifier<C : Context>(
 
 interface ModifiersHolder {
 
-    val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>
+    val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>
 }
 
 @InternalPendantApi

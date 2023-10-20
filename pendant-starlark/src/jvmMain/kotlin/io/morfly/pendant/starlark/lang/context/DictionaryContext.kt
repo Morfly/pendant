@@ -21,7 +21,7 @@ package io.morfly.pendant.starlark.lang.context
 import io.morfly.pendant.starlark.element.Expression
 import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.CommonExpressionsLibrary
-import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
 import io.morfly.pendant.starlark.lang.feature.CollectionsFeature
@@ -36,7 +36,7 @@ import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
  */
 @LanguageScope
 class DictionaryContext(
-    override val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
+    override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : Context(),
     CommonExpressionsLibrary,
     MappingFeature,

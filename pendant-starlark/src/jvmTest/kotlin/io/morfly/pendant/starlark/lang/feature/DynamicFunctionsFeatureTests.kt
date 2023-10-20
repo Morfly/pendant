@@ -22,7 +22,7 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.Modifier
 
 
@@ -117,5 +117,5 @@ private class DynamicFunctionsFeatureUnderTest :
 
     override val statements = mutableListOf<Statement>()
 
-    override val modifiers = linkedMapOf<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
+    override val modifiers = linkedMapOf<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 }

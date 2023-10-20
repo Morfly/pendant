@@ -22,7 +22,7 @@ import io.morfly.pendant.starlark.element.BzlFile
 import io.morfly.pendant.starlark.lang.BuildExpressionsLibrary
 import io.morfly.pendant.starlark.lang.BuildStatementsLibrary
 import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
 import io.morfly.pendant.starlark.lang.invokeModifiers
@@ -50,7 +50,7 @@ import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 class BzlContext(
     override val fileName: String,
     private var body: (BzlContext.() -> Unit)?,
-    override val modifiers: MutableMap<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
+    override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : FileContext(),
     BuildStatementsLibrary,
     BuildExpressionsLibrary,

@@ -17,7 +17,7 @@
 package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.Id
+import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.type.Key
 import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.type.TupleType
@@ -63,5 +63,5 @@ private class CollectionsFeatureUnderCompilationTest :
 // Feature under test
     CollectionsFeature {
 
-    override val modifiers = linkedMapOf<Id, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
+    override val modifiers = linkedMapOf<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 }
