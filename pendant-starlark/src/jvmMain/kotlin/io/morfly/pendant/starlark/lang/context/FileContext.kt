@@ -26,7 +26,10 @@ import io.morfly.pendant.starlark.lang.StatementsHolder
  */
 abstract class FileContext : Context(), StatementsHolder {
 
-    abstract val fileName: String
+    /**
+     * File name
+     */
+    abstract val name: String
 
     override val statements = mutableListOf<Statement>()
 

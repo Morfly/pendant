@@ -49,7 +49,7 @@ import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
  */
 @LanguageScope
 class BzlContext(
-    override val fileName: String,
+    override val name: String,
     private var body: (BzlContext.() -> Unit)?,
     override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : FileContext(),
@@ -72,13 +72,13 @@ class BzlContext(
     StringExtensionsFeature,
     ReassignmentsFeature {
 
-    override fun newContext() = BzlContext(fileName, body = null, modifiers)
+    override fun newContext() = BzlContext(name, body = null, modifiers)
 
     override fun build(): BzlFile {
         body?.invoke(this)
         invokeModifiers(this)
         return BzlFile(
-            name = fileName,
+            name = name,
             statements = statements.toList()
         ).also {
             statements.clear()
@@ -91,6 +91,6 @@ class BzlContext(
  */
 fun String.bzl(body: BzlContext.() -> Unit): BzlContext =
     BzlContext(
-        fileName = this,
+        name = this,
         body = body
     )

@@ -72,7 +72,7 @@ class BuildContext(
     StringExtensionsFeature,
     ReassignmentsFeature {
 
-    override val fileName = if (hasExtension) "BUILD.bazel" else "BUILD"
+    override val name = if (hasExtension) "BUILD.bazel" else "BUILD"
 
     override fun newContext() = BuildContext(hasExtension, body = null, modifiers)
 

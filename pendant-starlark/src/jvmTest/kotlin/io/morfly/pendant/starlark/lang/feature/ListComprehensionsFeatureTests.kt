@@ -468,9 +468,13 @@ private class ListComprehensionsFeatureUnderTest : FileContext(),
 // Additional features for compatibility tests
     DynamicFunctionsFeature {
 
-    override val fileName = "test"
+    override val name = "test"
 
     override val modifiers = linkedMapOf<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>()
 
     override fun newContext() = ListComprehensionsFeatureUnderTest()
+
+    override fun build(): StarlarkFile {
+        error("stub")
+    }
 }
