@@ -72,7 +72,7 @@ class WorkspaceContext(
     StringExtensionsFeature,
     ReassignmentsFeature {
 
-    override val name = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
+    override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
 
     override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
 

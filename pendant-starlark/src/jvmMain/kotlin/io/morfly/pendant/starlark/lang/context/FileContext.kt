@@ -29,7 +29,7 @@ abstract class FileContext : Context(), StatementsHolder {
     /**
      * File name
      */
-    abstract val name: String
+    abstract val fileName: String
 
     override val statements = mutableListOf<Statement>()
 
