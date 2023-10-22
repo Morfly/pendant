@@ -74,7 +74,7 @@ class BzlContext(
 
     override fun newContext() = BzlContext(fileName, body = null, modifiers)
 
-    fun build(): BzlFile {
+    override fun build(): BzlFile {
         body?.invoke(this)
         invokeModifiers(this)
         return BzlFile(

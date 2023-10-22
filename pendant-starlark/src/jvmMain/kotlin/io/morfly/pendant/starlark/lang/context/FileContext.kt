@@ -16,6 +16,7 @@
 
 package io.morfly.pendant.starlark.lang.context
 
+import io.morfly.pendant.starlark.element.StarlarkFile
 import io.morfly.pendant.starlark.element.Statement
 import io.morfly.pendant.starlark.lang.StatementsHolder
 
@@ -28,4 +29,6 @@ abstract class FileContext : Context(), StatementsHolder {
     abstract val fileName: String
 
     override val statements = mutableListOf<Statement>()
+
+    abstract fun build(): StarlarkFile
 }

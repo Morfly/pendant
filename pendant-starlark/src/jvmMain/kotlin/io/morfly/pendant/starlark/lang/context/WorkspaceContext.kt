@@ -76,7 +76,7 @@ class WorkspaceContext(
 
     override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
 
-    fun build(): WorkspaceFile {
+    override fun build(): WorkspaceFile {
         body?.invoke(this)
         invokeModifiers(this)
         return WorkspaceFile(

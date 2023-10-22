@@ -76,7 +76,7 @@ class BuildContext(
 
     override fun newContext() = BuildContext(hasExtension, body = null, modifiers)
 
-    fun build(): BuildFile {
+    override fun build(): BuildFile {
         body?.invoke(this)
         invokeModifiers(this)
         return BuildFile(
