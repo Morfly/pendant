@@ -19,10 +19,14 @@
 package io.morfly.pendant.starlark
 
 import io.morfly.pendant.starlark.lang.Argument
+import io.morfly.pendant.starlark.lang.FunctionKind
+import io.morfly.pendant.starlark.lang.FunctionKind.Expression
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
+import io.morfly.pendant.starlark.lang.FunctionScope
 import io.morfly.pendant.starlark.lang.FunctionScope.Build
 import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
 import io.morfly.pendant.starlark.lang.LibraryFunction
+import io.morfly.pendant.starlark.lang.Returns
 import io.morfly.pendant.starlark.lang.type.*
 
 
@@ -202,4 +206,30 @@ private interface KtJavacOptions {
     // TODO add other args
 }
 
-//private interface
+@LibraryFunction(
+    name = "kotlinc_version",
+    scope = [Workspace],
+    kind = Expression
+)
+private interface KotlinCVersion {
+
+   val release: StringType?
+   val sha256: StringType?
+
+    @Returns
+    val returns: DictionaryType<Key, Value>
+}
+
+@LibraryFunction(
+    name = "ksp_version",
+    scope = [Workspace],
+    kind = Expression
+)
+private interface KspVersion {
+
+    val release: StringType?
+    val sha256: StringType?
+
+    @Returns
+    val returns: DictionaryType<Key, Value>
+}

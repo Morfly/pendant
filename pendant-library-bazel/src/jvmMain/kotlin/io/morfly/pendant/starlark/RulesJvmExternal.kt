@@ -22,10 +22,16 @@ import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Round
 import io.morfly.pendant.starlark.lang.FunctionKind.Expression
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
-import io.morfly.pendant.starlark.lang.FunctionScope.*
+import io.morfly.pendant.starlark.lang.FunctionScope.Build
+import io.morfly.pendant.starlark.lang.FunctionScope.Starlark
+import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
 import io.morfly.pendant.starlark.lang.LibraryFunction
 import io.morfly.pendant.starlark.lang.Returns
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.Label
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Value
 
 
 @LibraryFunction(
@@ -64,3 +70,17 @@ private interface Artifact {
     @Returns
     val returns: Label
 }
+
+@LibraryFunction(
+    name = "rules_jvm_external_deps",
+    scope = [Workspace],
+    kind = Statement
+)
+private interface RulesJvmExternalDeps
+
+@LibraryFunction(
+    name = "rules_jvm_external_setup",
+    scope = [Workspace],
+    kind = Statement
+)
+private interface RulesJvmExternalSetup

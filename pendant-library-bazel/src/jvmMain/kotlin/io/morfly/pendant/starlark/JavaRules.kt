@@ -20,7 +20,9 @@ package io.morfly.pendant.starlark
 
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
+import io.morfly.pendant.starlark.lang.FunctionScope
 import io.morfly.pendant.starlark.lang.FunctionScope.Build
+import io.morfly.pendant.starlark.lang.FunctionScope.Workspace
 import io.morfly.pendant.starlark.lang.LibraryFunction
 import io.morfly.pendant.starlark.lang.type.*
 
@@ -99,3 +101,17 @@ private interface JavaPlugin {
     val visibility: List<Label?>?
     val neverlink: BooleanType?
 }
+
+@LibraryFunction(
+    name = "rules_java_dependencies",
+    scope = [Workspace],
+    kind = Statement
+)
+private interface RulesJavaDependencies
+
+@LibraryFunction(
+    name = "rules_java_toolchains",
+    scope = [Workspace],
+    kind = Statement
+)
+private interface RulesJavaToolchains
