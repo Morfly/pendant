@@ -46,6 +46,7 @@ private interface MavenInstall {
     val strict_visibility: BooleanType?
     val jetify: BooleanType?
     val jetify_include_list: List<StringType?>?
+    val version_conflict_policy: StringType?
 }
 
 
