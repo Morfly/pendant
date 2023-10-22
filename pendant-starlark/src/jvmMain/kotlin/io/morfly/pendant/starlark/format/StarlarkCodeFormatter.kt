@@ -78,6 +78,11 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
             visit(statement, position, mode, acc)
             prev = statement
         }
+
+        // New line at the end of file.
+        if (prev != null && prev != EmptyLineStatement) {
+            acc += nl
+        }
     }
 
     private fun shouldInsertEmptyLine(prev: Statement?, curr: Statement): Boolean =

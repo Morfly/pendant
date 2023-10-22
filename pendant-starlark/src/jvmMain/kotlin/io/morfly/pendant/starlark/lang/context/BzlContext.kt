@@ -91,6 +91,6 @@ class BzlContext(
  */
 fun String.bzl(body: BzlContext.() -> Unit): BzlContext =
     BzlContext(
-        fileName = this,
+        fileName = "$this.bzl",
         body = body
     )
