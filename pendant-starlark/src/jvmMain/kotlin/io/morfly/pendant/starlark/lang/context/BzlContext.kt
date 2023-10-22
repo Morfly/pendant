@@ -29,6 +29,7 @@ import io.morfly.pendant.starlark.lang.invokeModifiers
 import io.morfly.pendant.starlark.lang.feature.AssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPercentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
+import io.morfly.pendant.starlark.lang.feature.BinaryPlusTransformationsFeature
 import io.morfly.pendant.starlark.lang.feature.BooleanValuesFeature
 import io.morfly.pendant.starlark.lang.feature.CollectionsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicAssignmentsFeature
@@ -59,6 +60,7 @@ class BzlContext(
     DynamicAssignmentsFeature,
     BinaryPlusFeature,
     DynamicBinaryPlusFeature,
+    BinaryPlusTransformationsFeature,
     CollectionsFeature,
     DynamicFunctionsFeature,
     DynamicFunctionExpressionsFeature,

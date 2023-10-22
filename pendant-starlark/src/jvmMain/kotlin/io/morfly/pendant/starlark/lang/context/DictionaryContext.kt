@@ -24,6 +24,7 @@ import io.morfly.pendant.starlark.lang.CommonExpressionsLibrary
 import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
+import io.morfly.pendant.starlark.lang.feature.BinaryPlusTransformationsFeature
 import io.morfly.pendant.starlark.lang.feature.CollectionsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicBinaryPlusFeature
 import io.morfly.pendant.starlark.lang.feature.MappingFeature
@@ -41,6 +42,7 @@ class DictionaryContext(
     CommonExpressionsLibrary,
     MappingFeature,
     DynamicBinaryPlusFeature,
+    BinaryPlusTransformationsFeature,
     CollectionsFeature,
     StringExtensionsFeature {
 

@@ -26,6 +26,7 @@ import io.morfly.pendant.starlark.lang.Modifier
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.feature.ArgumentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
+import io.morfly.pendant.starlark.lang.feature.BinaryPlusTransformationsFeature
 import io.morfly.pendant.starlark.lang.feature.BooleanValuesFeature
 import io.morfly.pendant.starlark.lang.feature.CollectionsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicArgumentsFeature
@@ -45,6 +46,7 @@ open class FunctionCallContext(
     DynamicArgumentsFeature,
     BinaryPlusFeature,
     DynamicBinaryPlusFeature,
+    BinaryPlusTransformationsFeature,
     CollectionsFeature,
     BooleanValuesFeature,
     StringExtensionsFeature {
