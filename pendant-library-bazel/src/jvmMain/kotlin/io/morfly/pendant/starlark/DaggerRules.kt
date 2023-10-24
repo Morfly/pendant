@@ -1,6 +1,5 @@
 package io.morfly.pendant.starlark
 
-import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.FunctionKind
 import io.morfly.pendant.starlark.lang.FunctionScope
 import io.morfly.pendant.starlark.lang.LibraryFunction
