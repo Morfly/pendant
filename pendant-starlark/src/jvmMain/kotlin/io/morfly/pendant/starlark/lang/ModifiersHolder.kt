@@ -65,3 +65,7 @@ fun ModifierCollection.append(modifiers: ModifierCollection) {
 fun ModifierCollection.append(id: String, checkpoint: String?, modifiers: List<Modifier<*>>) {
     getOrPut(id, ::linkedMapOf).getOrPut(checkpoint, ::mutableListOf) += modifiers
 }
+
+fun ModifierCollection.append(id: String, checkpoint: String?, modifier: Modifier<*>) {
+    getOrPut(id, ::linkedMapOf).getOrPut(checkpoint, ::mutableListOf) += modifier
+}
