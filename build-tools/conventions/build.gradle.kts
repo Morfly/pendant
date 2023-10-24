@@ -13,6 +13,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        val pendantMetadata by registering {
+            id = "pendant.metadata"
+            implementationClass = "PendantMetadataPlugin"
+        }
         val kotlinMultiplatformLibrary by registering {
             id = "pendant.kotlin.multiplatform.library"
             implementationClass = "PendantMultiplatformLibraryPlugin"
