@@ -21,6 +21,7 @@ import kotlin.reflect.KClass
 
 typealias ContextId = String
 typealias Checkpoint = String?
+typealias ModifierCollection = MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>
 
 data class Modifier<C : Context>(
     val type: KClass<out C>,
@@ -29,7 +30,7 @@ data class Modifier<C : Context>(
 
 interface ModifiersHolder {
 
-    val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>
+    val modifiers: ModifierCollection
 }
 
 @InternalPendantApi
@@ -51,4 +52,16 @@ inline fun <reified C : Context> ModifiersHolder.onContext(
     modifiers
         .getOrPut(id, ::linkedMapOf)
         .getOrPut(checkpoint, ::mutableListOf) += Modifier(C::class, modifier)
+}
+
+fun ModifierCollection.append(modifiers: ModifierCollection) {
+    for ((id, checkpoints) in modifiers) {
+        for ((checkpoint, modifierList) in checkpoints) {
+            append(id, checkpoint, modifierList)
+        }
+    }
+}
+
+fun ModifierCollection.append(id: String, checkpoint: String?, modifiers: List<Modifier<*>>) {
+    getOrPut(id, ::linkedMapOf).getOrPut(checkpoint, ::mutableListOf) += modifiers
 }
