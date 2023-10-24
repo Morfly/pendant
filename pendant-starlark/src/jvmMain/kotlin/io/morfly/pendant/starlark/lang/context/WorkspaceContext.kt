@@ -25,7 +25,6 @@ import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
 import io.morfly.pendant.starlark.lang.WorkspaceExpressionsLibrary
 import io.morfly.pendant.starlark.lang.WorkspaceStatementsLibrary
-import io.morfly.pendant.starlark.lang.invokeModifiers
 import io.morfly.pendant.starlark.lang.feature.AssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPercentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
@@ -43,6 +42,7 @@ import io.morfly.pendant.starlark.lang.feature.RawTextFeature
 import io.morfly.pendant.starlark.lang.feature.ReassignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
+import io.morfly.pendant.starlark.lang.invokeModifiers
 
 
 /**

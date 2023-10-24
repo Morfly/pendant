@@ -39,3 +39,7 @@ interface StarlarkFileFormatter {
      */
     companion object Default : StarlarkFileFormatter by StarlarkCodeFormatter()
 }
+
+fun StarlarkFile.format(formatter: StarlarkFileFormatter = StarlarkFileFormatter.Default): String {
+    return formatter.format(this)
+}
