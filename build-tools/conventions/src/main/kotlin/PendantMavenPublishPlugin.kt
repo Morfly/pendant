@@ -21,7 +21,7 @@ class PendantMavenPublishPlugin : PendantConventionPlugin({
             name.set("Pendant")
             description.set("TODO")
             inceptionYear.set("2023")
-            url.set("https://github.com/open-turo/nibel")
+            url.set("https://github.com/Morfly/pendant")
             licenses {
                 license {
                     name.set("The MIT License")
@@ -31,15 +31,15 @@ class PendantMavenPublishPlugin : PendantConventionPlugin({
             }
             developers {
                 developer {
-                    id.set("openturo")
-                    name.set("Turo Open Source")
-                    url.set("https://github.com/open-turo")
+                    id.set("Morfly")
+                    name.set("Pavlo Stavytskyi")
+                    url.set("https://github.com/Morfly")
                 }
             }
             scm {
-                url.set("https://github.com/open-turo/nibel")
-                connection.set("scm:git:git://github.com/open-turo/nibel.git")
-                developerConnection.set("scm:git:ssh://git@github.com/open-turo/nibel.git")
+                url.set("https://github.com/Morfly/pendant")
+                connection.set("scm:git:git://github.com/Morfly/pendant.git")
+                developerConnection.set("scm:git:ssh://git@github.com/Morfly/pendant.git")
             }
         }
 
