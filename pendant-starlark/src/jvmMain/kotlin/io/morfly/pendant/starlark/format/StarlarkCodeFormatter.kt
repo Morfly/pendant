@@ -71,7 +71,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
     override fun visit(element: StarlarkFile, position: Int, mode: PositionMode, acc: Appendable) {
         var prev: Statement? = null
         for (statement in element.statements) {
-            if(prev != null) acc += nl
+            if (prev != null) acc += nl
             if (shouldInsertEmptyLine(prev, statement)) {
                 acc += nl
             }
@@ -93,6 +93,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 curr is ExpressionStatement && curr.expression is FunctionCall -> true
                 else -> false
             }
+
             else -> true
         }
 
@@ -157,6 +158,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 visit(list.first(), position, CONTINUE_LINE, acc)
                 acc += ']'
             }
+
             else -> {
                 acc += "$firstLineIndent[$nl"
                 for (item in list) {
@@ -187,6 +189,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 visit(value, position, CONTINUE_LINE, acc)
                 acc += '}'
             }
+
             else -> {
                 acc += "$firstLineIndent{$nl"
                 for ((key, value) in dict) {
@@ -217,6 +220,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 acc += ','
                 acc += ')'
             }
+
             else -> {
                 acc += "$firstLineIndent($nl"
                 for (item in list) {
@@ -316,6 +320,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 visit(arg, position, CONTINUE_LINE, acc)
                 acc += ')'
             }
+
             else -> {
                 acc += name
                 acc += "($nl"
@@ -345,6 +350,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 acc += lines.first()
                 acc += '"'
             }
+
             else -> {
                 acc += firstLineIndent
                 acc += "\"\"\""
@@ -402,6 +408,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
                 visit(symbols.first(), position = 1, CONTINUE_LINE, acc)
                 acc += ')'
             }
+
             symbols.size > 1 -> {
                 acc += "load($nl"
                 visit(element.file, position = 1, NEW_LINE, acc)
@@ -431,7 +438,10 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
     }
 
     override fun visit(element: RawStatement, position: Int, mode: PositionMode, acc: Appendable) {
-        TODO("Not yet implemented")
+        val indent = indent(position)
+        acc += element.value.lineSequence()
+            .map { indent + it }
+            .joinToString("\n")
     }
 
     override fun visit(element: Reference, position: Int, mode: PositionMode, acc: Appendable) {

@@ -35,5 +35,5 @@ internal interface RawTextFeature : LanguageFeature,
     /**
      *
      */
-    operator fun String.unaryMinus() = raw
+    operator fun String.unaryPlus() = raw
 }
