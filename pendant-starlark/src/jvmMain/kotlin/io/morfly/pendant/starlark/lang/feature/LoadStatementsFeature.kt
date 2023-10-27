@@ -64,7 +64,7 @@ internal interface LoadStatementsFeature : LanguageFeature,
 class _LoadStatementBuilder1 internal constructor(
     val symbol1: String,
 ) {
-    inline fun <reified S1> v(): S1 =
+    inline fun <reified S1> of(): S1 =
         _newReference(symbol1)
 }
 
@@ -73,7 +73,7 @@ class _LoadStatementBuilder2 internal constructor(
     val symbol1: String,
     val symbol2: String,
 ) {
-    inline fun <reified S1, reified S2> v(): Pair<S1, S2> =
+    inline fun <reified S1, reified S2> of(): Pair<S1, S2> =
         Pair(_newReference(symbol1), _newReference(symbol2))
 }
 
@@ -82,7 +82,7 @@ class _LoadStatementBuilder3 internal constructor(
     val symbol2: String,
     val symbol3: String,
 ) {
-    inline fun <reified S1, reified S2, reified S3> v(): Triple<S1, S2, S3> =
+    inline fun <reified S1, reified S2, reified S3> of(): Triple<S1, S2, S3> =
         Triple(_newReference(symbol1), _newReference(symbol2), _newReference(symbol3))
 }
 
