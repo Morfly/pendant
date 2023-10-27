@@ -89,6 +89,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
         when {
             prev == null -> false
             prev === EmptyLineStatement -> false
+            prev is Comment -> false
             prev::class == curr::class -> when {
                 curr is ExpressionStatement && curr.expression is FunctionCall -> true
                 curr is Assignment -> true
