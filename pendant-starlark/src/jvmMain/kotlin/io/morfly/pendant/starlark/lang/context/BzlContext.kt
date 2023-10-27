@@ -23,6 +23,7 @@ import io.morfly.pendant.starlark.lang.BuildExpressionsLibrary
 import io.morfly.pendant.starlark.lang.BuildStatementsLibrary
 import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.ContextId
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
 import io.morfly.pendant.starlark.lang.StarlarkExpressionsLibrary
@@ -80,6 +81,7 @@ class BzlContext(
 
     override fun newContext() = BzlContext(fileName, body = null, modifiers)
 
+    @OptIn(InternalPendantApi::class)
     override fun build(): BzlFile {
         body?.invoke(this)
         invokeModifiers(this)

@@ -21,6 +21,7 @@ package io.morfly.pendant.starlark.lang.context
 import io.morfly.pendant.starlark.element.WorkspaceFile
 import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.ContextId
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
 import io.morfly.pendant.starlark.lang.WorkspaceExpressionsLibrary
@@ -80,6 +81,7 @@ class WorkspaceContext(
 
     override fun newContext() = WorkspaceContext(hasExtension, body = null, modifiers)
 
+    @OptIn(InternalPendantApi::class)
     override fun build(): WorkspaceFile {
         body?.invoke(this)
         invokeModifiers(this)
