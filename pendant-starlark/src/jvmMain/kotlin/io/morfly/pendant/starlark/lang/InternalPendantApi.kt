@@ -16,5 +16,5 @@
 
 package io.morfly.pendant.starlark.lang
 
-// TODO add RequiresOptIn
+@RequiresOptIn
 annotation class InternalPendantApi

@@ -18,15 +18,29 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.element.Argument
+import io.morfly.pendant.starlark.element.BooleanLiteral
+import io.morfly.pendant.starlark.element.DictionaryBinaryOperation
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.Expression
+import io.morfly.pendant.starlark.element.ListBinaryOperation
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.NumberLiteral
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.TupleExpression
 import io.morfly.pendant.starlark.lang.ArgumentsHolder
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.append
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
@@ -101,6 +115,7 @@ internal interface DynamicArgumentsFeature :
     /**
      * Operator for passing dictionary argument.
      */
+    @OptIn(InternalPendantApi::class)
     infix fun String.`=`(body: DictionaryContext.() -> Unit): _DictionaryExpressionAccumulator<Key, Value, *> {
         val dictionaryContext = DictionaryContext(modifiers).apply(body)
         invokeModifiers(dictionaryContext)

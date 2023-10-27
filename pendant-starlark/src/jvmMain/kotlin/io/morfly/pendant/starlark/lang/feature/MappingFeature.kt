@@ -18,13 +18,24 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.element.*
-import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.DynamicExpression
+import io.morfly.pendant.starlark.element.Expression
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.NumberLiteral
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.TupleExpression
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.MappingHolder
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.Value
 
 /**
  * Enables mapping to key-value pairs that are part of the dictionary expression.
@@ -86,6 +97,7 @@ internal interface MappingFeature : LanguageFeature,
     /**
      * Mapping key to dictionary value.
      */
+    @OptIn(InternalPendantApi::class)
     infix fun Key.to(body: DictionaryContext.() -> Unit): _DictionaryExpressionAccumulator<Key, Value, Expression> {
         val dictionaryContext = DictionaryContext(modifiers).apply(body)
         invokeModifiers(dictionaryContext)

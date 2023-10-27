@@ -18,13 +18,30 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.element.*
+import io.morfly.pendant.starlark.element.AnyBinaryOperation
 import io.morfly.pendant.starlark.element.BinaryOperator.PLUS
-import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.element.DictionaryBinaryOperation
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.Element
+import io.morfly.pendant.starlark.element.Expression
+import io.morfly.pendant.starlark.element.ListBinaryOperation
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.NumberBinaryOperation
+import io.morfly.pendant.starlark.element.NumberLiteral
+import io.morfly.pendant.starlark.element.StringBinaryOperation
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.TupleBinaryOperation
+import io.morfly.pendant.starlark.element.TupleExpression
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
@@ -132,6 +149,7 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
     /**
      * Dictionary concatenation operator.
      */
+    @OptIn(InternalPendantApi::class)
     infix fun <K, V : Value, E : Element> _DictionaryExpressionAccumulator<K, V, E>.`+`(
         body: DictionaryContext.() -> Unit
     ): _DictionaryExpressionAccumulator<K, V, E> {

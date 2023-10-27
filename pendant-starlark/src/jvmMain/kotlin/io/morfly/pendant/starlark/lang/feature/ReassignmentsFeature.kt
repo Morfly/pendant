@@ -18,13 +18,29 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.element.*
-import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.element.Assignment
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.DictionaryReference
+import io.morfly.pendant.starlark.element.Expression
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.ListReference
+import io.morfly.pendant.starlark.element.NumberLiteral
+import io.morfly.pendant.starlark.element.NumberReference
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.StringReference
+import io.morfly.pendant.starlark.element.TupleExpression
+import io.morfly.pendant.starlark.element.TupleReference
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.StatementsHolder
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
@@ -84,6 +100,7 @@ internal interface ReassignmentsFeature : LanguageFeature,
     /**
      * Dictionary assignment operator.
      */
+    @OptIn(InternalPendantApi::class)
     infix fun <K : Key, V : Value> DictionaryReference<K, V>.`=`(
         body: DictionaryContext.() -> Unit
     ): _DictionaryExpressionAccumulator<K, V, Assignment> {

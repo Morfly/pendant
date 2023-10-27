@@ -21,12 +21,14 @@ package io.morfly.pendant.starlark.lang.feature
 import io.morfly.pendant.starlark.element.DictionaryExpression
 import io.morfly.pendant.starlark.element.ListExpression
 import io.morfly.pendant.starlark.element.TupleExpression
-import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.type.emptyTuple
 import io.morfly.pendant.starlark.lang.type.tupleOf
 
@@ -39,7 +41,6 @@ internal interface CollectionsFeature : LanguageFeature,
 
     // ===== Lists =====
 
-    @InternalPendantApi
     object _ListExpressionBuilder
 
     val list get() = _ListExpressionBuilder
@@ -68,6 +69,7 @@ internal interface CollectionsFeature : LanguageFeature,
     /**
      * Dictionary expression builder.
      */
+    @OptIn(InternalPendantApi::class)
     fun dict(body: DictionaryContext.() -> Unit): Map<Key, Value> {
         val dictionaryContext = DictionaryContext(modifiers).apply(body)
         invokeModifiers(dictionaryContext)
