@@ -75,4 +75,6 @@ interface ElementVisitor<A> {
     fun visit(element: EmptyLineStatement, position: Int, mode: PositionMode, acc: A)
 
     fun visit(element: RawText, position: Int, mode: PositionMode, acc: A)
+
+    fun visit(element: Comment, position: Int, mode: PositionMode, acc: A)
 }

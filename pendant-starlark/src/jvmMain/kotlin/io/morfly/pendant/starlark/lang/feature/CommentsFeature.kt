@@ -16,9 +16,7 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.element.Expression
-import io.morfly.pendant.starlark.element.RawStatement
-import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.Comment
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
 
@@ -26,27 +24,7 @@ import io.morfly.pendant.starlark.lang.StatementsHolder
 internal interface CommentsFeature : LanguageFeature,
     StatementsHolder {
 
-    val String.comment: Unit
-        get() {
-            statements += RawStatement(this)
-        }
-
-    fun comment(body: () -> String) =
-        body().comment
-
-    infix fun <T : Expression> T.comment(body: () -> String): T {
-//        body().comment
-        return this
+    fun comment(body: () -> String) {
+        statements += Comment(body())
     }
-}
-
-internal fun CommentsFeature.main() {
-    "sfsfa".comment
-    """
-        
-    """.trimIndent().comment
-
-    comment { "some comment" }
-
-    StringLiteral("string") comment { "some comment" }
 }

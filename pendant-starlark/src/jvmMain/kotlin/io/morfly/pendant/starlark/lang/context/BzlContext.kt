@@ -25,6 +25,8 @@ import io.morfly.pendant.starlark.lang.Checkpoint
 import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.LanguageScope
 import io.morfly.pendant.starlark.lang.Modifier
+import io.morfly.pendant.starlark.lang.StarlarkExpressionsLibrary
+import io.morfly.pendant.starlark.lang.StarlarkStatementsLibrary
 import io.morfly.pendant.starlark.lang.invokeModifiers
 import io.morfly.pendant.starlark.lang.feature.AssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPercentsFeature
@@ -32,6 +34,7 @@ import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusTransformationsFeature
 import io.morfly.pendant.starlark.lang.feature.BooleanValuesFeature
 import io.morfly.pendant.starlark.lang.feature.CollectionsFeature
+import io.morfly.pendant.starlark.lang.feature.CommentsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicAssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicBinaryPlusFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicFunctionExpressionsFeature
@@ -54,8 +57,8 @@ class BzlContext(
     private var body: (BzlContext.() -> Unit)?,
     override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
 ) : FileContext(),
-    BuildStatementsLibrary,
-    BuildExpressionsLibrary,
+    StarlarkStatementsLibrary,
+    StarlarkExpressionsLibrary,
     AssignmentsFeature,
     DynamicAssignmentsFeature,
     BinaryPlusFeature,
@@ -72,7 +75,8 @@ class BzlContext(
     BinaryPercentsFeature,
     BooleanValuesFeature,
     StringExtensionsFeature,
-    ReassignmentsFeature {
+    ReassignmentsFeature,
+    CommentsFeature {
 
     override fun newContext() = BzlContext(fileName, body = null, modifiers)
 

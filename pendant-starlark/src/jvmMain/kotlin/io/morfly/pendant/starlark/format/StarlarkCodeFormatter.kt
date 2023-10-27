@@ -91,6 +91,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
             prev === EmptyLineStatement -> false
             prev::class == curr::class -> when {
                 curr is ExpressionStatement && curr.expression is FunctionCall -> true
+                curr is Assignment -> true
                 else -> false
             }
 
@@ -480,5 +481,13 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
     // FIXME
     override fun visit(element: RawText, position: Int, mode: PositionMode, acc: Appendable) {
         acc += element.value
+    }
+
+    override fun visit(element: Comment, position: Int, mode: PositionMode, acc: Appendable) {
+        val indent = indent(position)
+        element.value.lines().forEachIndexed { i, line ->
+            if (i != 0) acc += nl
+            acc += "$indent# $line"
+        }
     }
 }

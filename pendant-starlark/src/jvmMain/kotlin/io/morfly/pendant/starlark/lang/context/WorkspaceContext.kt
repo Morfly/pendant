@@ -31,6 +31,7 @@ import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusTransformationsFeature
 import io.morfly.pendant.starlark.lang.feature.BooleanValuesFeature
 import io.morfly.pendant.starlark.lang.feature.CollectionsFeature
+import io.morfly.pendant.starlark.lang.feature.CommentsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicAssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicBinaryPlusFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicFunctionExpressionsFeature
@@ -72,7 +73,8 @@ class WorkspaceContext(
     BinaryPercentsFeature,
     BooleanValuesFeature,
     StringExtensionsFeature,
-    ReassignmentsFeature {
+    ReassignmentsFeature,
+    CommentsFeature {
 
     override val fileName = if (hasExtension) "WORKSPACE.bazel" else "WORKSPACE"
 
