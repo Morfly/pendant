@@ -18,13 +18,28 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.element.BinaryOperator.PLUS
-import io.morfly.pendant.starlark.lang.context.DictionaryContext
-import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.element.BooleanBinaryOperation
+import io.morfly.pendant.starlark.element.BooleanLiteral
+import io.morfly.pendant.starlark.element.DictionaryBinaryOperation
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.Expression
+import io.morfly.pendant.starlark.element.ListBinaryOperation
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.NumberBinaryOperation
+import io.morfly.pendant.starlark.element.NumberLiteral
+import io.morfly.pendant.starlark.element.StringBinaryOperation
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.context.DictionaryContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.BooleanType
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
@@ -86,6 +101,7 @@ internal interface BinaryPlusFeature : LanguageFeature,
     /**
      * Operator for dictionary concatenation.
      */
+    @OptIn(InternalPendantApi::class)
     infix fun Map<*, Value>?.`+`(body: DictionaryContext.() -> Unit): Map<Key, Value> {
         val dictionaryContext = DictionaryContext(modifiers).apply(body)
         invokeModifiers(dictionaryContext)

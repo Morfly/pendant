@@ -18,6 +18,7 @@
 
 package io.morfly.pendant.starlark.lang.context
 
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
@@ -33,6 +34,7 @@ abstract class Context : ModifiersHolder {
             } else error("${this::class.simpleName} id can't be reassigned!")
         }
 
+    @OptIn(InternalPendantApi::class)
     fun _checkpoint(checkpoint: String) {
         require(checkpoint.isNotBlank()) { "${this::class.simpleName} id can't be blank!" }
         if (checkpoint in checkpoints) {

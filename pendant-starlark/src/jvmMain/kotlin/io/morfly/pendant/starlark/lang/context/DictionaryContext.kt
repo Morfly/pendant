@@ -46,5 +46,5 @@ class DictionaryContext(
     CollectionsFeature,
     StringExtensionsFeature {
 
-    override val kwargs = mutableMapOf<Expression, Expression>()
+    override val kwargs = linkedMapOf<Expression, Expression>()
 }

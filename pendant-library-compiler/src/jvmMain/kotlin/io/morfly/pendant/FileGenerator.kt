@@ -38,6 +38,7 @@ class FileGeneratorImpl(
             .createNewFile(Dependencies(true, descriptor.originalFile), packageName, "${descriptor.shortName}Generated")
 
         file += "// generated file\n\n"
+        file += "@file:OptIn(InternalPendantApi::class)\n"
         file += "@file:Suppress(\"REDUNDANT_NULLABLE\")\n\n"
 
         if (packageName.isNotBlank()) {
