@@ -18,6 +18,7 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.StatementsHolder
 import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.LanguageFeature
@@ -43,6 +44,7 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
     /**
      *
      */
+    @OptIn(InternalPendantApi::class)
     operator fun String.invoke(body: FunctionCallContext.() -> Unit) {
         val functionCallContext = FunctionCallContext(modifiers).apply(body)
         invokeModifiers(functionCallContext)
@@ -53,6 +55,7 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
     /**
      *
      */
+    @OptIn(InternalPendantApi::class)
     operator fun String.invoke() {
         registerFunctionCallStatement(name = this)
     }

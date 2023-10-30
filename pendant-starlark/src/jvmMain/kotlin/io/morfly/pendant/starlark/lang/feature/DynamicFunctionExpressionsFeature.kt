@@ -16,6 +16,7 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
@@ -24,6 +25,7 @@ import io.morfly.pendant.starlark.lang.invokeModifiers
 internal interface DynamicFunctionExpressionsFeature : LanguageFeature
 
 context(DynamicFunctionExpressionsFeature, ModifiersHolder)
+@OptIn(InternalPendantApi::class)
 inline operator fun <reified T> String.invoke(body: FunctionCallContext.() -> Unit): T {
     val functionCallContext = FunctionCallContext(modifiers)
     invokeModifiers(functionCallContext)
@@ -31,6 +33,7 @@ inline operator fun <reified T> String.invoke(body: FunctionCallContext.() -> Un
 }
 
 context(DynamicFunctionExpressionsFeature)
+@OptIn(InternalPendantApi::class)
 inline operator fun <reified T> String.invoke(): T {
     return functionCallExpression(name = this, emptySet())
 }

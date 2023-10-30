@@ -19,6 +19,7 @@ package io.morfly.pendant.starlark.lang.feature
 import io.morfly.pendant.starlark.element.Expression
 import io.morfly.pendant.starlark.element.StringFunctionCall
 import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.ModifiersHolder
@@ -30,6 +31,7 @@ import io.morfly.pendant.starlark.lang.invokeModifiers
 internal interface StringExtensionsFeature : LanguageFeature,
     ModifiersHolder {
 
+    @OptIn(InternalPendantApi::class)
     fun StringType.format(body: FunctionCallContext.() -> Unit): StringType {
         val context = FunctionCallContext(modifiers).apply(body)
         invokeModifiers(context)
