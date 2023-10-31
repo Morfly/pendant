@@ -233,3 +233,16 @@ private interface KspVersion {
     @Returns
     val returns: DictionaryType<Key, Value>
 }
+
+@LibraryFunction(
+    name = "kt_ksp_plugin",
+    scope = [Build],
+    kind = Statement
+)
+private interface KtKspPlugin {
+
+    val name: StringType?
+    val processor_class: StringType?
+    val visibility: ListType<Label?>?
+    val deps: ListType<Label?>?
+}
