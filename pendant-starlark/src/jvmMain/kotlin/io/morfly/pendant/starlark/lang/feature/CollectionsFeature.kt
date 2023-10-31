@@ -25,8 +25,10 @@ import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.context.DictionaryContext
+import io.morfly.pendant.starlark.lang.context.ListContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
 import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.ListType
 import io.morfly.pendant.starlark.lang.type.TupleType
 import io.morfly.pendant.starlark.lang.type.Value
 import io.morfly.pendant.starlark.lang.type.emptyTuple
@@ -62,6 +64,15 @@ internal interface CollectionsFeature : LanguageFeature,
      */
     fun list(): List<Nothing> =
         ListExpression(emptyList())
+
+    @OptIn(InternalPendantApi::class)
+    fun <T> list(body: ListContext<T>.() -> Unit): ListType<T> {
+        val listContext = ListContext<T>(modifiers).apply(body)
+        invokeModifiers(listContext)
+        val items = listContext.items
+        @Suppress("UNCHECKED_CAST")
+        return ListExpression(items as ListType<T>)
+    }
 
 
     // ===== Dictionaries =====
