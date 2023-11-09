@@ -36,9 +36,11 @@ abstract class Context : ModifiersHolder {
 
     @OptIn(InternalPendantApi::class)
     fun _checkpoint(checkpoint: String) {
-        require(checkpoint.isNotBlank()) { "${this::class.simpleName} id can't be blank!" }
-        if (checkpoint in checkpoints) {
-            error("Duplicate checkpoint $checkpoint in ${this::class.simpleName}!")
+        require(checkpoint.isNotBlank()) {
+            "${this::class.simpleName} id can't be blank!"
+        }
+        require(checkpoint !in checkpoints) {
+            "Duplicate checkpoint $checkpoint in ${this::class.simpleName}!"
         }
         checkpoints += checkpoint
         invokeModifiers(context = this, checkpoint = checkpoint)

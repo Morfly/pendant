@@ -19,16 +19,11 @@
 package io.morfly.pendant.starlark.lang.context
 
 import io.morfly.pendant.starlark.element.BzlFile
-import io.morfly.pendant.starlark.lang.BuildExpressionsLibrary
-import io.morfly.pendant.starlark.lang.BuildStatementsLibrary
-import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageScope
-import io.morfly.pendant.starlark.lang.Modifier
+import io.morfly.pendant.starlark.lang.ModifierCollection
 import io.morfly.pendant.starlark.lang.StarlarkExpressionsLibrary
 import io.morfly.pendant.starlark.lang.StarlarkStatementsLibrary
-import io.morfly.pendant.starlark.lang.invokeModifiers
 import io.morfly.pendant.starlark.lang.feature.AssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPercentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
@@ -47,6 +42,7 @@ import io.morfly.pendant.starlark.lang.feature.RawTextFeature
 import io.morfly.pendant.starlark.lang.feature.ReassignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
+import io.morfly.pendant.starlark.lang.invokeModifiers
 
 
 /**
@@ -56,7 +52,7 @@ import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 class BzlContext(
     override val fileName: String,
     private var body: (BzlContext.() -> Unit)?,
-    override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
+    override val modifiers: ModifierCollection = linkedMapOf()
 ) : FileContext(),
     StarlarkStatementsLibrary,
     StarlarkExpressionsLibrary,

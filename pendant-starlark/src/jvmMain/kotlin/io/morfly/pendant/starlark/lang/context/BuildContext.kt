@@ -21,12 +21,9 @@ package io.morfly.pendant.starlark.lang.context
 import io.morfly.pendant.starlark.element.BuildFile
 import io.morfly.pendant.starlark.lang.BuildExpressionsLibrary
 import io.morfly.pendant.starlark.lang.BuildStatementsLibrary
-import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageScope
-import io.morfly.pendant.starlark.lang.Modifier
-import io.morfly.pendant.starlark.lang.invokeModifiers
+import io.morfly.pendant.starlark.lang.ModifierCollection
 import io.morfly.pendant.starlark.lang.feature.AssignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPercentsFeature
 import io.morfly.pendant.starlark.lang.feature.BinaryPlusFeature
@@ -45,6 +42,7 @@ import io.morfly.pendant.starlark.lang.feature.RawTextFeature
 import io.morfly.pendant.starlark.lang.feature.ReassignmentsFeature
 import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
+import io.morfly.pendant.starlark.lang.invokeModifiers
 
 
 /**
@@ -54,7 +52,7 @@ import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 class BuildContext(
     val hasExtension: Boolean,
     private var body: (BuildContext.() -> Unit)?,
-    override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
+    override val modifiers: ModifierCollection = linkedMapOf()
 ) : FileContext(),
     BuildStatementsLibrary,
     BuildExpressionsLibrary,

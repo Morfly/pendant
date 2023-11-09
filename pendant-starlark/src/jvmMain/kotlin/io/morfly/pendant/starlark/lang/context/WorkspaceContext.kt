@@ -19,11 +19,9 @@
 package io.morfly.pendant.starlark.lang.context
 
 import io.morfly.pendant.starlark.element.WorkspaceFile
-import io.morfly.pendant.starlark.lang.Checkpoint
-import io.morfly.pendant.starlark.lang.ContextId
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageScope
-import io.morfly.pendant.starlark.lang.Modifier
+import io.morfly.pendant.starlark.lang.ModifierCollection
 import io.morfly.pendant.starlark.lang.WorkspaceExpressionsLibrary
 import io.morfly.pendant.starlark.lang.WorkspaceStatementsLibrary
 import io.morfly.pendant.starlark.lang.feature.AssignmentsFeature
@@ -54,7 +52,7 @@ import io.morfly.pendant.starlark.lang.invokeModifiers
 class WorkspaceContext(
     val hasExtension: Boolean,
     private var body: (WorkspaceContext.() -> Unit)?,
-    override val modifiers: MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>> = linkedMapOf()
+    override val modifiers: ModifierCollection = linkedMapOf()
 ) : FileContext(),
     WorkspaceStatementsLibrary,
     WorkspaceExpressionsLibrary,
