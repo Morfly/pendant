@@ -101,14 +101,14 @@ class RoundFunctionGenerator(
     private fun generateBody(file: OutputStream, function: GeneratedFunction) {
         if (!function.hasArgs) {
             file += " {\n"
-            file += "${indent4}return ${function.builderName}(\"${function.shortName}\", emptySet())\n"
+            file += "${indent4}return ${function.builderName}(\"${function.shortName}\", emptyList())\n"
             file += "}"
             return
         }
 
         file += " {\n"
         val argsName = "_args"
-        file += "${indent4}val $argsName = linkedSetOf<Argument>().also {\n"
+        file += "${indent4}val $argsName = mutableListOf<Argument>().also {\n"
 
         if (function.vararg != null) {
             val name = function.vararg.fullName
