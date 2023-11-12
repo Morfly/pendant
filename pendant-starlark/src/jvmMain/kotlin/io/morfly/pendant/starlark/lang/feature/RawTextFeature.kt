@@ -24,16 +24,9 @@ import io.morfly.pendant.starlark.lang.StatementsHolder
 internal interface RawTextFeature : LanguageFeature,
     StatementsHolder {
 
-    /**
-     *
-     */
-    val String.raw: Unit
-        get() {
-            statements += RawStatement(value = this)
-        }
+    fun String.raw() {
+        statements += RawStatement(value = this)
+    }
 
-    /**
-     *
-     */
-    operator fun String.unaryPlus() = raw
+    operator fun String.unaryPlus() = raw()
 }
