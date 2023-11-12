@@ -35,5 +35,5 @@ inline operator fun <reified T> String.invoke(body: FunctionCallContext.() -> Un
 context(DynamicFunctionExpressionsFeature)
 @OptIn(InternalPendantApi::class)
 inline operator fun <reified T> String.invoke(): T {
-    return functionCallExpression(name = this, emptySet())
+    return functionCallExpression(name = this, emptyList())
 }

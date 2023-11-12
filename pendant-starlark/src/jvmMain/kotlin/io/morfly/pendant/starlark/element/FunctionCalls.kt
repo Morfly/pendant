@@ -16,12 +16,16 @@
 
 package io.morfly.pendant.starlark.element
 
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.BooleanType
 import io.morfly.pendant.starlark.lang.type.BooleanTypeDelegate
 import io.morfly.pendant.starlark.lang.type.DictionaryTypeDelegate
 import io.morfly.pendant.starlark.lang.type.ListTypeDelegate
+import io.morfly.pendant.starlark.lang.type.NumberTypeDelegate
+import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.type.StringTypeDelegate
+import io.morfly.pendant.starlark.lang.type.TupleType
 import io.morfly.pendant.starlark.lang.type.TupleTypeDelegate
+import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
@@ -29,7 +33,7 @@ import io.morfly.pendant.starlark.lang.type.TupleTypeDelegate
  */
 sealed interface FunctionCall : Expression {
     val name: String
-    val args: Set<Argument>
+    val args: List<Argument>
     val receiver: Expression?
 
     override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {
@@ -42,7 +46,7 @@ sealed interface FunctionCall : Expression {
  */
 class StringFunctionCall(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall,
     StringType by StringTypeDelegate()
@@ -52,7 +56,7 @@ class StringFunctionCall(
  */
 class NumberFunctionCall(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall,
     NumberTypeDelegate()
@@ -62,7 +66,7 @@ class NumberFunctionCall(
  */
 class BooleanFunctionCall(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall,
     BooleanType by BooleanTypeDelegate()
@@ -72,14 +76,14 @@ class BooleanFunctionCall(
  */
 class ListFunctionCall<T>(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall,
     List<T> by ListTypeDelegate()
 
 class TupleFunctionCall(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall,
     TupleType by TupleTypeDelegate()
@@ -89,7 +93,7 @@ class TupleFunctionCall(
  */
 class DictionaryFunctionCall<K /*: Key*/, V : Value>(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall,
     Map<K, V> by DictionaryTypeDelegate()
@@ -99,7 +103,7 @@ class DictionaryFunctionCall<K /*: Key*/, V : Value>(
  */
 class AnyFunctionCall(
     override val name: String,
-    override val args: Set<Argument>,
+    override val args: List<Argument>,
     override val receiver: Expression? = null
 ) : FunctionCall
 

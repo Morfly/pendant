@@ -19,11 +19,10 @@
 package io.morfly.pendant.starlark.lang.feature
 
 import io.morfly.pendant.starlark.lang.InternalPendantApi
-import io.morfly.pendant.starlark.lang.StatementsHolder
-import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.ModifiersHolder
-import io.morfly.pendant.starlark.lang.asSet
+import io.morfly.pendant.starlark.lang.StatementsHolder
+import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
 
@@ -48,7 +47,7 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
     operator fun String.invoke(body: FunctionCallContext.() -> Unit) {
         val functionCallContext = FunctionCallContext(modifiers).apply(body)
         invokeModifiers(functionCallContext)
-        val args = functionCallContext.fargs.asSet()
+        val args = functionCallContext.fargs.values.toList()
         registerFunctionCallStatement(name = this, args)
     }
 

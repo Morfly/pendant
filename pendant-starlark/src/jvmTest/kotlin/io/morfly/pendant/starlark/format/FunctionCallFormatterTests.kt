@@ -18,12 +18,16 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.element.*
-import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
-import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
-import io.morfly.pendant.starlark.lang.type.StringType
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
+import io.morfly.pendant.starlark.element.AnyFunctionCall
+import io.morfly.pendant.starlark.element.Argument
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.ListFunctionCall
+import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.lang.type.StringType
 
 
 class FunctionCallFormatterTests : ShouldSpec({
@@ -38,7 +42,7 @@ class FunctionCallFormatterTests : ShouldSpec({
         context("NEW LINE mode") {
 
             should("format function call without arguments") {
-                val call = AnyFunctionCall("function", emptySet())
+                val call = AnyFunctionCall("function", emptyList())
 
                 val builder = StringBuilder()
                 formatter.visit(call, position = 1, NEW_LINE, builder)
@@ -51,7 +55,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             }
 
             should("format function call with one argument") {
-                val call = AnyFunctionCall("function", setOf(Argument("arg", StringLiteral("value"))))
+                val call = AnyFunctionCall("function", listOf(Argument("arg", StringLiteral("value"))))
 
                 val builder = StringBuilder()
                 formatter.visit(call, position = 1, NEW_LINE, builder)
@@ -64,7 +68,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             }
 
             should("format function call with one argument without name specified") {
-                val call = AnyFunctionCall("function", setOf(Argument("", StringLiteral("value"))))
+                val call = AnyFunctionCall("function", listOf(Argument("", StringLiteral("value"))))
 
                 val builder = StringBuilder()
                 formatter.visit(call, position = 1, NEW_LINE, builder)
@@ -79,7 +83,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             should("format function call with one multiline argument") {
                 val call = AnyFunctionCall(
                     name = "function",
-                    args = setOf(
+                    args = listOf(
                         Argument(
                             id = "arg",
                             value = ListExpression<Any>(listOf(StringLiteral("item1"), StringLiteral("item2")))
@@ -103,7 +107,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             should("format function call with one multiline argument without name") {
                 val call = AnyFunctionCall(
                     name = "function",
-                    args = setOf(
+                    args = listOf(
                         Argument(
                             id = "",
                             value = ListExpression<Any>(listOf(StringLiteral("item1"), StringLiteral("item2")))
@@ -127,7 +131,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             should("format function call") {
                 val call = AnyFunctionCall(
                     name = "function",
-                    args = setOf(
+                    args = listOf(
                         Argument("", ListExpression<Any>(listOf(StringLiteral("item1"), StringLiteral("item2")))),
                         Argument("arg2", StringLiteral("value"))
                     )
@@ -152,20 +156,20 @@ class FunctionCallFormatterTests : ShouldSpec({
             should("format function call with function calls as values") {
                 val callExpression1 = ListFunctionCall<StringType>(
                     name = "glob",
-                    args = setOf(
+                    args = listOf(
                         Argument("", ListExpression<Any>(listOf(StringLiteral("item1"), StringLiteral("item2"))))
                     )
                 )
                 val callExpression2 = ListFunctionCall<StringType>(
                     name = "glob",
-                    args = setOf(
+                    args = listOf(
                         Argument("", ListExpression<Any>(listOf(StringLiteral("item3"), StringLiteral("item4")))),
                         Argument("arg3", StringLiteral("value")),
                     )
                 )
                 val call = AnyFunctionCall(
                     name = "function",
-                    args = setOf(
+                    args = listOf(
                         Argument("arg1", callExpression1),
                         Argument("arg2", callExpression2)
                     )
@@ -196,7 +200,7 @@ class FunctionCallFormatterTests : ShouldSpec({
 
         context("CONTINUE LINE mode") {
             should("format function call without arguments") {
-                val call = AnyFunctionCall("function", emptySet())
+                val call = AnyFunctionCall("function", emptyList())
 
                 val builder = StringBuilder()
                 formatter.visit(call, position = 1, CONTINUE_LINE, builder)
@@ -209,7 +213,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             }
 
             should("format function call with one argument") {
-                val call = AnyFunctionCall("function", setOf(Argument("arg", StringLiteral("value"))))
+                val call = AnyFunctionCall("function", listOf(Argument("arg", StringLiteral("value"))))
 
                 val builder = StringBuilder()
                 formatter.visit(call, position = 1, CONTINUE_LINE, builder)
@@ -224,7 +228,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             should("format function call with one multiline argument") {
                 val call = AnyFunctionCall(
                     name = "function",
-                    args = setOf(
+                    args = listOf(
                         Argument(
                             id = "arg",
                             value = ListExpression<Any>(listOf(StringLiteral("item1"), StringLiteral("item2")))
@@ -248,7 +252,7 @@ class FunctionCallFormatterTests : ShouldSpec({
             should("format function call") {
                 val call = AnyFunctionCall(
                     name = "function",
-                    args = setOf(
+                    args = listOf(
                         Argument("", ListExpression<Any>(listOf(StringLiteral("item1"), StringLiteral("item2")))),
                         Argument("arg2", StringLiteral("value"))
                     )

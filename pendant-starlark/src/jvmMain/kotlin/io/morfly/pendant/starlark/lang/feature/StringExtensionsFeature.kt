@@ -20,12 +20,11 @@ import io.morfly.pendant.starlark.element.Expression
 import io.morfly.pendant.starlark.element.StringFunctionCall
 import io.morfly.pendant.starlark.element.StringLiteral
 import io.morfly.pendant.starlark.lang.InternalPendantApi
-import io.morfly.pendant.starlark.lang.context.FunctionCallContext
-import io.morfly.pendant.starlark.lang.type.StringType
-import io.morfly.pendant.starlark.lang.ModifiersHolder
 import io.morfly.pendant.starlark.lang.LanguageFeature
-import io.morfly.pendant.starlark.lang.asSet
+import io.morfly.pendant.starlark.lang.ModifiersHolder
+import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
+import io.morfly.pendant.starlark.lang.type.StringType
 
 
 internal interface StringExtensionsFeature : LanguageFeature,
@@ -37,7 +36,7 @@ internal interface StringExtensionsFeature : LanguageFeature,
         invokeModifiers(context)
         return StringFunctionCall(
             name = "format",
-            args = context.fargs.asSet(),
+            args = context.fargs.values.toList(),
             receiver = Expression(this, ::StringLiteral)
         )
     }
