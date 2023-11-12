@@ -18,6 +18,8 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
+import io.morfly.pendant.starlark.element.Argument
+import io.morfly.pendant.starlark.element.Expression
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.ModifiersHolder
@@ -55,7 +57,10 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
      *
      */
     @OptIn(InternalPendantApi::class)
-    operator fun String.invoke() {
-        registerFunctionCallStatement(name = this)
+    operator fun String.invoke(vararg arguments: Any?) {
+        val elements = arguments.map {
+            Argument(id = "", Expression(it))
+        }
+        registerFunctionCallStatement(name = this, elements)
     }
 }
