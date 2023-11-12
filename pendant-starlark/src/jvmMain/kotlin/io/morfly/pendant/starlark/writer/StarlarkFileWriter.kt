@@ -42,3 +42,7 @@ open class StarlarkFileWriter private constructor(
      */
     companion object Default : StarlarkFileWriter()
 }
+
+fun StarlarkFile.write(dirPath: String, writer: StarlarkFileWriter = StarlarkFileWriter.Default) {
+    return writer.write(dirPath, this)
+}
