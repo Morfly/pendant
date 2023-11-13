@@ -13,9 +13,6 @@ dependencies {
     implementation("io.morfly.pendant:pendant-starlark:<version>")
     // Library of Bazel functions.
     implementation("io.morfly.pendant:pendant-library-bazel:<version>")
-
-    // Optional. Annotation processor for generating libraries with custom Starlark functions.
-    ksp("io.morfly.pendant:pendant-library-compiler:<version>")
 }
 ```
 
@@ -24,6 +21,7 @@ Let's see how Pendant could be used to generate a simple `BUILD.bazel` file that
 
 Notice, that the code below is a valid Kotlin DSL which looks almost exactly as Starlark syntax itself. Moreover, the type-safety of the code is fully preserved.
 ```kotlin
+// Kotlin
 val builder = BUILD.bazel {
     load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
 
@@ -42,6 +40,7 @@ file.write("path/in/file/system")
 As a result, a `BUILD` file with the following content is generated. As you can see, Pendant takes care of the code formatting, so you don't have to do it yourself.
 
 ```python
+# Generated Starlark
 load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
 
 kt_android_library(
@@ -123,7 +122,7 @@ Variable declaration and assignment is an essential feature of Starlark language
 val NAME by "my-library"
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 NAME = "my_library"
 ```
 What's important is that this operation is type safe, meaning `NAME` is a variable of string type on the Kotlin DSL level and could be used further accordingly.
@@ -137,7 +136,7 @@ However, the `list[]` function could be used to achieve the same reuslt.
 val SRCS by list["io/morfly/Main.kt"]
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 SRCS = ["io/morfly/Main.kt"]
 ```
 
@@ -151,7 +150,7 @@ val MANIFEST_VALUES by dict { "minSdkVersion" to "23" }
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 MANIFEST_VALUES = { "minSdkVersion" : "23" }
 ```
 You might notice that `to` operator is used to map dictionary values. However, this is not a usual `to` function from Kotlin standard library but a more powerful version.
@@ -163,7 +162,7 @@ For example, you could use composite keys and values with concatenation operatio
 val MANIFEST_VALUES by dict { "minSdk" `+` "Version" to "2" `+` "3"}
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 MANIFEST_VALUES = { "minSdk" + "Version" : "2" + "3" }
 ```
 
@@ -180,7 +179,7 @@ val ARTIFACTS by list["@maven//:androidx_compose_runtime_runtime"]
 val DEPS by ARTIFACTS `+` list["//my-library"]
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 ARTIFACTS = ["@maven//:androidx_compose_runtime_runtime"]
 
 DEPS = ARTIFACTS + ["//my-library"]
@@ -239,7 +238,7 @@ val SRCS by glob("src/main/kotlin/**/*.kt")
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 SRCS = glob(["src/main/kotlin/**/*.kt"])
 ```
 You could use dynamic API for there types of functions as well, just make sure to explicitly specify the return type as shown below.
@@ -250,7 +249,7 @@ import io.morfly.pendant.starlark.lang.feature.invoke
 val SRCS = "glob"<ListType<StringType>>("src/main/kotlin/**/*.kt")
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 SRCS = glob(["src/main/kotlin/**/*.kt"])
 ```
 > You might need to manually import the `io.morfly.pendant.starlark.lang.feature.invoke`function from Pendant for dynamic function calls with return values. 
@@ -270,7 +269,7 @@ val SRCS by "name" `in` CLASSES take { it `+` ".kt" }
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 CLASSES = ["MainActivity", "MainViewModel"]
 
 SRCS = [name + ".kt" for name in classes]
@@ -291,7 +290,7 @@ val NUMBERS by "list" `in` MATRIX `for` { list ->
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 MATRIX = [
     [1, 2],
     [3, 4]
@@ -307,7 +306,7 @@ val RANGE by "range"<ListType<StringType>>(5)
 val SRCS by "i" `in` RANGE take { "j" `in` RANGE take { j -> j } }
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 RANGE = range(5)
 
 SRCS = [
@@ -326,7 +325,7 @@ SRCS = [
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 "abc.kt"[0:-3]
 ```
 
@@ -340,7 +339,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 load("@rules_java//java:defs.bzl", "java_binary")
 ```
 
@@ -359,7 +358,7 @@ maven_install(
 )
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 load("@dagger//:workspace_defs.bzl", "DAGGER_ARTIFACTS", "DAGGER_REPOSITORIES")
 
 maven_install(
@@ -397,7 +396,7 @@ SRCS = glob(["src/main/kotlin/**/*.kt"])
 """.trimIndent().raw()
 ```
 ```python
-// Generated Starlark
+# Generated Starlark
 SRCS = glob(["src/main/kotlin/**/*.kt"])
 ```
 
@@ -436,7 +435,7 @@ val file = builder.build()
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 android_library(
     name = "my-library"
     deps = ["//another-library"] + ["@maven//:androidx_compose_runtime_runtime"],
