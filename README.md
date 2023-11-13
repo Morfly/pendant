@@ -188,7 +188,6 @@ As you can see, you could use concatenations with varouus types of expressions, 
 
 ### Function calls
 
-#### Function call statements
 There are different ways to generate a function call with Pendant. 
 
 The easiest way is to use Starlark or Bazel functions available directly in Pendant.
