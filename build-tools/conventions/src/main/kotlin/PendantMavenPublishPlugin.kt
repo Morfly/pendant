@@ -19,7 +19,7 @@ class PendantMavenPublishPlugin : PendantConventionPlugin({
 
         pom {
             name.set("Pendant")
-            description.set("TODO")
+            description.set("Declarative Starlark code generator written in Kotlin.")
             inceptionYear.set("2023")
             url.set("https://github.com/Morfly/pendant")
             licenses {
