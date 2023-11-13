@@ -1,6 +1,7 @@
 package io.morfly.pendant.sample
 
 import io.morfly.pendant.starlark.artifact
+import io.morfly.pendant.starlark.element.ListReference
 import io.morfly.pendant.starlark.format.format
 import io.morfly.pendant.starlark.glob
 import io.morfly.pendant.starlark.kt_android_library
@@ -25,6 +26,7 @@ fun main() {
     val file = builder.build()
     println(file.format())
 
+    ListReference
 
     /* Output:
 
