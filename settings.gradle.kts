@@ -28,5 +28,5 @@ include(
 )
 
 include(
-    ":samples:bazel-scripts"
+    ":samples:bazel-scripts-generation"
 )
