@@ -2,8 +2,9 @@ import io.morfly.pendant.buildtools.libs
 
 plugins {
     alias(libs.plugins.pendant.kotlin.multiplatform.common)
-    alias(libs.plugins.pendant.maven.publish)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.pendant.maven.publish)
+    alias(libs.plugins.dokka)
 }
 
 kotlin {
