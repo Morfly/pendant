@@ -27,7 +27,6 @@ import io.morfly.pendant.starlark.lang.StatementsHolder
 import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
-
 /**
  * Feature that enables declaring function statements using string as a name.
  *
@@ -42,9 +41,6 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
     StatementsHolder,
     ModifiersHolder {
 
-    /**
-     *
-     */
     @OptIn(InternalPendantApi::class)
     operator fun String.invoke(body: FunctionCallContext.() -> Unit) {
         val functionCallContext = FunctionCallContext(modifiers).apply(body)
@@ -53,9 +49,6 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
         registerFunctionCallStatement(name = this, args)
     }
 
-    /**
-     *
-     */
     @OptIn(InternalPendantApi::class)
     operator fun String.invoke(vararg arguments: Any?) {
         val elements = arguments.map {

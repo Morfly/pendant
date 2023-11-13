@@ -23,10 +23,6 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 import kotlin.annotation.AnnotationTarget.CLASS
 import kotlin.annotation.AnnotationTarget.PROPERTY
 
-
-/**
- *
- */
 @Retention(RUNTIME)
 @Target(CLASS)
 annotation class LibraryFunction(
@@ -37,9 +33,6 @@ annotation class LibraryFunction(
     val doc: String = ""// TODO implement documentation generation
 )
 
-/**
- *
- */
 @Retention(RUNTIME)
 @Target(PROPERTY)
 annotation class Argument(
@@ -53,9 +46,6 @@ annotation class Argument(
     }
 }
 
-/**
- *
- */
 @Retention(RUNTIME)
 @Target(PROPERTY)
 annotation class Returns(
@@ -82,18 +72,8 @@ enum class FunctionKind {
     Expression
 }
 
-/**
- *
- */
 enum class BracketsKind {
-    /**
-     *
-     */
     Round,
-
-    /**
-     *
-     */
     Curly
 }
 
@@ -118,9 +98,6 @@ enum class FunctionScope {
     Build
 }
 
-/**
- *
- */
 enum class ReturnKind {
 
     /**

@@ -23,8 +23,5 @@ import io.morfly.pendant.starlark.element.Expression
  */
 internal interface MappingHolder {
 
-    /**
-     *
-     */
     val kwargs: MutableMap<Expression, Expression>
 }

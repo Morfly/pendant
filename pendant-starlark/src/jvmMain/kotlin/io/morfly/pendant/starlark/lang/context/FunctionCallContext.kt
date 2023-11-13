@@ -31,10 +31,6 @@ import io.morfly.pendant.starlark.lang.feature.DynamicArgumentsFeature
 import io.morfly.pendant.starlark.lang.feature.DynamicBinaryPlusFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 
-
-/**
- *
- */
 @LanguageScope
 open class FunctionCallContext(
     override val modifiers: ModifierCollection = linkedMapOf()

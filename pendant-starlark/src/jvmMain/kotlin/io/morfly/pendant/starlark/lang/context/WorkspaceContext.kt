@@ -44,7 +44,6 @@ import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
-
 /**
  * Starlark language context that is specific to Bazel WORKSPACE files.
  */
@@ -92,23 +91,14 @@ class WorkspaceContext(
     }
 }
 
-/**
- *
- */
 fun WORKSPACE(body: WorkspaceContext.() -> Unit): WorkspaceContext =
     WorkspaceContext(
         hasExtension = false,
         body = body
     )
 
-/**
- *
- */
 object WORKSPACE
 
-/**
- *
- */
 fun WORKSPACE.bazel(body: WorkspaceContext.() -> Unit): WorkspaceContext =
     WorkspaceContext(
         hasExtension = true,

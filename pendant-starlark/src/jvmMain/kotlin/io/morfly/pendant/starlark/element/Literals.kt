@@ -22,7 +22,6 @@ import io.morfly.pendant.starlark.lang.type.BooleanType
 import io.morfly.pendant.starlark.lang.type.NumberType
 import io.morfly.pendant.starlark.lang.type.StringType
 
-
 /**
  * An abstract element for any Starlark literal.
  */
@@ -61,9 +60,6 @@ value class FloatLiteral(val value: Double) : Literal {
     }
 }
 
-/**
- *
- */
 fun NumberLiteral(value: NumberType): Literal =
     when (value) {
         is Long, is Int, is Short, is Byte -> IntegerLiteral(value.toLong())

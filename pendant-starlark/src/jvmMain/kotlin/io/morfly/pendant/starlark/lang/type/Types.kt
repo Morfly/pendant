@@ -48,14 +48,8 @@ typealias ListType<T> = List<T>
 // TODO
 typealias DictionaryType<K, V> = Map<K, V>
 
-/**
- *
- */
 typealias VoidType = Unit
 
-/**
- *
- */
 typealias BaseKey = Any
 
 /**
@@ -63,9 +57,6 @@ typealias BaseKey = Any
  */
 typealias Key = BaseKey?
 
-/**
- *
- */
 typealias BaseValue = Any
 /**
  * Type alias for a dictionary value type.

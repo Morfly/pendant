@@ -44,7 +44,6 @@ import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
-
 /**
  * Starlark language context that is specific to Bazel BUILD files.
  */
@@ -101,14 +100,8 @@ fun BUILD(body: BuildContext.() -> Unit): BuildContext =
         body = body
     )
 
-/**
- *
- */
 object BUILD
 
-/**
- *
- */
 fun BUILD.bazel(body: BuildContext.() -> Unit): BuildContext =
     BuildContext(
         hasExtension = true,

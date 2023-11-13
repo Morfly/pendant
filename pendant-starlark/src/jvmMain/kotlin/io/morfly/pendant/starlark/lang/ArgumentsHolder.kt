@@ -26,9 +26,6 @@ import io.morfly.pendant.starlark.element.Expression
  */
 internal interface ArgumentsHolder {
 
-    /**
-     *
-     */
     val fargs: LinkedHashMap<String, Argument>
 }
 

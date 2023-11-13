@@ -23,7 +23,6 @@ import io.morfly.pendant.starlark.lang.type.ListTypeDelegate
 import io.morfly.pendant.starlark.lang.type.StringTypeDelegate
 import io.morfly.pendant.starlark.lang.type.TupleTypeDelegate
 
-
 /**
  * Syntax element that represents a variable.
  */
@@ -63,9 +62,6 @@ class BooleanReference(override val name: String) : Reference,
 class ListReference<out T>(override val name: String) : Reference,
     List<T> by ListTypeDelegate()
 
-/**
- *
- */
 class TupleReference(override val name: String) : Reference,
     TupleType by TupleTypeDelegate()
 

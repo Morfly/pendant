@@ -44,10 +44,6 @@ import io.morfly.pendant.starlark.lang.feature.SlicesFeature
 import io.morfly.pendant.starlark.lang.feature.StringExtensionsFeature
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
-
-/**
- *
- */
 @LanguageScope
 class BzlContext(
     override val fileName: String,

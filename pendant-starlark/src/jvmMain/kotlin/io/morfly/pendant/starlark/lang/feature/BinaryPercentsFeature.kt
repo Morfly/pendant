@@ -22,15 +22,11 @@ import io.morfly.pendant.starlark.lang.type.NumberType
 import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.LanguageFeature
 
-
 /**
  * Feature that enables percent binary operator mostly used for string interpolation in Starlark.
  */
 internal interface BinaryPercentsFeature : LanguageFeature {
 
-    /**
-     *
-     */
     infix fun StringType?.`%`(other: StringType?): StringType =
         StringBinaryOperation(
             left = Expression(this, ::StringLiteral),
@@ -38,9 +34,6 @@ internal interface BinaryPercentsFeature : LanguageFeature {
             right = Expression(other, ::StringLiteral)
         )
 
-    /**
-     *
-     */
     infix fun NumberType?.`%`(other: NumberType): NumberType =
         NumberBinaryOperation(
             left = Expression(this, ::NumberLiteral),
