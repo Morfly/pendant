@@ -376,7 +376,7 @@ maven_install(
     repositories = ListReference<StringType>("DAGGER_REPOSITORIES")
 )
 ```
-It is possible to use `StringReference`, `NumberReference`, `BooleanReference`, `ListReference`, `DicrionaryReference`, `TupleReference` or `AnyReference` to refer imported values.
+It is possible to use `StringReference`, `NumberReference`, `BooleanReference`, `ListReference`, `DicrionaryReference`, `TupleReference` or `AnyReference` to refer to imported values.
 
 ### Raw code injection
 If you need more freedom with code generation or formatting you could always inject raw strings as part of the generated code.
@@ -416,6 +416,7 @@ val builder = BUILD.bazel {
 }
 ```
 ```kotlin
+// Kotlin
 builder.onContext<BuildContext>(id = "build_file") {
     android_binary(
         name = "app",
@@ -425,6 +426,7 @@ builder.onContext<BuildContext>(id = "build_file") {
 }
 ```
 ```kotlin
+// Kotlin
 builder.onContext<AndroidLibraryContext>(id = "android_library_target") {
     visibility = list["//visibility:public"]
     deps = list["@maven//:androidx_compose_runtime_runtime"]
