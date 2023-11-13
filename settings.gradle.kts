@@ -26,3 +26,7 @@ include(
     ":pendant-library-compiler",
     ":pendant-library-bazel",
 )
+
+include(
+    ":samples:bazel-scripts"
+)

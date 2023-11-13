@@ -25,6 +25,8 @@
             <option value="$PROJECT_DIR$/pendant-library-bazel" />
             <option value="$PROJECT_DIR$/pendant-library-compiler" />
             <option value="$PROJECT_DIR$/pendant-starlark" />
+            <option value="$PROJECT_DIR$/samples" />
+            <option value="$PROJECT_DIR$/samples/bazel-scripts" />
           </set>
         </option>
       </GradleProjectSettings>
