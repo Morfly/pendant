@@ -18,6 +18,9 @@
 
 package io.morfly.pendant
 
+import io.morfly.pendant.descriptor.DynamicType
+import io.morfly.pendant.descriptor.GeneratedFunction
+import io.morfly.pendant.descriptor.SpecifiedType
 import io.morfly.pendant.starlark.lang.FunctionKind.Expression
 import io.morfly.pendant.starlark.lang.FunctionKind.Statement
 import io.morfly.pendant.starlark.lang.type.*

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.morfly.pendant
+package io.morfly.pendant.descriptor
 
 import com.google.devtools.ksp.symbol.KSFile
 import io.morfly.pendant.starlark.lang.BracketsKind

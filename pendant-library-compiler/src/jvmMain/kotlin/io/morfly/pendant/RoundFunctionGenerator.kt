@@ -17,6 +17,11 @@
 package io.morfly.pendant
 
 import com.google.devtools.ksp.processing.KSPLogger
+import io.morfly.pendant.descriptor.Arg
+import io.morfly.pendant.descriptor.DynamicType
+import io.morfly.pendant.descriptor.GeneratedFunction
+import io.morfly.pendant.descriptor.SpecifiedType
+import io.morfly.pendant.descriptor.toArgument
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.BracketsKind
 import io.morfly.pendant.starlark.lang.type.*

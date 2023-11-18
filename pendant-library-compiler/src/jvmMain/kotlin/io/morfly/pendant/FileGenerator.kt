@@ -19,6 +19,9 @@ package io.morfly.pendant
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
+import io.morfly.pendant.descriptor.GeneratedFile
+import io.morfly.pendant.descriptor.GeneratedFunction
+import io.morfly.pendant.descriptor.SpecifiedType
 import java.io.OutputStream
 
 

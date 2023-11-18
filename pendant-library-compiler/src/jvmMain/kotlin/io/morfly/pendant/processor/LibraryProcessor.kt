@@ -23,6 +23,14 @@ import com.google.devtools.ksp.symbol.*
 import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
 import com.google.devtools.ksp.validate
 import io.morfly.pendant.*
+import io.morfly.pendant.descriptor.Arg
+import io.morfly.pendant.descriptor.DynamicType
+import io.morfly.pendant.descriptor.GeneratedFile
+import io.morfly.pendant.descriptor.GeneratedFunction
+import io.morfly.pendant.descriptor.SpecifiedType
+import io.morfly.pendant.descriptor.TypeDescriptor
+import io.morfly.pendant.descriptor.Vararg
+import io.morfly.pendant.descriptor.VoidType
 import io.morfly.pendant.starlark.lang.type.ListType
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Curly
