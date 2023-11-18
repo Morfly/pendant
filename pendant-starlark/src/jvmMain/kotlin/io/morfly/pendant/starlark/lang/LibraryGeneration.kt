@@ -38,6 +38,7 @@ annotation class LibraryFunction(
 annotation class Argument(
     val underlyingName: String = NAME_DEFAULT,
     val required: Boolean = false,
+    // TODO rename to implicit
     val vararg: Boolean = false,
     val inline: Boolean = false // TODO implement shortened syntax for dictionary args
 ) {
