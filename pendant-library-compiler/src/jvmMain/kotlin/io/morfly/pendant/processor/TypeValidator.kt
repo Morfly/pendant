@@ -16,7 +16,15 @@
 
 package io.morfly.pendant.processor
 
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.BaseKey
+import io.morfly.pendant.starlark.lang.type.BaseValue
+import io.morfly.pendant.starlark.lang.type.BooleanBaseType
+import io.morfly.pendant.starlark.lang.type.DictionaryType
+import io.morfly.pendant.starlark.lang.type.ListType
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.VoidType
 
 
 private typealias QualifiedName = String
@@ -33,8 +41,6 @@ interface TypeValidator {
 
 class TypeValidatorImpl : TypeValidator {
 
-    private val voidType = Unit::class.qualifiedName
-
     override val allowedTypes = setOf(
         StringType::class.qualifiedName,
         NumberType::class.qualifiedName,
@@ -42,8 +48,8 @@ class TypeValidatorImpl : TypeValidator {
         DictionaryType::class.qualifiedName,
         TupleType::class.qualifiedName,
         BooleanBaseType::class.qualifiedName,
+        VoidType::class.qualifiedName,
         Any::class.qualifiedName,
-        voidType
     )
 
     override val allowedTypeArguments = mapOf(
