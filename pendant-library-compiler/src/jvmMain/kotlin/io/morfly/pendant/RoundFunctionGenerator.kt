@@ -17,7 +17,7 @@
 package io.morfly.pendant
 
 import com.google.devtools.ksp.processing.KSPLogger
-import io.morfly.pendant.descriptor.Arg
+import io.morfly.pendant.descriptor.NamedArgument
 import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
@@ -52,7 +52,7 @@ class RoundFunctionGenerator(
         if (function.vararg != null) {
             file += "\n\n"
             val newFunction = function.copy(
-                arguments = mutableListOf<Arg>().also {
+                arguments = mutableListOf<NamedArgument>().also {
                     it += function.vararg.toArgument()
                     it += function.arguments
                 },

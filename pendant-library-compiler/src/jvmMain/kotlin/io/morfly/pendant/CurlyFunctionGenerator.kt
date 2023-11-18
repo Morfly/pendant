@@ -17,7 +17,7 @@
 package io.morfly.pendant
 
 import com.google.devtools.ksp.processing.KSPLogger
-import io.morfly.pendant.descriptor.Arg
+import io.morfly.pendant.descriptor.NamedArgument
 import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
@@ -69,7 +69,7 @@ class CurlyFunctionGenerator(
      */
     private fun generateContext(file: OutputStream, function: GeneratedFunction): String {
         val ctxClassName = function.annotatedClassName + "Context"
-        val allArguments = mutableListOf<Arg>().also {
+        val allArguments = mutableListOf<NamedArgument>().also {
             if (function.vararg != null && function.vararg.kotlinName.isNotBlank())
                 it += function.vararg.toArgument()
             it += function.arguments.filter { arg -> arg.kotlinName.isNotBlank() }

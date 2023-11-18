@@ -6,14 +6,14 @@ interface Argument {
     val starlarkName: String
 }
 
-data class Arg(
+data class NamedArgument(
     override val kotlinName: String,
     override val starlarkName: String,
     override val type: SpecifiedType,
     val isRequired: Boolean,
 ) : Argument
 
-data class Vararg(
+data class VariadicArgument(
     override val kotlinName: String,
     override val starlarkName: String,
     override val type: SpecifiedType,
@@ -21,8 +21,8 @@ data class Vararg(
     val isRequired: Boolean,
 ) : Argument
 
-fun Vararg.toArgument(): Arg =
-    Arg(
+fun VariadicArgument.toArgument(): NamedArgument =
+    NamedArgument(
         kotlinName = kotlinName,
         starlarkName = "",
         type = fullType,

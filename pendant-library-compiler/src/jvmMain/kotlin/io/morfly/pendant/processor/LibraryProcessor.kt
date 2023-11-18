@@ -23,13 +23,13 @@ import com.google.devtools.ksp.symbol.*
 import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
 import com.google.devtools.ksp.validate
 import io.morfly.pendant.*
-import io.morfly.pendant.descriptor.Arg
+import io.morfly.pendant.descriptor.NamedArgument
 import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFile
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
 import io.morfly.pendant.descriptor.Type
-import io.morfly.pendant.descriptor.Vararg
+import io.morfly.pendant.descriptor.VariadicArgument
 import io.morfly.pendant.descriptor.VoidType
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Curly
@@ -88,9 +88,9 @@ class LibraryGenerator(
         private val resolvedTypesCache = mutableMapOf<KSTypeReference, KSType>()
 
         private lateinit var functionKind: FunctionKind
-        private val functionArguments = mutableListOf<Arg>()
+        private val functionArguments = mutableListOf<NamedArgument>()
         private var returnType: Type? = null
-        private var varargArgument: Vararg? = null
+        private var varargArgument: VariadicArgument? = null
 
         override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
             if (classDeclaration.classKind != INTERFACE) {
@@ -204,7 +204,7 @@ class LibraryGenerator(
 
             if (isVararg) {
                 val typeDescriptor = visitTypeReference(property.type)
-                varargArgument = Vararg(
+                varargArgument = VariadicArgument(
                     kotlinName = propertyName,
                     starlarkName = starlarkArgName,
                     type = typeDescriptor.genericArguments.first(),
@@ -212,7 +212,7 @@ class LibraryGenerator(
                     isRequired = isRequired
                 )
             } else {
-                functionArguments += Arg(
+                functionArguments += NamedArgument(
                     kotlinName = propertyName,
                     starlarkName = starlarkArgName,
                     type = visitTypeReference(property.type),
