@@ -1,4 +1,4 @@
-package io.morfly.pendant.sample
+package io.morfly.pendant.sample.syntax
 
 import io.morfly.pendant.starlark.artifact
 import io.morfly.pendant.starlark.format.format
