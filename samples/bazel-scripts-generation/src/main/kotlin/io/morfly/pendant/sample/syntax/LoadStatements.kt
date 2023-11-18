@@ -37,6 +37,7 @@ fun main() {
     val file = builder.build()
     println(file.format())
 
+
     /* Output:
 
     load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
