@@ -21,7 +21,7 @@ import io.morfly.pendant.descriptor.NamedArgument
 import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
-import io.morfly.pendant.descriptor.toArgument
+import io.morfly.pendant.descriptor.toNamedArgument
 import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.lang.BracketsKind
 import io.morfly.pendant.starlark.lang.type.*
@@ -53,7 +53,7 @@ class RoundFunctionGenerator(
             file += "\n\n"
             val newFunction = function.copy(
                 arguments = mutableListOf<NamedArgument>().also {
-                    it += function.vararg.toArgument()
+                    it += function.vararg.toNamedArgument()
                     it += function.arguments
                 },
                 vararg = null

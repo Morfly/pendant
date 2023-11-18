@@ -1,6 +1,6 @@
 package io.morfly.pendant.descriptor
 
-interface Argument {
+sealed interface Argument {
     val type: SpecifiedType
     val kotlinName: String
     val starlarkName: String
@@ -21,7 +21,7 @@ data class VariadicArgument(
     val isRequired: Boolean,
 ) : Argument
 
-fun VariadicArgument.toArgument(): NamedArgument =
+fun VariadicArgument.toNamedArgument(): NamedArgument =
     NamedArgument(
         kotlinName = kotlinName,
         starlarkName = "",

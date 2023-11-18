@@ -21,7 +21,7 @@ import io.morfly.pendant.descriptor.NamedArgument
 import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
-import io.morfly.pendant.descriptor.toArgument
+import io.morfly.pendant.descriptor.toNamedArgument
 import io.morfly.pendant.starlark.lang.BracketsKind
 import java.io.OutputStream
 import kotlin.reflect.KClass
@@ -71,7 +71,7 @@ class CurlyFunctionGenerator(
         val ctxClassName = function.annotatedClassName + "Context"
         val allArguments = mutableListOf<NamedArgument>().also {
             if (function.vararg != null && function.vararg.kotlinName.isNotBlank())
-                it += function.vararg.toArgument()
+                it += function.vararg.toNamedArgument()
             it += function.arguments.filter { arg -> arg.kotlinName.isNotBlank() }
         }
 
