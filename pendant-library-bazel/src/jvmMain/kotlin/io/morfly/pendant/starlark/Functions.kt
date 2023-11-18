@@ -35,7 +35,7 @@ import io.morfly.pendant.starlark.lang.type.*
 )
 private interface Glob {
 
-    @Argument(vararg = true, required = true)
+    @Argument(variadic = true, required = true)
     val include: ListType<Label?>
     val exclude: ListType<Label?>?
     val exclude_directories: NumberType?
@@ -67,7 +67,7 @@ private interface Package {
 )
 private interface ExportsFiles {
 
-    @Argument(vararg = true, required = true)
+    @Argument(variadic = true, required = true)
     val exports_files: List<Label?>
     val visibility: List<Label>?
     val licences: List<StringType>?

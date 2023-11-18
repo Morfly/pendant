@@ -23,7 +23,7 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 import kotlin.annotation.AnnotationTarget.CLASS
 import kotlin.annotation.AnnotationTarget.PROPERTY
 
-const val ARGUMENT_DEFAULT = "<default>"
+const val PENDANT_ARGUMENT_DEFAULT = "<default>"
 
 @Retention(RUNTIME)
 @Target(CLASS)
@@ -37,9 +37,10 @@ annotation class LibraryFunction(
 @Retention(RUNTIME)
 @Target(PROPERTY)
 annotation class Argument(
-    val name: String = ARGUMENT_DEFAULT,
+    val name: String = PENDANT_ARGUMENT_DEFAULT,
     val required: Boolean = false,
-    val vararg: Boolean = false,
+    val variadic: Boolean = false,
+    val implicit: Boolean = false,
 )
 
 @Retention(RUNTIME)

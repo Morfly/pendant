@@ -32,7 +32,7 @@ private interface CustomAndroidBinary {
 )
 private interface CustomGlob {
 
-    @Argument(vararg = true, required = true)
+    @Argument(variadic = true, required = true)
     val include: ListType<Label?>
 
     @Returns
