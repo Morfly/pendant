@@ -84,7 +84,7 @@ class RoundFunctionGenerator(
             if (function.vararg != null) {
                 val vararg = function.vararg
                 val comma = if (function.arguments.isNotEmpty()) ",\n" else ""
-                file += "${indent4}vararg ${vararg.shortName}: ${vararg.type.fullName}$comma"
+                file += "${indent4}vararg ${vararg.kotlinName}: ${vararg.type.fullName}$comma"
             }
             for (i in function.arguments.indices) {
                 val arg = function.arguments[i]
@@ -92,7 +92,7 @@ class RoundFunctionGenerator(
 
                 val defaultValue = if (!arg.isRequired) arg.type.defaultValue() else ""
 
-                file += "${indent4}${arg.shortName}: ${arg.type.fullName}$defaultValue$comma"
+                file += "${indent4}${arg.kotlinName}: ${arg.type.fullName}$defaultValue$comma"
             }
             file += "\n)$returnTypeSlot"
         }
@@ -111,11 +111,11 @@ class RoundFunctionGenerator(
         file += "${indent4}val $argsName = mutableListOf<Argument>().also {\n"
 
         if (function.vararg != null) {
-            val name = function.vararg.fullName
+            val name = function.vararg.kotlinName
             file += "${indent8}it += Argument(\"\", Expression($name.toList(), ::ListExpression))\n"
         }
         for (arg in function.arguments) {
-            val argName = arg.fullName
+            val argName = arg.kotlinName
 
             if (!arg.isRequired) {
                 val unspecifiedValue = UNSPECIFIED_VALUES_MAPPING[arg.type.actualType.qualifiedName]!!.simpleName
@@ -124,7 +124,7 @@ class RoundFunctionGenerator(
             }
             val element = ELEMENT_MAPPING[arg.type.actualType.qualifiedName]
             val elementBuilder = element?.let { ", ::$it" } ?: ""
-            file += "${indent8}it += Argument(\"${arg.underlyingName}\", Expression($argName$elementBuilder))\n"
+            file += "${indent8}it += Argument(\"${arg.starlarkName}\", Expression($argName$elementBuilder))\n"
         }
 
         file += "${indent4}}\n"

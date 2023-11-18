@@ -64,7 +64,7 @@ private interface MavenInstall {
 )
 private interface Artifact {
 
-    @Argument(underlyingName = "", required = true)
+    @Argument(name = "", required = true)
     val artifact: StringType
 
     @Returns

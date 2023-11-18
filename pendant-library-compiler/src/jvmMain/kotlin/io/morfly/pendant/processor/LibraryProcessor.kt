@@ -171,7 +171,7 @@ class LibraryGenerator(
 
             val arguments = annotation?.arguments?.toMap()
             val propertyName = property.simpleName.asString()
-            val starlarkArgName = arguments?.valueAsOrNull<String>(ARG_UNDERLYING_NAME)
+            val starlarkArgName = arguments?.valueAsOrNull<String>(ARG_NAME)
                 ?.takeIf { it != Argument.NAME_DEFAULT }
                 ?: propertyName
             val isRequired = arguments?.valueAsOrNull<Boolean>(ARG_REQUIRED) ?: ARG_REQUIRED_DEFAULT
@@ -198,16 +198,16 @@ class LibraryGenerator(
             if (isVararg) {
                 val typeDescriptor = visitTypeReference(property.type)
                 varargArgument = Vararg(
-                    shortName = propertyName,
-                    underlyingName = starlarkArgName,
+                    kotlinName = propertyName,
+                    starlarkName = starlarkArgName,
                     type = typeDescriptor.genericArguments.first(),
                     fullType = typeDescriptor,
                     isRequired = isRequired
                 )
             } else {
                 functionArguments += Arg(
-                    shortName = propertyName,
-                    underlyingName = starlarkArgName,
+                    kotlinName = propertyName,
+                    starlarkName = starlarkArgName,
                     type = visitTypeReference(property.type),
                     isRequired = isRequired
                 )
@@ -300,7 +300,7 @@ class LibraryGenerator(
         const val FUN_KIND = "kind"
         const val FUN_BRACKETS = "brackets"
 
-        const val ARG_UNDERLYING_NAME = "underlyingName"
+        const val ARG_NAME = "name"
         const val ARG_REQUIRED = "required"
         const val ARG_VARARG = "vararg"
 

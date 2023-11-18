@@ -65,9 +65,9 @@ class CurlyFunctionGenerator(
     private fun generateContext(file: OutputStream, function: GeneratedFunction): String {
         val ctxClassName = function.annotatedClassName + "Context"
         val allArguments = mutableListOf<Arg>().also {
-            if (function.vararg != null && function.vararg.shortName.isNotBlank())
+            if (function.vararg != null && function.vararg.kotlinName.isNotBlank())
                 it += function.vararg.toArgument()
-            it += function.arguments.filter { arg -> arg.shortName.isNotBlank() }
+            it += function.arguments.filter { arg -> arg.kotlinName.isNotBlank() }
         }
 
         file += "class $ctxClassName(\n"
@@ -75,7 +75,7 @@ class CurlyFunctionGenerator(
         file += "\n) : FunctionCallContext(modifiers) {\n"
         for (arg in allArguments) {
             file += indent4
-            file += "var ${arg.fullName}: ${arg.type.fullName} by fargs\n"
+            file += "var ${arg.kotlinName}: ${arg.type.fullName} by fargs\n"
         }
         file += "}\n"
 

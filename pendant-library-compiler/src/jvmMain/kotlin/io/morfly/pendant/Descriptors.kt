@@ -28,7 +28,7 @@ interface NameHolder {
     val qualifiedName: String?
 }
 
-sealed interface Descriptor : NameHolder
+sealed interface Descriptor
 
 data class GeneratedFile(
     override val shortName: String,
@@ -49,7 +49,7 @@ data class GeneratedFunction(
     val scope: Set<FunctionScope>,
     val kind: FunctionKind,
     val brackets: Set<BracketsKind>
-) : Descriptor {
+) : Descriptor, NameHolder {
     override val fullName: String = shortName
     override val qualifiedName: String? = null
 
@@ -58,32 +58,32 @@ data class GeneratedFunction(
 
 interface ArgumentDescriptor : Descriptor {
     val type: SpecifiedType
-    val underlyingName: String
+    val kotlinName: String
+    val starlarkName: String
 }
 
 data class Arg(
-    override val shortName: String,
-    override val underlyingName: String,
+    override val kotlinName: String,
+    override val starlarkName: String,
     override val type: SpecifiedType,
     val isRequired: Boolean,
-) : ArgumentDescriptor {
-    override val fullName = shortName
-    override val qualifiedName: String? = null
-}
+) : ArgumentDescriptor
 
 data class Vararg(
-    override val shortName: String,
-    override val underlyingName: String,
+    override val kotlinName: String,
+    override val starlarkName: String,
     override val type: SpecifiedType,
     val fullType: SpecifiedType,
     val isRequired: Boolean,
-) : ArgumentDescriptor {
-    override val fullName = shortName
-    override val qualifiedName: String? = null
-}
+) : ArgumentDescriptor
 
 fun Vararg.toArgument(): Arg =
-    Arg(shortName, underlyingName = "", fullType, isRequired)
+    Arg(
+        kotlinName = kotlinName,
+        starlarkName = "",
+        type = fullType,
+        isRequired = isRequired
+    )
 
 sealed interface TypeDescriptor : Descriptor
 
@@ -94,7 +94,7 @@ data class SpecifiedType(
     val isMarkedNullable: Boolean,
     private val actual: SpecifiedType?,
     val genericArguments: List<SpecifiedType>
-) : TypeDescriptor {
+) : TypeDescriptor, NameHolder {
     private val nullabilitySuffix = if (isMarkedNullable) "?" else ""
 
     override val fullName: String = if (genericArguments.isEmpty()) {
@@ -106,7 +106,7 @@ data class SpecifiedType(
     val actualType = actual ?: this
 }
 
-object DynamicType : TypeDescriptor {
+object DynamicType : TypeDescriptor, NameHolder {
     override val shortName = "<dynamic>"
     override val fullName = shortName
     override val qualifiedName: String? = null

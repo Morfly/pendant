@@ -36,7 +36,7 @@ annotation class LibraryFunction(
 @Retention(RUNTIME)
 @Target(PROPERTY)
 annotation class Argument(
-    val underlyingName: String = NAME_DEFAULT,
+    val name: String = NAME_DEFAULT,
     val required: Boolean = false,
     // TODO rename to implicit
     val vararg: Boolean = false,
