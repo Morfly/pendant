@@ -63,20 +63,20 @@ internal val nl: String = System.getProperty("line.separator")
 /**
  * Formats a syntax tree of Starlark elements to .
  */
-class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisitor<Appendable>, StarlarkFileFormatter {
+open class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisitor<Appendable>, StarlarkFileFormatter {
 
-    private val indent = " ".repeat(indentSize)
+    protected val indent = " ".repeat(indentSize)
 
-    private val _indents = hashMapOf(0 to "", 1 to indent)
+    protected val indentCache = hashMapOf(0 to "", 1 to indent)
 
-    private fun indent(position: Int): String {
+    protected fun indent(position: Int): String {
         require(position >= 0) { "Indent 'position' must be non-negative but was $position." }
 
-        return _indents[position] ?: synchronized(this) {
-            if (position in _indents) _indents[position]!!
+        return indentCache[position] ?: run {
+            if (position in indentCache) indentCache[position]!!
             else {
                 val value = indent.repeat(position)
-                _indents[position] = value
+                indentCache[position] = value
                 value
             }
         }
@@ -115,7 +115,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
         }
     }
 
-    private fun shouldInsertEmptyLine(prev: Statement?, curr: Statement): Boolean =
+    protected fun shouldInsertEmptyLine(prev: Statement?, curr: Statement): Boolean =
         when {
             prev == null -> false
             prev === EmptyLineStatement -> false
