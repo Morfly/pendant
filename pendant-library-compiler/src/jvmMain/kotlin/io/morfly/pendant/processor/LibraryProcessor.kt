@@ -39,6 +39,7 @@ import io.morfly.pendant.descriptor.SpecifiedType
 import io.morfly.pendant.descriptor.Type
 import io.morfly.pendant.descriptor.VariadicArgument
 import io.morfly.pendant.descriptor.VoidType
+import io.morfly.pendant.starlark.lang.ARGUMENT_DEFAULT
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Curly
 import io.morfly.pendant.starlark.lang.BracketsKind.Round
@@ -195,7 +196,7 @@ class LibraryGenerator(
             val arguments = annotation?.arguments?.toMap()
             val propertyName = property.simpleName.asString()
             val starlarkArgName = arguments?.valueAsOrNull<String>(Argument::name.name)
-                ?.takeIf { it != Argument.NAME_DEFAULT }
+                ?.takeIf { it != ARGUMENT_DEFAULT }
                 ?: propertyName
             val isRequired = arguments?.valueAsOrNull<Boolean>(Argument::required.name) ?: ARG_REQUIRED_DEFAULT
             val vararg = arguments?.valueAsOrNull<Boolean>(Argument::vararg.name) ?: ARG_VARARG_DEFAULT
