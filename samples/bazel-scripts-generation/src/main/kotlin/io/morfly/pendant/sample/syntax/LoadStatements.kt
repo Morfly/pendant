@@ -25,7 +25,7 @@ fun main() {
             repositories = DAGGER_REPOSITORIES
         )
 
-        // Dynamically reference loaded values
+        // Dynamically referenced loaded values
         load("@dagger//:workspace_defs.bzl", "DAGGER_ARTIFACTS", "DAGGER_REPOSITORIES")
 
         maven_install(
