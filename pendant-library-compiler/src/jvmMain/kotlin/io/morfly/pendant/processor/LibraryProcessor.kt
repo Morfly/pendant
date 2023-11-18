@@ -19,14 +19,22 @@ package io.morfly.pendant.processor
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.symbol.*
 import com.google.devtools.ksp.symbol.ClassKind.INTERFACE
+import com.google.devtools.ksp.symbol.KSAnnotated
+import com.google.devtools.ksp.symbol.KSAnnotation
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.KSTypeAlias
+import com.google.devtools.ksp.symbol.KSTypeReference
+import com.google.devtools.ksp.symbol.KSVisitorVoid
+import com.google.devtools.ksp.symbol.Variance
 import com.google.devtools.ksp.validate
-import io.morfly.pendant.*
-import io.morfly.pendant.descriptor.NamedArgument
+import io.morfly.pendant.FileGenerator
 import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFile
 import io.morfly.pendant.descriptor.GeneratedFunction
+import io.morfly.pendant.descriptor.NamedArgument
 import io.morfly.pendant.descriptor.SpecifiedType
 import io.morfly.pendant.descriptor.Type
 import io.morfly.pendant.descriptor.VariadicArgument
@@ -40,6 +48,14 @@ import io.morfly.pendant.starlark.lang.LibraryFunction
 import io.morfly.pendant.starlark.lang.ReturnKind
 import io.morfly.pendant.starlark.lang.Returns
 import io.morfly.pendant.starlark.lang.type.ListType
+import io.morfly.pendant.toBracketsKind
+import io.morfly.pendant.toDisplayableString
+import io.morfly.pendant.toFunctionCallKind
+import io.morfly.pendant.toFunctionScope
+import io.morfly.pendant.toMap
+import io.morfly.pendant.toReturnKind
+import io.morfly.pendant.valueAs
+import io.morfly.pendant.valueAsOrNull
 
 
 private typealias FilePath = String
@@ -105,10 +121,10 @@ class LibraryGenerator(
 
             val arguments = annotation.arguments.toMap()
 
-            val name = arguments.valueAs<String>(FUN_NAME)
-            val scope = arguments.valueAs<List<KSType>>(FUN_SCOPE).map { it.toFunctionScope() }
-            functionKind = arguments.valueAs<KSType>(FUN_KIND).toFunctionCallKind()
-            val brackets = arguments.valueAsOrNull<List<KSType>>(FUN_BRACKETS)
+            val name = arguments.valueAs<String>(LibraryFunction::name.name)
+            val scope = arguments.valueAs<List<KSType>>(LibraryFunction::scope.name).map { it.toFunctionScope() }
+            functionKind = arguments.valueAs<KSType>(LibraryFunction::kind.name).toFunctionCallKind()
+            val brackets = arguments.valueAsOrNull<List<KSType>>(LibraryFunction::brackets.name)
                 ?.mapTo(mutableSetOf()) { it.toBracketsKind() }
                 ?: FUN_BRACKETS_DEFAULT
 
@@ -178,11 +194,11 @@ class LibraryGenerator(
 
             val arguments = annotation?.arguments?.toMap()
             val propertyName = property.simpleName.asString()
-            val starlarkArgName = arguments?.valueAsOrNull<String>(ARG_NAME)
+            val starlarkArgName = arguments?.valueAsOrNull<String>(Argument::name.name)
                 ?.takeIf { it != Argument.NAME_DEFAULT }
                 ?: propertyName
-            val isRequired = arguments?.valueAsOrNull<Boolean>(ARG_REQUIRED) ?: ARG_REQUIRED_DEFAULT
-            val vararg = arguments?.valueAsOrNull<Boolean>(ARG_VARARG) ?: ARG_VARARG_DEFAULT
+            val isRequired = arguments?.valueAsOrNull<Boolean>(Argument::required.name) ?: ARG_REQUIRED_DEFAULT
+            val vararg = arguments?.valueAsOrNull<Boolean>(Argument::vararg.name) ?: ARG_VARARG_DEFAULT
             val isVararg = if (!vararg) vararg else {
                 when (actualQualifiedName) {
                     ListType::class.qualifiedName -> {
@@ -231,7 +247,7 @@ class LibraryGenerator(
             }
 
             val arguments = annotation.arguments.toMap()
-            val kind = arguments.valueAsOrNull<KSType>(RET_KIND)?.toReturnKind() ?: RET_KIND_DEFAULT
+            val kind = arguments.valueAsOrNull<KSType>(Returns::kind.name)?.toReturnKind() ?: RET_KIND_DEFAULT
 
             returnType = when (kind) {
                 ReturnKind.Type -> visitTypeReference(property.type)
@@ -302,16 +318,6 @@ class LibraryGenerator(
     }
 
     companion object {
-        const val FUN_NAME = "name"
-        const val FUN_SCOPE = "scope"
-        const val FUN_KIND = "kind"
-        const val FUN_BRACKETS = "brackets"
-
-        const val ARG_NAME = "name"
-        const val ARG_REQUIRED = "required"
-        const val ARG_VARARG = "vararg"
-
-        const val RET_KIND = "kind"
 
         val FUN_BRACKETS_DEFAULT = setOf(Round, Curly) // FIXME remove when KSP is able to parse annotation def values.
         const val ARG_REQUIRED_DEFAULT = false // FIXME remove when KSP is able to parse annotation default values.
