@@ -323,7 +323,7 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
         }
 
         acc += " in "
-        visit(element.iterable, position + 1, CONTINUE_LINE, acc)
+        visit(element.iterable, position, CONTINUE_LINE, acc)
     }
 
     override fun visit(element: Comprehension.If, position: Int, mode: PositionMode, acc: Appendable) {
