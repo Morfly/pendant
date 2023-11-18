@@ -28,7 +28,6 @@ import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFile
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
-import io.morfly.pendant.descriptor.TypeDescriptor
 import io.morfly.pendant.descriptor.Vararg
 import io.morfly.pendant.descriptor.VoidType
 import io.morfly.pendant.starlark.lang.type.ListType
@@ -90,7 +89,7 @@ class LibraryGenerator(
 
         private lateinit var functionKind: FunctionKind
         private val functionArguments = mutableListOf<Arg>()
-        private var returnType: TypeDescriptor? = null
+        private var returnType: io.morfly.pendant.descriptor.Type? = null
         private var varargArgument: Vararg? = null
 
         override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
