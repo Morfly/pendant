@@ -28,18 +28,18 @@ import io.morfly.pendant.descriptor.DynamicType
 import io.morfly.pendant.descriptor.GeneratedFile
 import io.morfly.pendant.descriptor.GeneratedFunction
 import io.morfly.pendant.descriptor.SpecifiedType
+import io.morfly.pendant.descriptor.Type
 import io.morfly.pendant.descriptor.Vararg
 import io.morfly.pendant.descriptor.VoidType
-import io.morfly.pendant.starlark.lang.type.ListType
 import io.morfly.pendant.starlark.lang.Argument
 import io.morfly.pendant.starlark.lang.BracketsKind.Curly
 import io.morfly.pendant.starlark.lang.BracketsKind.Round
 import io.morfly.pendant.starlark.lang.FunctionKind
 import io.morfly.pendant.starlark.lang.FunctionKind.Expression
 import io.morfly.pendant.starlark.lang.LibraryFunction
-import io.morfly.pendant.starlark.lang.ReturnKind.Dynamic
-import io.morfly.pendant.starlark.lang.ReturnKind.Type
+import io.morfly.pendant.starlark.lang.ReturnKind
 import io.morfly.pendant.starlark.lang.Returns
+import io.morfly.pendant.starlark.lang.type.ListType
 
 
 private typealias FilePath = String
@@ -89,7 +89,7 @@ class LibraryGenerator(
 
         private lateinit var functionKind: FunctionKind
         private val functionArguments = mutableListOf<Arg>()
-        private var returnType: io.morfly.pendant.descriptor.Type? = null
+        private var returnType: Type? = null
         private var varargArgument: Vararg? = null
 
         override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
@@ -234,8 +234,8 @@ class LibraryGenerator(
             val kind = arguments.valueAsOrNull<KSType>(RET_KIND)?.toReturnKind() ?: RET_KIND_DEFAULT
 
             returnType = when (kind) {
-                Type -> visitTypeReference(property.type)
-                Dynamic -> DynamicType
+                ReturnKind.Type -> visitTypeReference(property.type)
+                ReturnKind.Dynamic -> DynamicType
             }
             println("TTAGG visitReturnProperty: $returnType")
 
@@ -316,6 +316,6 @@ class LibraryGenerator(
         val FUN_BRACKETS_DEFAULT = setOf(Round, Curly) // FIXME remove when KSP is able to parse annotation def values.
         const val ARG_REQUIRED_DEFAULT = false // FIXME remove when KSP is able to parse annotation default values.
         const val ARG_VARARG_DEFAULT = false // FIXME remove when KSP is able to parse annotation default values.
-        val RET_KIND_DEFAULT = Type // FIXME remove when KSP is able to parse annotation default values.
+        val RET_KIND_DEFAULT = ReturnKind.Type // FIXME remove when KSP is able to parse annotation default values.
     }
 }
