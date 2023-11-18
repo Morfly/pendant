@@ -18,10 +18,22 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.element.*
+import io.morfly.pendant.starlark.element.AnyReference
+import io.morfly.pendant.starlark.element.BooleanReference
+import io.morfly.pendant.starlark.element.DictionaryReference
+import io.morfly.pendant.starlark.element.ListReference
+import io.morfly.pendant.starlark.element.LoadStatement
+import io.morfly.pendant.starlark.element.NumberReference
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.StringReference
+import io.morfly.pendant.starlark.element.TupleReference
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
-import io.morfly.pendant.starlark.lang.type.*
+import io.morfly.pendant.starlark.lang.type.Key
+import io.morfly.pendant.starlark.lang.type.NumberType
+import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.TupleType
+import io.morfly.pendant.starlark.lang.type.Value
 import kotlin.reflect.KClass
 import kotlin.reflect.typeOf
 
@@ -86,7 +98,6 @@ class _LoadStatementBuilder3 internal constructor(
         Triple(_newReference(symbol1), _newReference(symbol2), _newReference(symbol3))
 }
 
-@OptIn(ExperimentalStdlibApi::class)
 inline fun <reified S> _newReference(name: String): S =
     when {
         S::class.java == Unit::class.java -> AnyReference("None")
@@ -105,4 +116,3 @@ inline fun <reified S> _newReference(name: String): S =
 
         else -> AnyReference(name)
     } as S
-
