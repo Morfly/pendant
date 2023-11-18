@@ -16,8 +16,38 @@
 
 package io.morfly.pendant.starlark.format
 
-import io.morfly.pendant.starlark.element.*
-import io.morfly.pendant.starlark.element.PositionMode.*
+import io.morfly.pendant.starlark.element.Argument
+import io.morfly.pendant.starlark.element.Assignment
+import io.morfly.pendant.starlark.element.BinaryOperation
+import io.morfly.pendant.starlark.element.BooleanLiteral
+import io.morfly.pendant.starlark.element.Comment
+import io.morfly.pendant.starlark.element.Comprehension
+import io.morfly.pendant.starlark.element.DictionaryComprehension
+import io.morfly.pendant.starlark.element.DictionaryExpression
+import io.morfly.pendant.starlark.element.DynamicExpression
+import io.morfly.pendant.starlark.element.Element
+import io.morfly.pendant.starlark.element.ElementVisitor
+import io.morfly.pendant.starlark.element.EmptyLineStatement
+import io.morfly.pendant.starlark.element.ExpressionStatement
+import io.morfly.pendant.starlark.element.FloatLiteral
+import io.morfly.pendant.starlark.element.FunctionCall
+import io.morfly.pendant.starlark.element.IntegerLiteral
+import io.morfly.pendant.starlark.element.ListComprehension
+import io.morfly.pendant.starlark.element.ListExpression
+import io.morfly.pendant.starlark.element.LoadStatement
+import io.morfly.pendant.starlark.element.NoneValue
+import io.morfly.pendant.starlark.element.PositionMode
+import io.morfly.pendant.starlark.element.PositionMode.CONTINUE_LINE
+import io.morfly.pendant.starlark.element.PositionMode.NEW_LINE
+import io.morfly.pendant.starlark.element.PositionMode.SINGLE_LINE
+import io.morfly.pendant.starlark.element.RawStatement
+import io.morfly.pendant.starlark.element.RawText
+import io.morfly.pendant.starlark.element.Reference
+import io.morfly.pendant.starlark.element.SliceExpression
+import io.morfly.pendant.starlark.element.StarlarkFile
+import io.morfly.pendant.starlark.element.Statement
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.element.TupleExpression
 
 
 /**
@@ -153,11 +183,13 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
         }
 
         val list = element.value
-        when (list.size) {
-            0 -> acc += "$firstLineIndent[]"
-            1 -> {
+        when {
+            element.shouldFormatSingleLine() -> {
                 acc += "$firstLineIndent["
-                visit(list.first(), position, CONTINUE_LINE, acc)
+                list.forEachIndexed { i, item ->
+                    visit(item, position, CONTINUE_LINE, acc)
+                    if (i < list.lastIndex) acc += ", "
+                }
                 acc += ']'
             }
 
@@ -314,12 +346,13 @@ class StarlarkCodeFormatter(indentSize: Int = DEFAULT_INDENT_SIZE) : ElementVisi
         }
         val name = element.name
         val args = element.args
-        when (args.size) {
-            0 -> acc += "$name()"
-            1 -> {
-                val arg = args.first()
+        when {
+            element.shouldFormatSingleLine() -> {
                 acc += "$name("
-                visit(arg, position, CONTINUE_LINE, acc)
+                args.forEachIndexed { i, item ->
+                    visit(item, position, CONTINUE_LINE, acc)
+                    if (i < args.lastIndex) acc += ", "
+                }
                 acc += ')'
             }
 
