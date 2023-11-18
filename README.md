@@ -1,7 +1,7 @@
 # Pendant
 
-Pendant - is a declarative Starlark code generator written in Kotlin.
-Provides a Kotlin DSL that looks exactly like Starlark, for generating Bazel scripts with type-safety in mind.
+Pendant — is a declarative Starlark code generator written in Kotlin.
+Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in a type-safe fashion.
 
 ## Installation
 
@@ -10,16 +10,17 @@ Provides a Kotlin DSL that looks exactly like Starlark, for generating Bazel scr
 ```kotlin
 dependencies {
     // Starlark code generator.
-    implementation("io.morfly.pendant:pendant-starlark:<version>")
+    implementation("io.morfly.pendant:pendant-starlark:x.y.z")
     // Library of Bazel functions.
-    implementation("io.morfly.pendant:pendant-library-bazel:<version>")
+    implementation("io.morfly.pendant:pendant-library-bazel:x.y.z>")
+
+    // Optional. Generator for custom Starlark functions.
+    ksp("io.morfly.pendant:pendant-library-compiler:x.y.z")
 }
 ```
 
 ## How to Use
-Let's see how Pendant could be used to generate a simple `BUILD.bazel` file that declares an Android library target with Bazel.
-
-Notice, that the code below is a valid Kotlin DSL which looks almost exactly as Starlark syntax itself. Moreover, the type-safety of the code is fully preserved.
+Below you can find an example of a simple `BUILD.bazel` file generation with Pendant. The code below is a Kotlin DSL which replicates Starlark syntax as close as possible.
 ```kotlin
 // Kotlin
 val builder = BUILD.bazel {
@@ -37,7 +38,7 @@ val file = builder.build()
 file.write("path/in/file/system")
 ```
 
-As a result, a `BUILD` file with the following content is generated. As you can see, Pendant takes care of the code formatting, so you don't have to do it yourself.
+As a result, a `BUILD` file with the following content is generated. Pendant takes care of the code formatting, so you don't have to do it yourself.
 
 ```python
 # Generated Starlark
@@ -53,12 +54,12 @@ kt_android_library(
 ```
 
 ## Code generation API
-Let's take a deeper look at Pendant API and how can you generate files with Starlark code. 
+Pendant provides an API for generating different types of Starlark files. Once entered the file context, you can use the Kotlin DSL to generate corresponding Starlark statements.
+Depending on the file type, a different set of Starlark syntax features and functions is available.
 
 ### Building Starlark files
-First, let's see how can we enter the DSL context and define what type of file we're generating.
 
-For example, to generate `BUILD.bazel` files, the following expression must be used.
+To generate `BUILD.bazel` files, the following expression must be used.
 
 ```kotlin
 val builder = BUILD.bazel { ... }
@@ -89,7 +90,7 @@ val builder = "starlark_file".bzl { ... }
 ```
 
 ### Write files to file system
-Each function demonstrated above returns an instance of a file builder. In order to write it to file it must be first built using `build()` function.
+Each function demonstrated above returns a `FileContext` instance that serves as a file builder. In order to write it to file it must be first built using `build()` function.
 
 ```kotlin
 val file = builder.build()
@@ -111,26 +112,26 @@ val starlarkCode: String = file.format()
 ```
 
 ## Starlark syntax elements
-Now, the most important part. In this section you're going to see what Kotlin DSL components Pendant provides for a declarative and type-safe Starlark code generation.
+Now, the most important part. In this section we will take a closer look at Kotlin DSL components that represent corresponding Starlark syntax elements, for code generation. 
 
 ### Variable assignments
-Variable declaration and assignment is an essential feature of Starlark language. Therefore, Pendant must provide an API for generating it. Use `by` operator to do it.
-> You might ask, why aren't we using `=` operator in this case? This is because the latter operator will perform a variable assignment operation while compiling the Kotlin code. Therefore, this operation will be absent in the generated Starlark code.
+Variable declaration and assignment is an essential feature of Starlark language. Use `by` operator to do it.
+> You might ask, why aren't we using `=` operator in this case? 
+> The latter operator will perform a variable assignment operation while compiling the Kotlin code. However, what we need is generating the statement in Starlark rather than executing it in Kotlin.
 
 ```kotlin
 // Kotlin
-val NAME by "my-library"
+val NAME by "app"
 ```
 ```python
 # Generated Starlark
-NAME = "my_library"
+NAME = "app"
 ```
 What's important is that this operation is type safe, meaning `NAME` is a variable of string type on the Kotlin DSL level and could be used further accordingly.
-As a result, the following Starlark statement is generated
 
 ### List expressions
-List expressions are part of Starlark syntax. Unfortunately, there is no equivalent for such an expression in Kotlin. 
-However, the `list[]` function could be used to achieve the same reuslt.
+One of the syntax elements of Starlark are list expressions. There is no equivalent for such an expression in Kotlin. 
+However, the `list[]` function could be used to achieve the same result.
 ```kotlin
 // Kotlin
 val SRCS by list["io/morfly/Main.kt"]
@@ -140,7 +141,7 @@ val SRCS by list["io/morfly/Main.kt"]
 SRCS = ["io/morfly/Main.kt"]
 ```
 
-Regular `listOf` function from Kotlin also works perfectly well. However, having `list[]` function is useful when you're copy-pasting actual Starlark code in your Kotlin file. This way you would need to do less editing to make it compilable in your code generator program. 
+Regular `listOf` function from Kotlin standard library also works perfectly well. However, having `list[]` function is convenient when you're copy-pasting actual Starlark code in your Kotlin file. This way you would need to do less editing to make it compilable in your code generator program. 
 
 ### Dictionary expressions
 Similarly to list expressions, Kotlin does not have dictionary expressions in its syntax. However, the `dict` function could be used to achieve the same result.
@@ -166,10 +167,33 @@ val MANIFEST_VALUES by dict { "minSdk" `+` "Version" to "2" `+` "3"}
 MANIFEST_VALUES = { "minSdk" + "Version" : "2" + "3" }
 ```
 
+#### Short form
+In addition, in some cases it's possible to use a shorted form of Kotlin DSL for dictionary expressions. If followed by `` `=` `` or `` `+` `` operators (with backticks) `dict` keyword could be omitted.
+
+```kotlin
+// Kotlin
+val MANIFEST_VALUES by dict { } `+` { "minSdkVersion" to "23" }
+
+android_binary {
+    "manifest_values" `=` { "minSdkVersion" to "23" }
+}
+```
+
+```kotlin
+// Generated Starlark
+MANIFEST_VALUES = {} + {"minSdkVersion": "23"}
+
+android_binary(
+    name = "app",
+    manifest_values = {"minSdkVersion": "23"},
+)
+```
+
 ### Concatenations
 Using `` `+` `` function with backticks you could generate concatenation expressions. 
 
->You might ask, why aren't we using just a regular `+`operator in this case? This is because the latter operator will perform a concatenation operation while compiling the Kotlin code. Therefore, the `+` operator will be absent in the generated Starlark code. 
+> You might ask, why aren't we using a regular `+` operator in this case?
+> The latter operator will perform a variable assignment operation while compiling the Kotlin code. However, what we need is generating the statement in Starlark rather than executing it in Kotlin.
 
 
 ```kotlin
@@ -184,7 +208,8 @@ ARTIFACTS = ["@maven//:androidx_compose_runtime_runtime"]
 
 DEPS = ARTIFACTS + ["//my-library"]
 ```
-As you can see, you could use concatenations with varouus types of expressions, like list expressions, variable references, list comprehensions, etc. This operation is completely type-safe. 
+As you can see, you could use concatenations with varouus types of expressions, like list expressions, variable references, list comprehensions, etc. 
+This operation is type-safe in all these cases. 
 
 ### Function calls
 
@@ -194,36 +219,38 @@ The easiest way is to use Starlark or Bazel functions available directly in Pend
 
 ```kotlin
 // Kotlin
-kt_android_library(
-    name = "my-library",
+android_binary(
+    name = "app",
     srcs = glob("src/main/kotlin/**/*.kt"),
-    deps = ARTIFACTS `+` ["//another-library"],
+    deps = ARTIFACTS `+` ["//my-library"],
     manifest = "src/main/AndroidManifest.xml"
 )
 ```
 Each function in the library is available in 2 variations: with round brackets `()`, and with curly brackets `{}`.
 The latter is especially useful if you need more customization.
 
-For example, in the example below, you could use custom parameters which are not part of Pendant library. This might come in handy if a corresponding Starlark function was updated with new arguments which are not present in Pendant.
+For example, you could use custom parameters which are not part of Pendant library. 
+
 ```kotlin
 // Kotlin
-kt_android_library {
-    name = "my-library"
-    "custom_arg" `=` "value"
+android_binary {
+    name = "app"
+    "manifest_values" `=` { "minSdkVersion" to "23" }
 }
 ```
-Moreover, you could declare calls of functions which are completely absent in Pendant library like whown below.
+Moreover, you could declare calls of functions which are completely absent in Pendant library like shown below.
 ```kotlin
 // Kotlin
-"custom_function" {
-    "custom_arg" `=` "value"
+"android_binary" {
+    "name" `=` "app"
+    "manifest_values" `=` { "minSdkVersion" to "23" }
 }
 ```
-One more bonus of generating function calls using curly brackets `{}` is that the order of parameters in the call is preserved the way you specify them on Kotlin level.
+One more bonus of generating function calls using curly brackets `{}` is that it preserves the order of passed arguments the way you specify them.
 
 Alternatively, dynamic function calls could be used for functions with no arguments.
 ```kotlin
-"custom_function"()
+"glob"()
 ```
 
 #### Function call expressions
@@ -240,12 +267,12 @@ val SRCS by glob("src/main/kotlin/**/*.kt")
 # Generated Starlark
 SRCS = glob(["src/main/kotlin/**/*.kt"])
 ```
-You could use dynamic API for there types of functions as well, just make sure to explicitly specify the return type as shown below.
+You could use dynamic API for these types of functions as well. Make sure to explicitly specify the return type.
 ```kotlin
 // Kotlin
 import io.morfly.pendant.starlark.lang.feature.invoke
 
-val SRCS = "glob"<ListType<StringType>>("src/main/kotlin/**/*.kt")
+val SRCS by "glob"<ListType<StringType>>("src/main/kotlin/**/*.kt")
 ```
 ```python
 # Generated Starlark
@@ -253,10 +280,25 @@ SRCS = glob(["src/main/kotlin/**/*.kt"])
 ```
 > You might need to manually import the `io.morfly.pendant.starlark.lang.feature.invoke`function from Pendant for dynamic function calls with return values. 
 
+If you need to generate a function call with named arguments, use curly brackets `{}`.
+
+```kotlin
+// Kotlin
+import io.morfly.pendant.starlark.lang.feature.invoke
+
+val SRCS by "glob"<ListType<StringType>>{
+    "include" `=` list["src/main/kotlin/**/*.kt"]
+}
+```
+```python
+# Generated Starlark
+SRCS = glob(include = ["src/main/kotlin/**/*.kt"])
+```
+
 > Dynamic function calls that return values rely on context receivers, a feature introduced in recent versions of Kotlin. If you need to use it as part of Gradle plugin or scripts, it might not be supported, as Gradle uses older Kotlin versions.  
 
 #### Type-safe API for custom functions
-TODO
+Pendant also allows you to generate a Kotlin DSL for custom Starlark functions. Refer to TODO section to learn more.
 
 ### List comprehensions
 Another powerful Starlark feature for building lists is list comprehensions. Use combination of `` `in` `` and `take` operators to generate them with Pendant.
@@ -264,7 +306,7 @@ Another powerful Starlark feature for building lists is list comprehensions. Use
 // Kotlin
 val CLASSES by list["MainActivity", "MainViewModel"]
 
-val SRCS by "name" `in` CLASSES take { it `+` ".kt" }
+val SRCS by "name" `in` CLASSES take { name -> name `+` ".kt" }
 ```
 
 ```python
@@ -297,7 +339,7 @@ MATRIX = [
 
 NUMBERS = [number for list in MATRIX for number in list]
 ```
-Alternatively, Pendant supports another type of nested comprehensions as shown below.
+Alternatively, Pendant supports another variation of nested comprehensions as shown below.
 ```kotlin
 import io.morfly.pendant.starlark.lang.feature.invoke
 
@@ -375,7 +417,7 @@ maven_install(
     repositories = ListReference<StringType>("DAGGER_REPOSITORIES")
 )
 ```
-It is possible to use `StringReference`, `NumberReference`, `BooleanReference`, `ListReference`, `DicrionaryReference`, `TupleReference` or `AnyReference` to refer to imported values.
+You can use `StringReference`, `NumberReference`, `BooleanReference`, `ListReference`, `DicrionaryReference`, `TupleReference` or `AnyReference` to refer to imported values.
 
 ### Raw code injection
 If you need more freedom with code generation or formatting you could always inject raw strings as part of the generated code.
@@ -400,7 +442,11 @@ SRCS = glob(["src/main/kotlin/**/*.kt"])
 ```
 
 ## Modifiers
-Sometimes, you might need to modify the contents of the file you're generating externally
+Modifiers is a flexible mechanism that allows you to externally modify a file builder outside of its body.
+
+Each Kotlin DSL element with a body surrounded by curly brackets `{}` could be modified.
+To do so, you need to assign it a unique `_id`.
+
 ```kotlin
 // Kotlin
 val builder = BUILD.bazel {
@@ -414,13 +460,14 @@ val builder = BUILD.bazel {
     }
 }
 ```
+Then, use `onContext` API to inject additional code in the corresponding DSL context.
+
 ```kotlin
 // Kotlin
 builder.onContext<BuildContext>(id = "build_file") {
     android_binary(
         name = "app",
         deps = list[":my-library"]
-        ...
     )
 }
 ```
@@ -431,9 +478,6 @@ builder.onContext<AndroidLibraryContext>(id = "android_library_target") {
     deps = list["@maven//:androidx_compose_runtime_runtime"]
 }
 ```
-```kotlin
-val file = builder.build()
-```
 
 ```python
 # Generated Starlark
@@ -443,4 +487,50 @@ android_library(
 )
 ```
 
+### Checkpoints
+The code added by modifiers is always added at the end of the context block. However, with checkpoints you can precisely control where the code from modifiers is injected.  
+
+```kotlin
+// Kotlin
+val builder = BUILD.bazel {
+    _id = "build_file"
+
+    val DEPS by list["@maven//:androidx_compose_runtime_runtime"]
+
+    _checkpoint("middle")
+
+    android_library(
+        name = "my-library",
+        deps = DEPS
+    )
+}
+```
+
+```kotlin
+// Kotlin
+builder.onContext<BuildContext>(id = "build_file", checkpoint = "middle") {
+    android_binary(
+        name = "app",
+        deps = list["my-library"]
+    )
+}
+```
+
+```python
+# Generated Starlark
+DEPS = ["@maven//:androidx_compose_runtime_runtime"]
+
+android_binary(
+    name = "app",
+    deps = ["my-library"],
+)
+
+android_library(
+    name = "my-library",
+    deps = DEPS,
+)
+```
+
+
 ## Generating DSL for custom functions
+
