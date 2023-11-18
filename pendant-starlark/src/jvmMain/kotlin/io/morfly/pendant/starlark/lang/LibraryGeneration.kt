@@ -30,7 +30,6 @@ annotation class LibraryFunction(
     val scope: Array<FunctionScope>,
     val kind: FunctionKind,
     val brackets: Array<BracketsKind> = [Round, Curly],
-    val doc: String = ""// TODO implement documentation generation
 )
 
 @Retention(RUNTIME)
@@ -38,9 +37,7 @@ annotation class LibraryFunction(
 annotation class Argument(
     val name: String = NAME_DEFAULT,
     val required: Boolean = false,
-    // TODO rename to implicit
     val vararg: Boolean = false,
-    val inline: Boolean = false // TODO implement shortened syntax for dictionary args
 ) {
     companion object {
         const val NAME_DEFAULT = "<default>"
