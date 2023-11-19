@@ -80,7 +80,7 @@ private interface ExportsFiles {
 )
 private interface Select {
 
-    @Argument(required = true)
+    @Argument(required = true, implicit = true)
     val select: Map<Key, Value>
     val no_match_error: StringType?
 

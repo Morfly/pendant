@@ -205,6 +205,9 @@ class LibraryGenerator(
             val variadic = arguments?.valueAsOrNull<Boolean>(Argument::variadic.name)
                 ?: defaults?.valueAs<Boolean>(Argument::variadic.name)
                 ?: false
+            val implicit = arguments?.valueAsOrNull<Boolean>(Argument::implicit.name)
+                ?: defaults?.valueAs<Boolean>(Argument::implicit.name)
+                ?: false
 
             val isVararg = if (variadic) {
                 when (actualQualifiedName) {
@@ -237,7 +240,7 @@ class LibraryGenerator(
             } else {
                 functionArguments += NamedArgument(
                     kotlinName = kotlinName,
-                    starlarkName = starlarkName,
+                    starlarkName = if (implicit) "" else starlarkName,
                     type = visitTypeReference(property.type),
                     isRequired = required
                 )
