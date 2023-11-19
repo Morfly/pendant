@@ -39,13 +39,11 @@ import io.morfly.pendant.descriptor.SpecifiedType
 import io.morfly.pendant.descriptor.Type
 import io.morfly.pendant.descriptor.VariadicArgument
 import io.morfly.pendant.descriptor.VoidType
-import io.morfly.pendant.starlark.lang.PENDANT_ARGUMENT_DEFAULT
 import io.morfly.pendant.starlark.lang.Argument
-import io.morfly.pendant.starlark.lang.BracketsKind.Curly
-import io.morfly.pendant.starlark.lang.BracketsKind.Round
 import io.morfly.pendant.starlark.lang.FunctionKind
 import io.morfly.pendant.starlark.lang.FunctionKind.Expression
 import io.morfly.pendant.starlark.lang.LibraryFunction
+import io.morfly.pendant.starlark.lang.PENDANT_ARGUMENT_DEFAULT
 import io.morfly.pendant.starlark.lang.ReturnKind
 import io.morfly.pendant.starlark.lang.Returns
 import io.morfly.pendant.starlark.lang.type.ListType
@@ -121,13 +119,14 @@ class LibraryGenerator(
             }
 
             val arguments = annotation.arguments.toMap()
+            val defaults = annotation.defaultArguments.toMap()
 
             val name = arguments.valueAs<String>(LibraryFunction::name.name)
-            val scope = arguments.valueAs<List<KSType>>(LibraryFunction::scope.name).map { it.toFunctionScope() }
+            val scope = arguments.valueAs<List<KSType>>(LibraryFunction::scope.name).map(KSType::toFunctionScope)
             functionKind = arguments.valueAs<KSType>(LibraryFunction::kind.name).toFunctionCallKind()
-            val brackets = arguments.valueAsOrNull<List<KSType>>(LibraryFunction::brackets.name)
-                ?.mapTo(mutableSetOf()) { it.toBracketsKind() }
-                ?: FUN_BRACKETS_DEFAULT
+            val brackets =
+                arguments.valueAsOrNull<List<KSType>>(LibraryFunction::brackets.name)?.map(KSType::toBracketsKind)
+                    ?: defaults.valueAs<List<KSType>>(LibraryFunction::brackets.name).map(KSType::toBracketsKind)
 
             classDeclaration.getAllProperties()
                 .filter { it.validate() }
@@ -157,7 +156,7 @@ class LibraryGenerator(
                 returnType = returnType ?: VoidType,
                 scope = scope.toSet(),
                 kind = functionKind,
-                brackets
+                brackets = brackets.toSet()
             )
         }
 
@@ -194,13 +193,20 @@ class LibraryGenerator(
                 .qualifiedName!!.asString()
 
             val arguments = annotation?.arguments?.toMap()
-            val propertyName = property.simpleName.asString()
-            val starlarkArgName = arguments?.valueAsOrNull<String>(Argument::name.name)
+            val defaults = annotation?.defaultArguments?.toMap()
+
+            val kotlinName = property.simpleName.asString()
+            val starlarkName = arguments?.valueAsOrNull<String>(Argument::name.name)
                 ?.takeIf { it != PENDANT_ARGUMENT_DEFAULT }
-                ?: propertyName
-            val isRequired = arguments?.valueAsOrNull<Boolean>(Argument::required.name) ?: ARG_REQUIRED_DEFAULT
-            val vararg = arguments?.valueAsOrNull<Boolean>(Argument::variadic.name) ?: ARG_VARARG_DEFAULT
-            val isVararg = if (!vararg) vararg else {
+                ?: kotlinName
+            val required = arguments?.valueAsOrNull<Boolean>(Argument::required.name)
+                ?: defaults?.valueAs<Boolean>(Argument::required.name)
+                ?: false
+            val variadic = arguments?.valueAsOrNull<Boolean>(Argument::variadic.name)
+                ?: defaults?.valueAs<Boolean>(Argument::variadic.name)
+                ?: false
+
+            val isVararg = if (variadic) {
                 when (actualQualifiedName) {
                     ListType::class.qualifiedName -> {
                         if (varargArgument != null) {
@@ -217,23 +223,23 @@ class LibraryGenerator(
                         return
                     }
                 }
-            }
+            } else false
 
             if (isVararg) {
                 val typeDescriptor = visitTypeReference(property.type)
                 varargArgument = VariadicArgument(
-                    kotlinName = propertyName,
-                    starlarkName = starlarkArgName,
+                    kotlinName = kotlinName,
+                    starlarkName = starlarkName,
                     type = typeDescriptor.genericArguments.first(),
                     fullType = typeDescriptor,
-                    isRequired = isRequired
+                    isRequired = required
                 )
             } else {
                 functionArguments += NamedArgument(
-                    kotlinName = propertyName,
-                    starlarkName = starlarkArgName,
+                    kotlinName = kotlinName,
+                    starlarkName = starlarkName,
                     type = visitTypeReference(property.type),
-                    isRequired = isRequired
+                    isRequired = required
                 )
             }
         }
@@ -248,18 +254,18 @@ class LibraryGenerator(
             }
 
             val arguments = annotation.arguments.toMap()
-            val kind = arguments.valueAsOrNull<KSType>(Returns::kind.name)?.toReturnKind() ?: RET_KIND_DEFAULT
+            val defaults = annotation.defaultArguments.toMap()
+
+            val kind = arguments.valueAsOrNull<KSType>(Returns::kind.name)?.toReturnKind()
+                ?: defaults.valueAs<KSType>(Returns::kind.name).toReturnKind()
 
             returnType = when (kind) {
                 ReturnKind.Type -> visitTypeReference(property.type)
                 ReturnKind.Dynamic -> DynamicType
             }
-            println("TTAGG visitReturnProperty: $returnType")
-
         }
 
         private fun visitTypeReference(typeRef: KSTypeReference, visitGenericArguments: Boolean = true): SpecifiedType {
-            // validation
             val typeName = typeRef.findActualType().getOrResolve().declaration.qualifiedName!!.asString()
             if (!typeValidator.validate(typeName)) {
                 val allowedTypes = typeValidator.allowedTypes.toDisplayableString()
@@ -276,7 +282,6 @@ class LibraryGenerator(
                         logger.error(message, arg)
                     }
                     arg.type?.let { ref ->
-                        // validation
                         val typeArgName = ref.findActualType().getOrResolve().declaration.qualifiedName?.asString()
                         if (!typeValidator.validate(typeName, typeArgName)) {
                             val allowedTypes = typeValidator.allowedTypeArguments.toDisplayableString()
@@ -284,7 +289,7 @@ class LibraryGenerator(
                                 "Invalid generic type argument '$typeArgName'. \nAllowed types are: \n${allowedTypes}"
                             logger.error(message, ref)
                         }
-                        genericArguments += visitTypeReference(ref, visitGenericArguments)
+                        genericArguments += visitTypeReference(ref, visitGenericArguments = true)
                     }
                 }
             }
@@ -316,13 +321,5 @@ class LibraryGenerator(
                 is KSTypeAlias -> declaration.findActualType()
                 else -> this
             }
-    }
-
-    companion object {
-
-        val FUN_BRACKETS_DEFAULT = setOf(Round, Curly) // FIXME remove when KSP is able to parse annotation def values.
-        const val ARG_REQUIRED_DEFAULT = false // FIXME remove when KSP is able to parse annotation default values.
-        const val ARG_VARARG_DEFAULT = false // FIXME remove when KSP is able to parse annotation default values.
-        val RET_KIND_DEFAULT = ReturnKind.Type // FIXME remove when KSP is able to parse annotation default values.
     }
 }
