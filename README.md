@@ -305,7 +305,7 @@ SRCS = glob(include = ["src/main/kotlin/**/*.kt"])
 > Dynamic function calls that return values rely on context receivers, a feature introduced in recent versions of Kotlin. If you need to use it as part of Gradle plugin or scripts, it might not be supported, as Gradle uses older Kotlin versions.  
 
 #### Type-safe API for custom functions
-Pendant also allows you to generate a Kotlin DSL for custom Starlark functions. Refer to TODO section to learn more.
+Pendant also allows you to generate a Kotlin DSL for custom Starlark functions. Learn how to [generate Kotlin DSL for custom Starlark functions](#generate-kotlin-dsl-for-custom-starlark-functions) in a corresponding section.
 
 ### List comprehensions
 Another powerful Starlark feature for building lists is list comprehensions. Use combination of `` `in` `` and `take` operators to generate them with Pendant.
@@ -366,7 +366,7 @@ SRCS = [
 
 
 ### Slices
-
+To generate Starlark slices use the following syntax.
 ```kotlin
 // Kotlin
 "abc.kt"[0..-3]
@@ -559,7 +559,7 @@ Declare an interface, where each its field will represent a corresponding argume
     scope = [FunctionScope.Build],
     kind = FunctionKind.Statement
 )
-private interface CustomAndroidBinary {
+interface CustomAndroidBinary {
 
     @Argument(required = true)
     val name: Name
@@ -607,7 +607,7 @@ To specify a return type declare a property annotated with `@Returns`. The retur
     scope = [FunctionScope.Build],
     kind = FunctionKind.Expression
 )
-private interface CustomGlob {
+interface CustomGlob {
 
     @Argument(variadic = true)
     val include: ListType<Label?>
