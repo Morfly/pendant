@@ -38,9 +38,8 @@ dependencies {
 ```
 
 ## Overview
-
-Below you can find an example of a simple `BUILD.bazel` file generation with Pendant. The code below is a Kotlin DSL
-which replicates Starlark syntax as close as possible.
+To generate Starlark files Pendant provides a Kotlin DSL that replicates Starlark syntax as close as possible.
+Here is how you can generate a `BUILD.bazel` file with Pendant.
 
 ```kotlin
 // Kotlin
