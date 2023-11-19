@@ -8,7 +8,7 @@ Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in 
 - [Generate Starlark files](#generate-starlark-files)
 - [Starlark syntax elements](#starlark-syntax-elements)
 - [Modifiers](#modifiers)
-- [Generating Kotlin DSL for custom Starlark functions](#generating-kotlin-dsl-for-custom-starlark-functions)
+- [Generate Kotlin DSL for custom Starlark functions](#generate-kotlin-dsl-for-custom-starlark-functions)
 
 ## Installation
 
@@ -538,8 +538,7 @@ android_library(
 )
 ```
 
-
-## Generating Kotlin DSL for custom Starlark functions
+## Generate Kotlin DSL for custom Starlark functions
 The Kotlin DSL for Starlark/Bazel library functions in Pendant is generated using a library generation API. 
 In fact, you can generate an additional DSL for any custom function you like.
 
