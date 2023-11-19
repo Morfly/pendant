@@ -3,12 +3,12 @@
 Pendant — is a declarative Starlark code generator written in Kotlin.
 Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in a type-safe fashion.
 
-- [Installation]()
-- [How to use]()
-- [Generate Starlark files]()
-- [Starlark syntax elements]()
-- [Modifiers]()
-- [Generating Kotlin DSL for custom Starlark functions]()
+- [Installation](#installation)
+- [How to use](#how-to-use)
+- [Generate Starlark files](#generate-starlark-files)
+- [Starlark syntax elements](#starlark-syntax-elements)
+- [Modifiers](#modifiers)
+- [Generating Kotlin DSL for custom Starlark functions](#generating-kotlin-dsl-for-custom-starlark-functions)
 
 ## Installation
 
