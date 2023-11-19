@@ -3,6 +3,7 @@
 Pendant — is a declarative Starlark code generator written in Kotlin.
 Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in a type-safe fashion.
 
+- [Materials](#materials)
 - [Installation](#installation)
 - [How to use](#how-to-use)
 - [Generate Starlark files](#generate-starlark-files)
@@ -10,6 +11,9 @@ Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in 
 - [Modifiers](#modifiers)
 - [Generate Kotlin DSL for custom Starlark functions](#generate-kotlin-dsl-for-custom-starlark-functions)
 
+## Materials
+- Learn more how Pendant is built internally at [droidcon New York 2022](https://www.droidcon.com/2022/09/29/advanced-techniques-for-building-kotlin-dsls/) and [Android Worldwide](https://youtu.be/p03NJxUCID0?si=6WMSoyn-G38GavqB).
+- Pendant is a key component of [Airin](https://github.com/Morfly/airin), an open-source tool for automated migration from Gradle to Bazel build systems.
 ## Installation
 
 ### Gradle
