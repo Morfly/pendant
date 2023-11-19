@@ -532,5 +532,94 @@ android_library(
 ```
 
 
-## Generating DSL for custom functions
+## Generating Kotlin DSL for custom Starlark functions
+The Kotlin DSL for Starlark/Bazel library functions in Pendant is generated using a library generation API. 
+In fact, you can generate an additional DSL for any custom function you like.
+
+To do that, make sure you add Pendant symbol processor to your dependencies.
+
+```kotlin
+dependencies {
+    ksp("io.morfly.pendant:pendant-library-compiler:x.y.z")
+}
+```
+
+Declare an interface, where each its field will represent a corresponding argument of a function you generate. Then, annotate it with the `@LibraryFunction` as shown below.
+
+```kotlin
+// Kotlin
+@LibraryFunction(
+    name = "custom_android_binary",
+    scope = [FunctionScope.Build],
+    kind = FunctionKind.Statement
+)
+private interface CustomAndroidBinary {
+
+    @Argument(required = true)
+    val name: Name
+    val srcs: ListType<Label?>?
+    val custom_package: StringType?
+}
+```
+
+```kotlin
+// Kotlin
+val builder = BUILD {
+    custom_android_binary(
+        name = "app",
+        custom_package = "io.morfly.pendant"
+    )
+}
+```
+
+When using `@LibraryFunction` annotation, you need to specify the following arguments:
+
+| Param      | Description                                                                                                                                 |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`     | Name of a generated function both in Kotlin DSL and in Starlark                                                                             |
+| `scope`    | Configure in what types of files the Kotlin DSL function could be used                                                                      |
+| `kind`     | Configure if the Kotlin DSL function generates a Starlark function call as a statement or as an expression                                  |
+| `brackets` | Optional. Configure what kind of Kotlin DSL functions will be generated. Either with round brackets `()`, with curly brackets `{}` or both  |
+
+Optionally you could annotate an argument with `@Argument` for additional configuration.
+When using `@Argument` annotation, you can specify the following arguments:
+
+| Param      | Description                                                                |
+|------------|----------------------------------------------------------------------------|
+| `name`     | Optional. Name of the generated Starlark function call                     |
+| `required` | Optional. Configure if the argument mandatory in the generated Kotlin DSL  |
+| `variadic` | Optional. Configure an argument of `ListType` to be a vararg in Kotlin DSL |
+
+#### Function call expressions
+
+To generate a function with return values, mark it with `FunctionKind.Expression`. 
+To specify a return type declare a property annotated with `@Returns`. The return type of the generated Kotlin function will be derived from the annotated property type.
+
+```kotlin
+@LibraryFunction(
+    name = "custom_glob",
+    scope = [FunctionScope.Build],
+    kind = FunctionKind.Expression
+)
+private interface CustomGlob {
+
+    @Argument(variadic = true)
+    val include: ListType<Label?>
+
+    @Returns
+    val returns: ListType<Label>
+}
+```
+
+```kotlin
+// Kotlin
+val builder = BUILD {
+    val SRCS by custom_glob("src/main/kotlin/**/*.kt")
+}
+```
+
+
+| Param      | Description                                                                                                                       |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `kind`     | Optional. Configure if the function in Kotlin DSL has an explicit return type or if it is derived dynamically with type inference |
 
