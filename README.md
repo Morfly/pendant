@@ -3,10 +3,17 @@
 Pendant — is a declarative Starlark code generator written in Kotlin.
 Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in a type-safe fashion.
 
+- [Installation]()
+- [How to use]()
+- [Generate Starlark files]()
+- [Starlark syntax elements]()
+- [Modifiers]()
+- [Generating Kotlin DSL for custom Starlark functions]()
+
 ## Installation
 
 ### Gradle
-
+Add the following dependencies to your Gradle module to start using Pendant.
 ```kotlin
 dependencies {
     // Starlark code generator.
@@ -53,7 +60,7 @@ kt_android_library(
 )
 ```
 
-## Code generation API
+## Generate Starlark files
 Pendant provides an API for generating different types of Starlark files. Once entered the file context, you can use the Kotlin DSL to generate corresponding Starlark statements.
 Depending on the file type, a different set of Starlark syntax features and functions is available.
 
@@ -617,7 +624,6 @@ val builder = BUILD {
     val SRCS by custom_glob("src/main/kotlin/**/*.kt")
 }
 ```
-
 
 | Param      | Description                                                                                                                       |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------|
