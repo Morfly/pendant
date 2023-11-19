@@ -1,4 +1,4 @@
-# Pendant
+# Pendant 💠
 
 Pendant — is a declarative Starlark code generator written in Kotlin.
 Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in a type-safe fashion.
@@ -584,21 +584,21 @@ val builder = BUILD {
 
 When using `@LibraryFunction` annotation, you need to specify the following arguments:
 
-| Param      | Description                                                                                                                                 |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`     | Name of a generated function both in Kotlin DSL and in Starlark                                                                             |
-| `scope`    | Configure in what types of files the Kotlin DSL function could be used                                                                      |
-| `kind`     | Configure if the Kotlin DSL function generates a Starlark function call as a statement or as an expression                                  |
-| `brackets` | Optional. Configure what kind of Kotlin DSL functions will be generated. Either with round brackets `()`, with curly brackets `{}` or both  |
+| Param      | Description                                                                                                                                                               |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`     | Name of a generated function both in Kotlin DSL and in Starlark                                                                                                           |
+| `scope`    | Configure in what types of files the Kotlin DSL function could be used. Use `FunctionScope.Build`, `FunctionScope.Workspace` or `FunctionScope.Starlark` for `.bzl` files |
+| `kind`     | Configure if the Kotlin DSL function generates a Starlark function call as `FunctionKind.Statement` or as `FunctionKind.Expression`                                       |
+| `brackets` | Optional. Configure what kind of Kotlin DSL functions will be generated. Either with `BracketsKind.Round` `()`, `BracketsKind.Curly` `{}` or both                         |
 
 Optionally you could annotate an argument with `@Argument` for additional configuration.
 When using `@Argument` annotation, you can specify the following arguments:
 
-| Param      | Description                                                                |
-|------------|----------------------------------------------------------------------------|
-| `name`     | Optional. Name of the generated Starlark function call                     |
-| `required` | Optional. Configure if the argument mandatory in the generated Kotlin DSL  |
-| `variadic` | Optional. Configure an argument of `ListType` to be a vararg in Kotlin DSL |
+| Param      | Description                                                                                                          |
+|------------|----------------------------------------------------------------------------------------------------------------------|
+| `name`     | Optional. Name of the generated Starlark function call                                                               |
+| `required` | Optional. Configure if the argument mandatory in the generated Kotlin DSL                                            |
+| `variadic` | Optional. Configure an argument of `ListType` to be a vararg in Kotlin DSL. Throws compilation error for other types |
 
 #### Function call expressions
 
@@ -632,3 +632,47 @@ val builder = BUILD {
 |------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | `kind`     | Optional. Configure if the function in Kotlin DSL has an explicit return type or if it is derived dynamically with type inference |
 
+#### Dynamic return type
+
+```kotlin
+// Kotlin
+@LibraryFunction(
+    name = "custom_select",
+    scope = [FunctionScope.Build],
+    kind = FunctionKind.Expression
+)
+interface CustomSelect {
+
+    @Argument(required = true, implicit = true)
+    val select: Map<Key, Value>
+
+    @Returns(kind = ReturnKind.Dynamic)
+    val returns: Any
+}
+```
+
+```kotlin
+// Kotlin
+val builder = BUILD {
+    android_binary(
+        name = "app",
+        deps = custom_select({
+            ":arm_build": [":arm_lib"],
+            ":x86_debug_build": [":x86_dev_lib"],
+            "//conditions:default": [":generic_lib"],
+        }),
+    )
+}
+```
+
+```python
+// Generated Starlark
+android_binary(
+    name = "app",
+    deps = custom_select({
+        ":arm_build": [":arm_lib"],
+        ":x86_debug_build": [":x86_dev_lib"],
+        "//conditions:default": [":generic_lib"],
+    }),
+)
+```
