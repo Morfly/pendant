@@ -5,7 +5,7 @@ Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in 
 
 - [Materials](#materials)
 - [Installation](#installation)
-- [How to use](#how-to-use)
+- [Overview](#overview)
 - [Generate Starlark files](#generate-starlark-files)
 - [Starlark syntax elements](#starlark-syntax-elements)
 - [Modifiers](#modifiers)
@@ -37,7 +37,7 @@ dependencies {
 }
 ```
 
-## How to Use
+## Overview
 
 Below you can find an example of a simple `BUILD.bazel` file generation with Pendant. The code below is a Kotlin DSL
 which replicates Starlark syntax as close as possible.
