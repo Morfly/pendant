@@ -29,7 +29,7 @@ Add the following dependencies to your Gradle module to start using Pendant.
 dependencies {
     // Starlark code generator.
     implementation("io.morfly.pendant:pendant-starlark:x.y.z")
-    // Library of Bazel functions.
+    // Kotlin DSL extension with Bazel functions.
     implementation("io.morfly.pendant:pendant-library-bazel:x.y.z>")
 
     // Optional. Generator for custom Starlark functions.
