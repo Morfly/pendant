@@ -29,9 +29,6 @@ internal interface ArgumentsHolder {
     val fargs: LinkedHashMap<String, Argument>
 }
 
-fun LinkedHashMap<String, Argument>.asSet() =
-    mapTo(linkedSetOf()) { it.value }
-
 internal fun ArgumentsHolder.append(
     name: String,
     value: Expression,
