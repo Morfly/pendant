@@ -39,18 +39,20 @@ class ListContext<T>(override val modifiers: ModifierCollection) : Context(),
     }
 
     private fun sortedItems(): MutableList<Expression> {
-        val comparator = comparator ?: return addedItems.map(::Expression).toMutableList()
+        val items = comparator?.let { comparator ->
+            val (literals, expressions) = addedItems.partition { it !is Expression }
+            val sortedLiterals = literals.sortedWith(comparator)
 
-        val (literals, expressions) = addedItems.partition { it !is Expression }
-        val sortedLiterals = literals.sortedWith(comparator)
+            val (references, otherExpressions) = expressions.partition { it is Reference }
+            val sortedReferences = references.sortedBy { (it as Reference).name }
 
-        val (references, otherExpressions) = expressions.partition { it is Reference }
-        val sortedReferences = references.sortedBy { (it as Reference).name }
+            mutableListOf<T>().also {
+                it += sortedLiterals
+                it += sortedReferences
+                it += otherExpressions
+            }
+        } ?: addedItems
 
-        return mutableListOf<T>().also {
-            it += sortedLiterals
-            it += sortedReferences
-            it += otherExpressions
-        }.map(::Expression).toMutableList()
+        return items.map(::Expression).toMutableList()
     }
 }
