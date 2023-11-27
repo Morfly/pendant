@@ -227,8 +227,8 @@ android_binary {
 }
 ```
 
-```kotlin
-// Generated Starlark
+```python
+# Generated Starlark
 MANIFEST_VALUES = {} + { "minSdkVersion": "23" }
 
 android_binary(
@@ -760,7 +760,7 @@ val builder = BUILD {
 ```
 
 ```python
-// Generated Starlark
+# Generated Starlark
 android_binary(
     name = "app",
     deps = custom_select({
