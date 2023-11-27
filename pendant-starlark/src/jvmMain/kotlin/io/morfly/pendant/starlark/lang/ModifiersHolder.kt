@@ -19,7 +19,7 @@ package io.morfly.pendant.starlark.lang
 import io.morfly.pendant.starlark.lang.context.Context
 import kotlin.reflect.KClass
 
-typealias ContextId = String
+typealias ContextId = String?
 typealias Checkpoint = String?
 typealias ModifierCollection = MutableMap<ContextId, MutableMap<Checkpoint, MutableList<Modifier<*>>>>
 
@@ -35,17 +35,19 @@ interface ModifiersHolder {
 
 @InternalPendantApi
 fun <C : Context> ModifiersHolder.invokeModifiers(context: C, checkpoint: String? = null) {
-    context._id?.let { id ->
+    fun invoke(id: String?) {
         modifiers[id]
             ?.get(checkpoint)
             ?.asSequence()
             ?.filter { it.type == context::class }
             ?.forEach { it.body(context) }
     }
+    invoke(id = null)
+    context._id?.let(::invoke)
 }
 
 inline fun <reified C : Context> ModifiersHolder.onContext(
-    id: String,
+    id: String? = null,
     checkpoint: String? = null,
     noinline modifier: C.() -> Unit
 ) {
@@ -62,10 +64,10 @@ fun ModifierCollection.append(modifiers: ModifierCollection) {
     }
 }
 
-fun ModifierCollection.append(id: String, checkpoint: String?, modifiers: List<Modifier<*>>) {
+fun ModifierCollection.append(id: String?, checkpoint: String?, modifiers: List<Modifier<*>>) {
     getOrPut(id, ::linkedMapOf).getOrPut(checkpoint, ::mutableListOf) += modifiers
 }
 
-fun ModifierCollection.append(id: String, checkpoint: String?, modifier: Modifier<*>) {
+fun ModifierCollection.append(id: String?, checkpoint: String?, modifier: Modifier<*>) {
     getOrPut(id, ::linkedMapOf).getOrPut(checkpoint, ::mutableListOf) += modifier
 }
