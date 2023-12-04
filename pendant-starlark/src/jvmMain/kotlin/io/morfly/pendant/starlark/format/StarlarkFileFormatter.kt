@@ -40,6 +40,9 @@ interface StarlarkFileFormatter {
     companion object Default : StarlarkFileFormatter by StarlarkCodeFormatter()
 }
 
+/**
+ * Formats a Starlark syntax tree and returns a string representation of a compilable code.
+ */
 fun StarlarkFile.format(formatter: StarlarkFileFormatter = StarlarkFileFormatter.Default): String {
     return formatter.format(this)
 }

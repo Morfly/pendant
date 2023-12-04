@@ -31,6 +31,9 @@ open class StarlarkFileWriter private constructor(
     private val writer: FileWriter = FileWriter
 ) : Writer<String, StarlarkFile, Unit> {
 
+    /**
+     * Write a Starlark file to a desired location in a file system.
+     */
     override fun write(dirPath: String, content: StarlarkFile) = with(content) {
 
         val fullPath = File("$dirPath/$name")
@@ -43,6 +46,9 @@ open class StarlarkFileWriter private constructor(
     companion object Default : StarlarkFileWriter()
 }
 
+/**
+ * Write a Starlark file to a desired location in a file system.
+ */
 fun StarlarkFile.write(dirPath: String, writer: StarlarkFileWriter = StarlarkFileWriter.Default) {
     return writer.write(dirPath, this)
 }
