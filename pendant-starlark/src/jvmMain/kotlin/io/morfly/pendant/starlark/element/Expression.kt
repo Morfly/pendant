@@ -37,7 +37,7 @@ import io.morfly.pendant.starlark.lang.type.Tuple
  *  [Reference],
  *  [SliceExpression],
  *  [DynamicExpression],
- *  [RawText]: TODO.
+ *  [RawText].
  */
 sealed interface Expression : Element
 

@@ -17,6 +17,9 @@
 package io.morfly.pendant.starlark.element
 
 
+/**
+ * A syntax element representing a comment block.
+ */
 @JvmInline
 value class Comment(val value: String) : Statement {
 

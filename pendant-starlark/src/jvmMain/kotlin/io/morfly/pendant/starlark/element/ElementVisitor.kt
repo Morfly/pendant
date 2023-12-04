@@ -18,7 +18,7 @@ package io.morfly.pendant.starlark.element
 
 
 /**
- *  A visitor for visiting the elements of a syntax tree in lexical order.
+ *  A visitor for traversing the elements of a syntax tree in lexical order.
  */
 interface ElementVisitor<A> {
 

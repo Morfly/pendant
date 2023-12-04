@@ -17,6 +17,9 @@
 package io.morfly.pendant.starlark.element
 
 
+/**
+ * Syntax element representing a None literal.
+ */
 object NoneValue : Expression {
 
     override fun <A> accept(visitor: ElementVisitor<A>, position: Int, mode: PositionMode, accumulator: A) {

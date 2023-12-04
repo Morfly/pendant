@@ -111,4 +111,3 @@ class AnyFunctionCall(
  * An element for a call of the function with no return value (void).
  */
 typealias VoidFunctionCall = AnyFunctionCall
-

@@ -57,7 +57,7 @@ enum class PositionMode {
     CONTINUE_LINE,
 
     /**
-     * TODO
+     * Not implemented
      */
     SINGLE_LINE
 }
