@@ -46,6 +46,12 @@ fun <C : Context> ModifiersHolder.invokeModifiers(context: C, checkpoint: String
     context._id?.let(::invoke)
 }
 
+/**
+ * Modifies a block of a generated Starlark file.
+ * @param C context representing the part of the file to be modified.
+ * @param id id of the context. If null - the modifier will be applied to any block with the context type [C].
+ * @param checkpoint  checkpoint to specify where exactly the modification must be injected.
+ */
 inline fun <reified C : Context> ModifiersHolder.onContext(
     id: String? = null,
     checkpoint: String? = null,

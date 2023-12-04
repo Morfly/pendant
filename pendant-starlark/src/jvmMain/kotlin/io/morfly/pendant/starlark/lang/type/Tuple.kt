@@ -18,7 +18,9 @@
 
 package io.morfly.pendant.starlark.lang.type
 
-
+/**
+ * Starlark tuple type.
+ */
 interface Tuple {
 
     val elements: ListType<Any?>
@@ -26,11 +28,23 @@ interface Tuple {
 
 data class TupleImpl(override val elements: ListType<Any?>) : Tuple
 
+/**
+ * Converting Starlark tuple to list.
+ */
 fun Tuple.toList(): ListType<Any?> = elements
 
+/**
+ * Converting Starlark list to tuple.
+ */
 fun ListType<Any?>.toTuple(): Tuple = TupleImpl(this)
 
+/**
+ * Builder for a tuple.
+ */
 fun tupleOf(vararg elements: Any?): Tuple =
     TupleImpl(elements.toList())
 
+/**
+ * Builder for an empty tuple.
+ */
 fun emptyTuple(): Tuple = TupleImpl(emptyList())

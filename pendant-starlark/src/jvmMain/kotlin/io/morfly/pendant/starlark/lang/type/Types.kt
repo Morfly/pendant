@@ -18,36 +18,40 @@ package io.morfly.pendant.starlark.lang.type
 
 
 /**
- * Representation of a string type from Starlark.
+ * Representation of a Starlark string type.
  */
 typealias StringType = CharSequence
 
 /**
- * Representation of a number type from Starlark including integer and float numbers.
+ * Representation of a Starlark number type covering integer and float.
  */
 typealias NumberType = Number
 
-/**
- * TODO add description
- */
 typealias BooleanBaseType<T> = Comparable<T>
 
 /**
- * Representation of an boolean type from Starlark.
+ * Representation of a Starlark boolean type
  */
 typealias BooleanType = BooleanBaseType<Boolean>
 
 /**
- * Representation of an tuple type from Starlark.
+ * Representation of a Starlark tuple type.
  */
 typealias TupleType = Tuple
 
-// TODO
+/**
+ * Representation of a Starlark list type.
+ */
 typealias ListType<T> = List<T>
 
-// TODO
+/**
+ * Representation of a Starlark dictionary type.
+ */
 typealias DictionaryType<K, V> = Map<K, V>
 
+/**
+ * Representation of a Starlark void type mostly used for functions without returned values.
+ */
 typealias VoidType = Unit
 
 typealias BaseKey = Any

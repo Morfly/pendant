@@ -23,29 +23,71 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 import kotlin.annotation.AnnotationTarget.CLASS
 import kotlin.annotation.AnnotationTarget.PROPERTY
 
+/**
+ * Default value for string arguments of annotations for library generation.
+ */
 const val PENDANT_ARGUMENT_DEFAULT = "<default>"
 
+/**
+ * For every interface annotated with [LibraryFunction] a corresponding Kotlin DSL function will be generated where all
+ * properties of the interface will be taken as function parameters.
+ */
 @Retention(RUNTIME)
 @Target(CLASS)
 annotation class LibraryFunction(
+    /**
+     * Name of a generated function both in Kotlin DSL and in Starlark.
+     */
     val name: String,
+    /**
+     * Configure in what types of files the Kotlin DSL function could be used. Use [FunctionScope.Build],
+     * [FunctionScope.Workspace] or [FunctionScope.Starlark] for .bzl files.
+     */
     val scope: Array<FunctionScope>,
+    /**
+     * Configure if the Kotlin DSL function generates a Starlark function call as [FunctionKind.Statement] or as
+     * [FunctionKind.Expression].
+     */
     val kind: FunctionKind,
+    /**
+     * Optional. Configure what kind of Kotlin DSL functions will be generated. Either with [BracketsKind.Round] (),
+     * [BracketsKind.Curly] {} or both.
+     */
     val brackets: Array<BracketsKind> = [Round, Curly],
 )
 
+/**
+ * Allows specifying additional information about arguments of a function generated with [LibraryFunction].
+ */
 @Retention(RUNTIME)
 @Target(PROPERTY)
 annotation class Argument(
+    /**
+     * Optional. Name of the generated Starlark function call.
+     */
     val name: String = PENDANT_ARGUMENT_DEFAULT,
+    /**
+     * Optional. Configure if the argument mandatory in the generated Kotlin DSL.
+     */
     val required: Boolean = false,
+    /**
+     * Optional. Configure an argument of ListType to be a vararg in Kotlin DSL. Throws compilation error for other
+     * types.
+     */
     val variadic: Boolean = false,
     val implicit: Boolean = false,
 )
 
+/**
+ * Denotes a return type of generated Kotlin DSL function.
+ * When a property is annotated, its type is considered as a return type while the name is ignore.
+ */
 @Retention(RUNTIME)
 @Target(PROPERTY)
 annotation class Returns(
+    /**
+     * Optional. Configure if the function in Kotlin DSL has an explicit return type or if it is derived dynamically with type inference
+     */
     val kind: ReturnKind = Type
 )
 

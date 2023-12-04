@@ -20,6 +20,5 @@ package io.morfly.pendant.starlark.lang
 /**
  * Marks the DSL scope of a specific language feature context.
  */
-//@Target(AnnotationTarget.TYPE, AnnotationTarget.CLASS)
 @DslMarker
 internal annotation class LanguageScope
