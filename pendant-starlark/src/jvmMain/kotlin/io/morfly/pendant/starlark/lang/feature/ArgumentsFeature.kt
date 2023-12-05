@@ -36,7 +36,7 @@ import io.morfly.pendant.starlark.lang.type.TupleType
 import kotlin.reflect.KProperty
 
 /**
- * Allows passing arguments in functions calls with curly brackets {}.
+ * Allows passing arguments in functions calls with curly brackets {} in the code generator.
  */
 internal interface ArgumentsFeature : LanguageFeature,
     ArgumentsHolder {
