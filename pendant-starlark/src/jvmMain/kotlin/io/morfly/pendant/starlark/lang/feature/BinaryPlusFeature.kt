@@ -43,13 +43,19 @@ import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
- * Feature that enables concatenations.
+ * Allows using concatenationss in the code generator.
  */
 internal interface BinaryPlusFeature : LanguageFeature,
     ModifiersHolder {
 
     /**
-     * Operator for string concatenation.
+     * Operator for string concatenations.
+     *
+     * Generated Starlark code:
+     * "value1" + "value2"
+     *
+     * Kotlin code generator program:
+     * "value1" `+` "value2"
      */
     infix fun StringType?.`+`(other: StringType?): StringType =
         StringBinaryOperation(
@@ -59,7 +65,13 @@ internal interface BinaryPlusFeature : LanguageFeature,
         )
 
     /**
-     * Operator for number concatenation.
+     * Operator for number concatenations.
+     *
+     * Generated Starlark code:
+     * 1 + 2
+     *
+     * Kotlin code generator program:
+     * 1 `+` 2
      */
     infix fun NumberType?.`+`(other: NumberType?): NumberType =
         NumberBinaryOperation(
@@ -69,7 +81,13 @@ internal interface BinaryPlusFeature : LanguageFeature,
         )
 
     /**
-     * Operator for boolean concatenation.
+     * Operator for boolean concatenations.
+     *
+     * Generated Starlark code:
+     * "value1" + "value2"
+     *
+     * Kotlin code generator program:
+     * "value1" `+` "value2"
      */
     infix fun BooleanType?.`+`(other: BooleanType?): BooleanType =
         BooleanBinaryOperation(
@@ -79,7 +97,13 @@ internal interface BinaryPlusFeature : LanguageFeature,
         )
 
     /**
-     * Operator for list or tuple concatenation.
+     * Operator for list or tuple concatenations.
+     *
+     * Generated Starlark code:
+     * [1, 2] + [3]
+     *
+     * Kotlin code generator program:
+     * "value1" `+` "value2"
      */
     infix fun <T> List<T>?.`+`(other: List<T>?): List<T> =
         ListBinaryOperation(
@@ -89,7 +113,13 @@ internal interface BinaryPlusFeature : LanguageFeature,
         )
 
     /**
-     * Operator for dictionary concatenation.
+     * Operator for dictionary concatenations.
+     *
+     * Generated Starlark code:
+     * {"key1": "value1"} + {"key2": "value2"}
+     *
+     * Kotlin code generator program:
+     * dict { "key1" to "value1" } `+` dict { "key2" to "value2" }
      */
     infix fun Map<*, Value>?.`+`(other: Map<*, Value>?): Map<Key, Value> =
         DictionaryBinaryOperation(
@@ -99,7 +129,16 @@ internal interface BinaryPlusFeature : LanguageFeature,
         )
 
     /**
-     * Operator for dictionary concatenation.
+     * A shortened form of an operator for dictionary concatenations.
+     *
+     * Generated Starlark code:
+     * [1, 2] + [3]
+     *
+     * Generated Starlark code:
+     * {"key1": "value1"} + {"key2": "value2"}
+     *
+     * Kotlin code generator program:
+     * dict { "key1" to "value1" } `+` { "key2" to "value2" }
      */
     @OptIn(InternalPendantApi::class)
     infix fun Map<*, Value>?.`+`(body: DictionaryContext.() -> Unit): Map<Key, Value> {

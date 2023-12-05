@@ -33,6 +33,12 @@ internal interface BinaryPercentsFeature : LanguageFeature {
 
     /**
      * Using percent operator with strings.
+     *
+     * Generated Starlark code:
+     * "value-%s" % "1"
+     *
+     * Kotlin code generator program:
+     * "value-%s" `%` "1"
      */
     infix fun StringType?.`%`(other: StringType?): StringType =
         StringBinaryOperation(
@@ -43,6 +49,12 @@ internal interface BinaryPercentsFeature : LanguageFeature {
 
     /**
      * Using percent operator with numbers.
+     *
+     * Generated Starlark code:
+     * 10 % 2
+     *
+     * Kotlin code generator program:
+     * 10 `%` 2
      */
     infix fun NumberType?.`%`(other: NumberType): NumberType =
         NumberBinaryOperation(

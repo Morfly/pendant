@@ -20,10 +20,15 @@ import io.morfly.pendant.starlark.element.Comment
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
 
-
+/**
+ * Allows generating Starlark comments.
+ */
 internal interface CommentsFeature : LanguageFeature,
     StatementsHolder {
 
+    /**
+     * Add a comment marked with # character in Starlark.
+     */
     fun comment(body: () -> String) {
         statements += Comment(body())
     }
