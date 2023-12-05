@@ -44,8 +44,7 @@ import io.morfly.pendant.starlark.lang.type.Value
 
 
 /**
- * Feature of the Starlark template engine that provides operators for passsing arguments that were not initially
- * specified in Airin.
+ * Allows passing arguments dynamically in functions calls with curly brackets {} in the code generator.
  */
 internal interface DynamicArgumentsFeature :
     LanguageFeature,
@@ -53,7 +52,19 @@ internal interface DynamicArgumentsFeature :
     ModifiersHolder {
 
     /**
-     * Operator for passing string argument.
+     * Assigning arguments of string type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = "value",
+     *  value2 = STRING_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` "value"
+     *  value2 `=` STRING_REF
+     * }
      */
     infix fun String.`=`(value: StringType): _StringExpressionAccumulator<*> {
         val argument = Argument(id = this, value = Expression(value, ::StringLiteral))
@@ -62,7 +73,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing integer argument.
+     * Assigning arguments of number type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = 42,
+     *  value2 = NUMBER_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` 42
+     *  value2 `=` NUMBER_REF
+     * }
      */
     infix fun String.`=`(value: NumberType): _NumberExpressionAccumulator<*> {
         val argument = Argument(id = this, value = Expression(value, ::NumberLiteral))
@@ -71,7 +94,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing float argument.
+     * Assigning arguments of boolean type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = True,
+     *  value2 = BOOLEAN_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` true
+     *  value2 `=` BOOLEAN_REF
+     * }
      */
     infix fun String.`=`(value: BooleanType): _BooleanExpressionAccumulator<*> {
         val argument = Argument(id = this, value = Expression(value, ::BooleanLiteral))
@@ -80,7 +115,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing list argument.
+     * Assigning arguments of list type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = [1, 2, 3],
+     *  value2 = LIST_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` list[1, 2, 3]
+     *  value2 `=` LIST_REF
+     * }
      */
     infix fun <T> String.`=`(value: List<T>): _ListExpressionAccumulator<T, *> {
         val argument = append(
@@ -92,7 +139,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing tuple argument.
+     * Assigning arguments of tuple type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = (1, "value", True),
+     *  value2 = TUPLE_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` tupleOf(1, "value", True),
+     *  value2 `=` TUPLE_REF
+     * }
      */
     infix fun String.`=`(value: TupleType): _TupleExpressionAccumulator<*> {
         val argument = Argument(id = this, value = Expression(value, ::TupleExpression))
@@ -101,7 +160,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing dictionary argument.
+     * Assigning arguments of dictionary type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = {"key": "value"},
+     *  value2 = DICT_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` dict { "key" to "value" },
+     *  value2 `=` DICT_REF
+     * }
      */
     infix fun <K : Key, V : Value> String.`=`(value: Map<K, V>): _DictionaryExpressionAccumulator<K, V, *> {
         val argument = append(
@@ -113,7 +184,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing dictionary argument.
+     * Assigning arguments of dictionary type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = {"key": "value"},
+     *  value2 = DICT_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` dict { "key" to "value" },
+     *  value2 `=` DICT_REF
+     * }
      */
     @OptIn(InternalPendantApi::class)
     infix fun String.`=`(body: DictionaryContext.() -> Unit): _DictionaryExpressionAccumulator<Key, Value, *> {
@@ -129,7 +212,19 @@ internal interface DynamicArgumentsFeature :
     }
 
     /**
-     * Operator for passing null or arguments of any other type.
+     * Assigning arguments of dictionary type in function calls with curly brackets {}.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = {"key": "value"},
+     *  value2 = DICT_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 `=` { "key" to "value" },
+     *  value2 `=` DICT_REF
+     * }
      */
     infix fun String.`=`(value: Any?): _AnyExpressionAccumulator<*> {
         val argument = Argument(id = this, value = Expression(value))
