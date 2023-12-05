@@ -49,22 +49,53 @@ internal interface CollectionsFeature : LanguageFeature,
 
     /**
      * List expreession builder.
+     *
+     * Generated Starlark code:
+     * [1, 2, 3]
+     *
+     * Kotlin code generator program:
+     * list[1, 2, 3]
      */
     operator fun <T> _ListExpressionBuilder.get(vararg args: T): List<T> =
         ListExpression(listOf(*args))
 
     /**
      * List expression builder.
+     *
+     * Generated Starlark code:
+     * [1, 2, 3]
+     *
+     * Kotlin code generator program:
+     * list(1, 2, 3)
      */
     fun <T> list(vararg args: T): List<T> =
         ListExpression(listOf(*args))
 
     /**
      * Empty list builder.
+     *
+     * Generated Starlark code:
+     * []
+     *
+     * Kotlin code generator program:
+     * list()
      */
     fun list(): List<Nothing> =
         ListExpression(emptyList())
 
+    /**
+     * List expression builder.
+     *
+     * Generated Starlark code:
+     * [1, 2, 3]
+     *
+     * Kotlin code generator program:
+     * list {
+     *  item(1)
+     *  item(2)
+     *  item(2)
+     * }
+     */
     @OptIn(InternalPendantApi::class)
     fun <T> list(body: ListContext<T>.() -> Unit): ListType<T> {
         val listContext = ListContext<T>(modifiers).apply(body)
@@ -79,6 +110,12 @@ internal interface CollectionsFeature : LanguageFeature,
 
     /**
      * Dictionary expression builder.
+     *
+     * Generated Starlark code:
+     * {"key": "value"}
+     *
+     * Kotlin code generator program:
+     * dict { "key" to "value" }
      */
     @OptIn(InternalPendantApi::class)
     fun dict(body: DictionaryContext.() -> Unit): Map<Key, Value> {
@@ -88,6 +125,7 @@ internal interface CollectionsFeature : LanguageFeature,
         return DictionaryExpression(kwargs)
     }
 
+    // TODO delete
     @Deprecated("Replace with dict{} expression builder", replaceWith = ReplaceWith("dict {}"))
     fun <K : Key, V : Value> dict(vararg kwargs: Pair<K, V>): Map<K, V> =
         kwargs.toMap()
@@ -97,12 +135,24 @@ internal interface CollectionsFeature : LanguageFeature,
 
     /**
      * Tuple expression builder.
+     *
+     * Generated Starlark code:
+     * (1, "item", True)
+     *
+     * Kotlin code generator program:
+     * tuple(1, "item", True)
      */
     fun tuple(vararg args: Any?): TupleType =
         TupleExpression(tupleOf(*args))
 
     /**
      * Empty tuple expression builder.
+     *
+     * Generated Starlark code:
+     * ()
+     *
+     * Kotlin code generator program:
+     * tuple()
      */
     fun tuple(): TupleType =
         TupleExpression(emptyTuple())
