@@ -35,7 +35,9 @@ import io.morfly.pendant.starlark.lang.type.StringType
 import io.morfly.pendant.starlark.lang.type.TupleType
 import kotlin.reflect.KProperty
 
-
+/**
+ * Allows passing arguments in functions calls with curly brackets {}.
+ */
 internal interface ArgumentsFeature : LanguageFeature,
     ArgumentsHolder {
 
@@ -43,18 +45,82 @@ internal interface ArgumentsFeature : LanguageFeature,
         error("Unable to return value from a function argument.")
     }
 
+    /**
+     * Assigning arguments of string type in function calls with curly brackets {}. Assuming the function in Kotlin
+     * includes a corresponding parameter.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = "value",
+     *  value2 = STRING_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 = "value"
+     *  value2 = STRING_REF
+     * }
+     */
     operator fun <V : StringType?> Map<String, Argument>.setValue(thisRef: Any?, property: KProperty<*>, value: V) {
         fargs[property.name] = Argument(id = property.name, value = Expression(value, ::StringLiteral))
     }
 
+    /**
+     * Assigning arguments of number type in function calls with curly brackets {}. Assuming the function in Kotlin
+     * includes a corresponding parameter.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = 42,
+     *  value2 = NUMBER_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 = 42
+     *  value2 = NUMBER_REF
+     * }
+     */
     operator fun <V : NumberType?> Map<String, Argument>.setValue(thisRef: Any?, property: KProperty<*>, value: V) {
         fargs[property.name] = Argument(id = property.name, value = Expression(value, ::NumberLiteral))
     }
 
+    /**
+     * Assigning arguments of boolean type in function calls with curly brackets {}. Assuming the function in Kotlin
+     * includes a corresponding parameter.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = True,
+     *  value2 = BOOLEAN_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 = true
+     *  value2 = BOOLEAN_REF
+     * }
+     */
     operator fun <V : BooleanType?> Map<String, Argument>.setValue(thisRef: Any?, property: KProperty<*>, value: V) {
         fargs[property.name] = Argument(id = property.name, value = Expression(value, ::BooleanLiteral))
     }
 
+    /**
+     * Assigning arguments of list type in function calls with curly brackets {}. Assuming the function in Kotlin
+     * includes a corresponding parameter.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = [1, 2, 3],
+     *  value2 = LIST_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 = list[1, 2, 3]
+     *  value2 = LIST_REF
+     * }
+     */
     operator fun <T, V : List<T>?> Map<String, Argument>.setValue(thisRef: Any?, property: KProperty<*>, value: V) {
         append(
             name = property.name,
@@ -63,10 +129,42 @@ internal interface ArgumentsFeature : LanguageFeature,
         )
     }
 
+    /**
+     * Assigning arguments of tuple type in function calls with curly brackets {}. Assuming the function in Kotlin
+     * includes a corresponding parameter.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = (1, "value", True),
+     *  value2 = TUPLE_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 = tupleOf(1, "value", True),
+     *  value2 = TUPLE_REF
+     * }
+     */
     operator fun <V : TupleType?> Map<String, Argument>.setValue(thisRef: Any?, property: KProperty<*>, value: V) {
         fargs[property.name] = Argument(id = property.name, value = Expression(value, ::TupleExpression))
     }
 
+    /**
+     * Assigning arguments of dictionary type in function calls with curly brackets {}. Assuming the function in Kotlin
+     * includes a corresponding parameter.
+     *
+     * Generated Starlark code:
+     * my_function(
+     *  value1 = {"key": "value"},
+     *  value2 = DICT_REF
+     * )
+     *
+     * Kotlin code generator program:
+     * my_function {
+     *  value1 = dict { "key" to "value" },
+     *  value2 = DICT_REF
+     * }
+     */
     operator fun <K, V, V1 : Map<K, V>?> Map<String, Argument>.setValue(
         thisRef: Any?, property: KProperty<*>, value: V1
     ) {
