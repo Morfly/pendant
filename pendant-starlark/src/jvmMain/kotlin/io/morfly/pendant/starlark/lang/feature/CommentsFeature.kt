@@ -28,6 +28,12 @@ internal interface CommentsFeature : LanguageFeature,
 
     /**
      * Add a comment marked with # character in Starlark.
+     *
+     * Generated Starlark code:
+     * # some comment
+     *
+     * Kotlin code generator program:
+     * comment { "some comment" }
      */
     fun comment(body: () -> String) {
         statements += Comment(body())
