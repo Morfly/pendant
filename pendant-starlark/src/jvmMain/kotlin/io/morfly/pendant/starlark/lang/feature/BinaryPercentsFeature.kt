@@ -16,17 +16,24 @@
 
 package io.morfly.pendant.starlark.lang.feature
 
-import io.morfly.pendant.starlark.element.*
 import io.morfly.pendant.starlark.element.BinaryOperator.PERCENT
+import io.morfly.pendant.starlark.element.Expression
+import io.morfly.pendant.starlark.element.NumberBinaryOperation
+import io.morfly.pendant.starlark.element.NumberLiteral
+import io.morfly.pendant.starlark.element.StringBinaryOperation
+import io.morfly.pendant.starlark.element.StringLiteral
+import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.type.NumberType
 import io.morfly.pendant.starlark.lang.type.StringType
-import io.morfly.pendant.starlark.lang.LanguageFeature
 
 /**
- * Feature that enables percent binary operator mostly used for string interpolation in Starlark.
+ * Allows using percent Starlark operator with the code generator.
  */
 internal interface BinaryPercentsFeature : LanguageFeature {
 
+    /**
+     * Using percent operator with strings.
+     */
     infix fun StringType?.`%`(other: StringType?): StringType =
         StringBinaryOperation(
             left = Expression(this, ::StringLiteral),
@@ -34,6 +41,9 @@ internal interface BinaryPercentsFeature : LanguageFeature {
             right = Expression(other, ::StringLiteral)
         )
 
+    /**
+     * Using percent operator with numbers.
+     */
     infix fun NumberType?.`%`(other: NumberType): NumberType =
         NumberBinaryOperation(
             left = Expression(this, ::NumberLiteral),
