@@ -39,7 +39,7 @@ import kotlin.reflect.typeOf
 
 
 /**
- * Enables load statements for Starlark file.
+ * Alows generating Starlark load statements.
  */
 internal interface LoadStatementsFeature : LanguageFeature,
     StatementsHolder {
@@ -57,16 +57,25 @@ internal interface LoadStatementsFeature : LanguageFeature,
         statements += LoadStatement(file = StringLiteral(file), symbols = elements)
     }
 
+    /**
+     * Starlark Load statement with one loaded symbol as a reference.
+     */
     fun load(file: String, symbol1: String): _LoadStatementBuilder1 {
         load(file, *arrayOf(symbol1))
         return _LoadStatementBuilder1(symbol1)
     }
 
+    /**
+     * Starlark Load statement with two loaded symbols as references.
+     */
     fun load(file: String, symbol1: String, symbol2: String): _LoadStatementBuilder2 {
         load(file, *arrayOf(symbol1, symbol2))
         return _LoadStatementBuilder2(symbol1, symbol2)
     }
 
+    /**
+     * Starlark Load statement with three loaded symbols as references.
+     */
     fun load(file: String, symbol1: String, symbol2: String, symbol3: String): _LoadStatementBuilder3 {
         load(file, *arrayOf(symbol1, symbol2, symbol3))
         return _LoadStatementBuilder3(symbol1, symbol2, symbol3)
@@ -76,6 +85,10 @@ internal interface LoadStatementsFeature : LanguageFeature,
 class _LoadStatementBuilder1 internal constructor(
     val symbol1: String,
 ) {
+
+    /**
+     * Specified a type of loaded reference.
+     */
     inline fun <reified S1> of(): S1 =
         _newReference(symbol1)
 }
@@ -85,6 +98,10 @@ class _LoadStatementBuilder2 internal constructor(
     val symbol1: String,
     val symbol2: String,
 ) {
+
+    /**
+     * Specified types of loaded references.
+     */
     inline fun <reified S1, reified S2> of(): Pair<S1, S2> =
         Pair(_newReference(symbol1), _newReference(symbol2))
 }
@@ -94,6 +111,10 @@ class _LoadStatementBuilder3 internal constructor(
     val symbol2: String,
     val symbol3: String,
 ) {
+
+    /**
+     * Specified types of loaded references.
+     */
     inline fun <reified S1, reified S2, reified S3> of(): Triple<S1, S2, S3> =
         Triple(_newReference(symbol1), _newReference(symbol2), _newReference(symbol3))
 }
