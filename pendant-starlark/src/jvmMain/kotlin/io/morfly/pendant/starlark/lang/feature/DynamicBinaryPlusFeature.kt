@@ -80,6 +80,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
 
     /**
      * String concatenation operator.
+     *
+     * Generated Starlark code:
+     * VALUE_1 + "value2"
+     *
+     * Kotlin code generator program:
+     * VALUE_1 `+` "value2"
      */
     infix fun <E : Element> _StringExpressionAccumulator<E>.`+`(
         other: StringType?
@@ -94,6 +100,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
 
     /**
      * String concatenation operator.
+     *
+     * Generated Starlark code:
+     * VALUE_1 + 42
+     *
+     * Kotlin code generator program:
+     * VALUE_1 `+` 42
      */
     infix fun <E : Element> _NumberExpressionAccumulator<E>.`+`(
         other: NumberType?
@@ -108,6 +120,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
 
     /**
      * List concatenation operator.
+     *
+     * Generated Starlark code:
+     * VALUE_1 + [1, 2, 3]
+     *
+     * Kotlin code generator program:
+     * VALUE_1 `+` list[1, 2, 3]
      */
     infix fun <T, E : Element> _ListExpressionAccumulator<T, E>.`+`(
         other: List<T>?
@@ -122,6 +140,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
 
     /**
      * Tuple concatenation operator.
+     *
+     * Generated Starlark code:
+     * VALUE_1 + (1, "value", True)
+     *
+     * Kotlin code generator program:
+     * VALUE_1 `+` tuple(1, "value", True)
      */
     infix fun <E : Element> _TupleExpressionAccumulator<E>.`+`(other: TupleType?): _TupleExpressionAccumulator<E> {
         holder.value = TupleBinaryOperation(
@@ -134,6 +158,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
 
     /**
      * Dictionary concatenation operator.
+     *
+     * Generated Starlark code:
+     * VALUE_1 + {"key": "value"}
+     *
+     * Kotlin code generator program:
+     * VALUE_1 `+` dict { "key" to "value" }
      */
     infix fun <K, V : Value, E : Element> _DictionaryExpressionAccumulator<K, V, E>.`+`(
         other: Map<*, Value>?
@@ -148,6 +178,12 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
 
     /**
      * Dictionary concatenation operator.
+     *
+     * Generated Starlark code:
+     * VALUE_1 + {"key": "value"}
+     *
+     * Kotlin code generator program:
+     * VALUE_1 `+` { "key" to "value" }
      */
     @OptIn(InternalPendantApi::class)
     infix fun <K, V : Value, E : Element> _DictionaryExpressionAccumulator<K, V, E>.`+`(
@@ -164,7 +200,7 @@ internal interface DynamicBinaryPlusFeature : LanguageFeature,
     }
 
     /**
-     * Concatenation operator for values for with type does not matter.
+     * Concatenation operator for any values.
      */
     infix fun <E : Element> _AnyExpressionAccumulator<E>.`+`(other: Any?): _AnyExpressionAccumulator<E> {
         holder.value = AnyBinaryOperation(
