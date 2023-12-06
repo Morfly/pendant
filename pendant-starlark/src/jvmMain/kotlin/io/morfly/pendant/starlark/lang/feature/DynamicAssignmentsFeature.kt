@@ -30,6 +30,7 @@ import io.morfly.pendant.starlark.element.NumberLiteral
 import io.morfly.pendant.starlark.element.NumberReference
 import io.morfly.pendant.starlark.element.StringLiteral
 import io.morfly.pendant.starlark.element.StringReference
+import io.morfly.pendant.starlark.element.TupleExpression
 import io.morfly.pendant.starlark.element.TupleReference
 import io.morfly.pendant.starlark.lang.InternalPendantApi
 import io.morfly.pendant.starlark.lang.LanguageFeature
@@ -41,6 +42,7 @@ import io.morfly.pendant.starlark.lang.type.BooleanType
 import io.morfly.pendant.starlark.lang.type.Key
 import io.morfly.pendant.starlark.lang.type.NumberType
 import io.morfly.pendant.starlark.lang.type.StringType
+import io.morfly.pendant.starlark.lang.type.Tuple
 import io.morfly.pendant.starlark.lang.type.Value
 import kotlin.reflect.KProperty
 
@@ -52,6 +54,15 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
     ModifiersHolder,
     StatementsHolder {
 
+    /**
+     * Allows using string as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = "value"
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` "value"
+     */
     operator fun _StringExpressionAccumulator<Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
     ): StringReference {
@@ -60,6 +71,15 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
         return StringReference(name = assignment.name)
     }
 
+    /**
+     * Allows using number as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = 42
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` 42
+     */
     operator fun _NumberExpressionAccumulator<Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
     ): NumberReference {
@@ -68,6 +88,15 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
         return NumberReference(name = assignment.name)
     }
 
+    /**
+     * Allows using boolean as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = True
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` True
+     */
     operator fun _BooleanExpressionAccumulator<Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
     ): BooleanReference {
@@ -76,6 +105,15 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
         return BooleanReference(name = assignment.name)
     }
 
+    /**
+     * Allows using list as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = [1, 2, 3]
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` list[1, 2, 3]
+     */
     operator fun <T> _ListExpressionAccumulator<T, Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
     ): ListReference<T> {
@@ -84,6 +122,15 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
         return ListReference(name = assignment.name)
     }
 
+    /**
+     * Allows using tuple as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = (1, "value", True)
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` tuple(1, "value", True)
+     */
     operator fun _TupleExpressionAccumulator<Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
     ): TupleReference {
@@ -92,6 +139,15 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
         return TupleReference(name = assignment.name)
     }
 
+    /**
+     * Allows using dictionary as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = {"key": "value"}
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` dict { "key" to "value" }
+     */
     operator fun <K : Key, V : Value> _DictionaryExpressionAccumulator<K, V, Assignment>.provideDelegate(
         thisRef: AssignmentsFeature?, property: KProperty<*>
     ): DictionaryReference<K, V> {
@@ -100,32 +156,99 @@ internal interface DynamicAssignmentsFeature : LanguageFeature,
         return DictionaryReference(name = assignment.name)
     }
 
-
+    /**
+     * Allows using string as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = "value"
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` "value"
+     */
     infix fun String.`=`(value: StringType): _StringExpressionAccumulator<Assignment> {
         val assignment = Assignment(name = this, value = Expression(value, ::StringLiteral))
         return _StringExpressionAccumulator(assignment)
     }
 
+    /**
+     * Allows using number as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = 42
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` 42
+     */
     infix fun String.`=`(value: NumberType): _NumberExpressionAccumulator<Assignment> {
         val assignment = Assignment(name = this, value = Expression(value, ::NumberLiteral))
         return _NumberExpressionAccumulator(assignment)
     }
 
+    /**
+     * Allows using boolean as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = True
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` True
+     */
     infix fun String.`=`(value: BooleanType): _BooleanExpressionAccumulator<Assignment> {
         val assignment = Assignment(name = this, value = Expression(value, ::BooleanLiteral))
         return _BooleanExpressionAccumulator(assignment)
     }
 
+    /**
+     * Allows using list as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = [1, 2, 3]
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` list[1, 2, 3]
+     */
     infix fun <T> String.`=`(value: List<T>): _ListExpressionAccumulator<T, Assignment> {
         val assignment = Assignment(name = this, value = Expression(value, ::ListExpression))
         return _ListExpressionAccumulator(assignment)
     }
 
+    /**
+     * Allows using tuple as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = (1, "value", True)
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` tuple(1, "value", True)
+     */
+    infix fun <T> String.`=`(value: Tuple): _ListExpressionAccumulator<T, Assignment> {
+        val assignment = Assignment(name = this, value = Expression(value, ::TupleExpression))
+        return _ListExpressionAccumulator(assignment)
+    }
+
+    /**
+     * Allows using dictionary as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = {"key": "value"}
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` dict { "key" to "value" }
+     */
     infix fun <K : Key, V : Value> String.`=`(value: Map<K, V>): _DictionaryExpressionAccumulator<K, V, Assignment> {
         val assignment = Assignment(name = this, value = Expression(value, ::DictionaryExpression))
         return _DictionaryExpressionAccumulator(assignment)
     }
 
+    /**
+     * Allows using dictionary as a delegate for generating variable assignments.
+     *
+     * Generated Starlark code:
+     * VALUE_1 = {"key": "value"}
+     *
+     * Kotlin code generator program:
+     * val VALUE by "VALUE_$i" `=` { "key" to "value" }
+     */
     @OptIn(InternalPendantApi::class)
     infix fun <K : Key, V : Value> String.`=`(
         body: DictionaryContext.() -> Unit
