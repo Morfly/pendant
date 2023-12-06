@@ -28,7 +28,7 @@ import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
 
 /**
- * Feature that enables declaring function statements using string as a name.
+ * Allows declaring Starlark function call statements using Kotlin string as a name.
  *
  * Example:
  * ```
@@ -41,6 +41,21 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
     StatementsHolder,
     ModifiersHolder {
 
+    /**
+     * Generates  Starlark function call with a return type dynamically, using a Kotlin string as its name.
+     *
+     * Generated Starlark code:
+     * android_binary(
+     *  name = "app",
+     *  deps = []
+     * )
+     *
+     * Kotlin code generator program:
+     * "android_binary" {
+     *  "name" `=` "app",
+     *  "deps" `=` list()
+     * }
+     */
     @OptIn(InternalPendantApi::class)
     operator fun String.invoke(body: FunctionCallContext.() -> Unit) {
         val functionCallContext = FunctionCallContext(modifiers).apply(body)
@@ -49,6 +64,15 @@ internal interface DynamicFunctionsFeature : LanguageFeature,
         registerFunctionCallStatement(name = this, args)
     }
 
+    /**
+     * Generates  Starlark function call with a return type dynamically, using a Kotlin string as its name.
+     *
+     * Generated Starlark code:
+     * range(1, 5)
+     *
+     * Kotlin code generator program:
+     * "range"(1, 5)
+     */
     @OptIn(InternalPendantApi::class)
     operator fun String.invoke(vararg arguments: Any?) {
         val elements = arguments.map {
