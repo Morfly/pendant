@@ -26,10 +26,15 @@ import io.morfly.pendant.starlark.lang.context.FunctionCallContext
 import io.morfly.pendant.starlark.lang.invokeModifiers
 import io.morfly.pendant.starlark.lang.type.StringType
 
-
+/**
+ * Adds library functions that serve as extensions to existing types.
+ */
 internal interface StringExtensionsFeature : LanguageFeature,
     ModifiersHolder {
 
+    /**
+     * Generates call of a string formatting function.
+     */
     @OptIn(InternalPendantApi::class)
     fun StringType.format(body: FunctionCallContext.() -> Unit): StringType {
         val context = FunctionCallContext(modifiers).apply(body)

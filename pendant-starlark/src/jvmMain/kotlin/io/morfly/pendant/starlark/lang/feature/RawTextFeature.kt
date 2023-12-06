@@ -20,13 +20,21 @@ import io.morfly.pendant.starlark.element.RawStatement
 import io.morfly.pendant.starlark.lang.LanguageFeature
 import io.morfly.pendant.starlark.lang.StatementsHolder
 
-
+/**
+ * Allows generating Starlark code from raw Kotlin strings.
+ */
 internal interface RawTextFeature : LanguageFeature,
     StatementsHolder {
 
+    /**
+     * Inject raw string as a generated Starlark code.
+     */
     fun String.raw() {
         statements += RawStatement(value = this)
     }
 
+    /**
+     * Inject raw string as a generated Starlark code.
+     */
     operator fun String.unaryPlus() = raw()
 }
