@@ -27,6 +27,7 @@
             <option value="$PROJECT_DIR$/pendant-starlark" />
             <option value="$PROJECT_DIR$/samples" />
             <option value="$PROJECT_DIR$/samples/bazel-scripts-generation" />
+            <option value="$PROJECT_DIR$/samples/playground" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -28,5 +28,6 @@ include(
 )
 
 include(
-    ":samples:bazel-scripts-generation"
+    ":samples:bazel-scripts-generation",
+    ":samples:playground"
 )
