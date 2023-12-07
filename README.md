@@ -164,6 +164,19 @@ NAME = "app"
 What's important is that this operation is type safe, meaning `NAME` is a variable of string type on the Kotlin DSL
 level and could be used further accordingly.
 
+#### Dynamic variable assignments
+In case the name of the variable is set dynamically, during runtime, but still needs to be referenced in further code, the following syntax is used.
+
+```kotlin
+// Kotlin
+val VARIABLE by "VARIABLE_$i" `=` "value"
+```
+
+```python
+# Generated Starlark
+VARIABLE_1 `=` "value"
+```
+
 ### List expressions
 
 One of the syntax elements of Starlark are list expressions. There is no equivalent for such an expression in Kotlin.
