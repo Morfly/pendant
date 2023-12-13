@@ -30,12 +30,14 @@ dependencies {
     // Starlark code generator.
     implementation("io.morfly.pendant:pendant-starlark:x.y.z")
     // Kotlin DSL extension with Bazel functions.
-    implementation("io.morfly.pendant:pendant-library-bazel:x.y.z>")
+    implementation("io.morfly.pendant:pendant-library-bazel:x.y.z")
 
     // Optional. Generator for custom Starlark functions.
     ksp("io.morfly.pendant:pendant-library-compiler:x.y.z")
 }
 ```
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.morfly.pendant/pendant-starlark/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.morfly.pendant/pendant-starlark)
 
 ## Overview
 To generate Starlark files Pendant provides a Kotlin DSL that replicates Starlark syntax as close as possible.
