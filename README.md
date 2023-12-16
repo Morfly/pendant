@@ -1,7 +1,7 @@
 # Pendant 💠
 
 Pendant — is a declarative Starlark code generator written in Kotlin.
-Use Kotlin DSL that replicated Starlark syntax, for generating Bazel scripts in a type-safe fashion.
+Use Kotlin DSL that looks and feels like Starlark syntax, for generating Bazel scripts in an intuitive and type-safe fashion.
 
 - [Materials](#materials)
 - [Installation](#installation)
@@ -465,7 +465,7 @@ To generate Starlark slices use the following syntax.
 
 ### Load statements
 
-#### Load functions
+#### Loading rules/functions
 
 ```kotlin
 // Kotlin
@@ -477,7 +477,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 load("@rules_java//java:defs.bzl", "java_binary")
 ```
 
-#### Load values
+#### Loading values
 
 If you need to reference the values impored with `load` you could use `of` function and specify the types of the
 corresponding values.
