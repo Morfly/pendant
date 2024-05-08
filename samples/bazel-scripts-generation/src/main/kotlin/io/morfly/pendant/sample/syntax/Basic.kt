@@ -12,13 +12,13 @@ fun main() {
         load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
         load("@rules_jvm_external//:defs.bzl", "artifact")
 
-        val ARTFIACTS by list[artifact("androidx.compose.ui:ui")]
+        val ARTIFACTS by list[artifact("androidx.compose.ui:ui")]
 
         kt_android_library(
             name = "app",
             manifest = "src/main/AndroidManifest.xml",
             srcs = glob("src/main/kotlin/**/*.kt"),
-            deps = list["my-library"] `+` ARTFIACTS
+            deps = list["my-library"] `+` ARTIFACTS
         )
     }
 
@@ -31,7 +31,7 @@ fun main() {
     load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
     load("@rules_jvm_external//:defs.bzl", "artifact")
 
-    ARTFIACTS = [artifact("androidx.compose.ui:ui")]
+    ARTIFACTS = [artifact("androidx.compose.ui:ui")]
 
     kt_android_library(
         name = "app",
